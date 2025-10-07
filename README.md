@@ -48,7 +48,7 @@ Web development is huge, but here we’ll focus on the **essentials** and the **
 Clone this repository and follow the lessons step by step:  
 
 ```bash
-git clone https://github.com/gitbhusalhubpramish/web-beginning.git
+git clone https://github.com/aakku106/Web_Development.git
 cd web-beginning
 ```
 
