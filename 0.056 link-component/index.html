@@ -1,0 +1,509 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link Component in Next.js - Interactive Guide</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🔗 Link Component in Next.js</h1>
+        <p>Master client-side navigation with Next.js Link</p>
+      </header>
+
+      <!-- Tab Navigation -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('basics')">
+          Basics
+        </button>
+        <button class="tab-btn" onclick="showTab('comparison')">
+          Link vs Anchor
+        </button>
+        <button class="tab-btn" onclick="showTab('props')">
+          Props & Options
+        </button>
+        <button class="tab-btn" onclick="showTab('examples')">
+          Real Examples
+        </button>
+      </div>
+
+      <!-- Tab Contents -->
+      <main>
+        <!-- Basics Tab -->
+        <div id="basics" class="tab-content active">
+          <section class="content-section">
+            <h2>What is the Link Component?</h2>
+            <p>
+              The Link component provides
+              <strong>instant navigation</strong> between pages without full
+              page reload!
+            </p>
+
+            <div class="visual-comparison">
+              <div class="comparison-item">
+                <h3>Traditional Navigation (❌ Slow)</h3>
+                <div class="flow-diagram">
+                  <div class="flow-step">Click Link</div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step">Full Page Reload</div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step">Load Everything Again</div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step">White Flash ⚡</div>
+                </div>
+              </div>
+
+              <div class="comparison-item highlight">
+                <h3>Next.js Link (✅ Fast)</h3>
+                <div class="flow-diagram">
+                  <div class="flow-step">Click Link</div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step">Client-Side Navigation</div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step">Instant Page Switch</div>
+                  <div class="flow-arrow">↓</div>
+                  <div class="flow-step">Smooth Transition ✨</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <h3>📚 Simple Usage</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>import Link from 'next/link';
+
+export default function Home() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Welcome Home!&lt;/h1&gt;
+      &lt;Link href="/about"&gt;Go to About Page&lt;/Link&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="benefits-grid">
+              <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h4>Lightning Fast</h4>
+                <p>No page reload needed</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">💾</div>
+                <h4>Keeps State</h4>
+                <p>Application state preserved</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h4>Auto Prefetch</h4>
+                <p>Pages load in background</p>
+              </div>
+              <div class="benefit-card">
+                <div class="benefit-icon">✨</div>
+                <h4>Smooth UX</h4>
+                <p>Better user experience</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Comparison Tab -->
+        <div id="comparison" class="tab-content">
+          <section class="content-section">
+            <h2>Link vs Anchor Tag Comparison</h2>
+
+            <div class="comparison-table">
+              <div class="table-header">
+                <div class="table-cell">Feature</div>
+                <div class="table-cell">&lt;a&gt; Tag</div>
+                <div class="table-cell">Link Component</div>
+              </div>
+              <div class="table-row">
+                <div class="table-cell"><strong>Page Reload</strong></div>
+                <div class="table-cell error">❌ Full reload</div>
+                <div class="table-cell success">✅ No reload</div>
+              </div>
+              <div class="table-row">
+                <div class="table-cell"><strong>Speed</strong></div>
+                <div class="table-cell error">❌ Slow</div>
+                <div class="table-cell success">✅ Instant</div>
+              </div>
+              <div class="table-row">
+                <div class="table-cell"><strong>Prefetching</strong></div>
+                <div class="table-cell error">❌ No</div>
+                <div class="table-cell success">✅ Automatic</div>
+              </div>
+              <div class="table-row">
+                <div class="table-cell">
+                  <strong>State Preservation</strong>
+                </div>
+                <div class="table-cell error">❌ Lost</div>
+                <div class="table-cell success">✅ Preserved</div>
+              </div>
+              <div class="table-row">
+                <div class="table-cell"><strong>User Experience</strong></div>
+                <div class="table-cell error">❌ Jarring</div>
+                <div class="table-cell success">✅ Smooth</div>
+              </div>
+            </div>
+
+            <div class="code-comparison">
+              <div class="code-block wrong">
+                <h3>❌ Wrong: Using &lt;a&gt; Tag</h3>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>// DON'T do this in Next.js
+&lt;a href="/about"&gt;About Page&lt;/a&gt;
+// This causes full page reload ⏳</code></pre>
+                </div>
+              </div>
+
+              <div class="code-block correct">
+                <h3>✅ Correct: Using Link</h3>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>// DO this in Next.js
+&lt;Link href="/about"&gt;About Page&lt;/Link&gt;
+// Fast client-side navigation ⚡</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box warning">
+              <h3>⚠️ When to Use &lt;a&gt; Tag</h3>
+              <p>Use regular anchor tags ONLY for external links:</p>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>&lt;a href="https://nextjs.org" target="_blank" rel="noopener noreferrer"&gt;
+  Next.js Documentation
+&lt;/a&gt;</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Props Tab -->
+        <div id="props" class="tab-content">
+          <section class="content-section">
+            <h2>Link Component Props</h2>
+
+            <div class="props-grid">
+              <div class="prop-card">
+                <div class="prop-header">
+                  <span class="prop-name">href</span>
+                  <span class="prop-badge required">Required</span>
+                </div>
+                <p class="prop-description">The destination path or URL</p>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>&lt;Link href="/about"&gt;About&lt;/Link&gt;
+&lt;Link href="/blog/1"&gt;Blog Post&lt;/Link&gt;
+&lt;Link href={`/user/${id}`}&gt;Profile&lt;/Link&gt;</code></pre>
+                </div>
+              </div>
+
+              <div class="prop-card">
+                <div class="prop-header">
+                  <span class="prop-name">prefetch</span>
+                  <span class="prop-badge optional">Optional</span>
+                </div>
+                <p class="prop-description">
+                  Prefetch page in background (default: true)
+                </p>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>// Enable prefetch (default)
+&lt;Link href="/about" prefetch={true}&gt;About&lt;/Link&gt;
+
+// Disable for heavy pages
+&lt;Link href="/dashboard" prefetch={false}&gt;Dashboard&lt;/Link&gt;</code></pre>
+                </div>
+              </div>
+
+              <div class="prop-card">
+                <div class="prop-header">
+                  <span class="prop-name">replace</span>
+                  <span class="prop-badge optional">Optional</span>
+                </div>
+                <p class="prop-description">
+                  Replace history instead of push (default: false)
+                </p>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>// Normal navigation (adds to history)
+&lt;Link href="/page2"&gt;Next Page&lt;/Link&gt;
+
+// Replace current page (no back button)
+&lt;Link href="/home" replace={true}&gt;Home&lt;/Link&gt;</code></pre>
+                </div>
+              </div>
+
+              <div class="prop-card">
+                <div class="prop-header">
+                  <span class="prop-name">scroll</span>
+                  <span class="prop-badge optional">Optional</span>
+                </div>
+                <p class="prop-description">
+                  Scroll to top after navigation (default: true)
+                </p>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>// Scroll to top (default)
+&lt;Link href="/article" scroll={true}&gt;Article&lt;/Link&gt;
+
+// Keep scroll position
+&lt;Link href="/comments" scroll={false}&gt;Comments&lt;/Link&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <h3>💡 Pro Tip: Object-Based href</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>&lt;Link href={{
+  pathname: '/search',
+  query: { q: 'nextjs', category: 'tutorial' }
+}}&gt;
+  Search Results
+&lt;/Link&gt;
+// Results in: /search?q=nextjs&category=tutorial</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Examples Tab -->
+        <div id="examples" class="tab-content">
+          <section class="content-section">
+            <h2>Real-World Navigation Examples</h2>
+
+            <div class="example-card">
+              <h3>1. Basic Navigation Bar</h3>
+              <div class="demo-navbar">
+                <div class="demo-logo">MyWebsite</div>
+                <div class="demo-links">
+                  <span class="demo-link active">Home</span>
+                  <span class="demo-link">About</span>
+                  <span class="demo-link">Services</span>
+                  <span class="demo-link">Blog</span>
+                  <span class="demo-link">Contact</span>
+                </div>
+              </div>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>import Link from 'next/link';
+
+export default function Navbar() {
+  return (
+    &lt;nav&gt;
+      &lt;Link href="/"&gt;Home&lt;/Link&gt;
+      &lt;Link href="/about"&gt;About&lt;/Link&gt;
+      &lt;Link href="/services"&gt;Services&lt;/Link&gt;
+      &lt;Link href="/blog"&gt;Blog&lt;/Link&gt;
+      &lt;Link href="/contact"&gt;Contact&lt;/Link&gt;
+    &lt;/nav&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <h3>2. Dynamic Routes with IDs</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>// Blog post list
+const posts = [
+  { id: 1, title: 'Getting Started with Next.js' },
+  { id: 2, title: 'Understanding Link Component' },
+  { id: 3, title: 'Building Fast Websites' }
+];
+
+export default function BlogList() {
+  return (
+    &lt;div&gt;
+      {posts.map(post =&gt; (
+        &lt;Link key={post.id} href={`/blog/${post.id}`}&gt;
+          {post.title}
+        &lt;/Link&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <h3>3. Active Link Pattern</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function Navigation() {
+  const pathname = usePathname();
+  
+  return (
+    &lt;nav&gt;
+      &lt;Link 
+        href="/" 
+        className={pathname === '/' ? 'active' : ''}
+      &gt;
+        Home
+      &lt;/Link&gt;
+      
+      &lt;Link 
+        href="/about" 
+        className={pathname === '/about' ? 'active' : ''}
+      &gt;
+        About
+      &lt;/Link&gt;
+    &lt;/nav&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <h3>4. Programmatic Navigation</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>'use client';
+import { useRouter } from 'next/navigation';
+
+export default function LoginPage() {
+  const router = useRouter();
+  
+  const handleLogin = async () => {
+    // Perform login logic
+    const success = await loginUser();
+    
+    if (success) {
+      // Navigate after successful login
+      router.push('/dashboard');
+    }
+  };
+  
+  return (
+    &lt;button onClick={handleLogin}&gt;
+      Login
+    &lt;/button&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <h3>5. Navigation with Query Parameters</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>// Simple query string
+&lt;Link href="/search?q=nextjs&sort=recent"&gt;
+  Search Next.js
+&lt;/Link&gt;
+
+// Using object syntax
+&lt;Link href={{
+  pathname: '/products',
+  query: { 
+    category: 'electronics', 
+    sort: 'price',
+    order: 'asc'
+  }
+}}&gt;
+  Electronics
+&lt;/Link&gt;
+// Results in: /products?category=electronics&sort=price&order=asc</code></pre>
+              </div>
+            </div>
+
+            <div class="interactive-demo">
+              <h3>🎮 Try It Yourself</h3>
+              <p>Click the buttons to simulate navigation:</p>
+              <div class="demo-buttons">
+                <button
+                  class="demo-btn"
+                  onclick="simulateNavigation('/', 'Home')">
+                  🏠 Go to Home
+                </button>
+                <button
+                  class="demo-btn"
+                  onclick="simulateNavigation('/about', 'About')">
+                  👤 Go to About
+                </button>
+                <button
+                  class="demo-btn"
+                  onclick="simulateNavigation('/blog', 'Blog')">
+                  📝 Go to Blog
+                </button>
+                <button
+                  class="demo-btn"
+                  onclick="simulateNavigation('/contact', 'Contact')">
+                  📧 Go to Contact
+                </button>
+              </div>
+              <div id="navigationOutput" class="navigation-output">
+                Current Page: <strong>Home</strong> (/)
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-content">
+          <p>🎉 Master Next.js Link component for lightning-fast navigation!</p>
+          <div class="creator-section">
+            <p>
+              Created by
+              <a
+                href="https://github.com/aakku106"
+                target="_blank"
+                rel="noopener noreferrer"
+                >aakku106</a
+              >
+            </p>
+            <p>Making web development fun & accessible for everyone! 🚀</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
