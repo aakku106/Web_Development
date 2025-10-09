@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript OOP Practice Solutions</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background: #f7f7f7; color: #333; }
+    h2 { color: #1a73e8; }
+    pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; }
+    .output { background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 5px; }
+    section { margin-bottom: 40px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript OOP Practice Solutions</h1>
+
+  <section>
+    <h2>1. Create a Class for Students</h2>
+    <div class="output" id="out1"></div>
+    <pre><code>// JavaScript Code
+class Student {
+  constructor(name, grade) {
+    this.name = name;
+    this.grade = grade;
+  }
+  display() {
+    return `${this.name} is in grade ${this.grade}`;
+  }
+}
+
+const s1 = new Student('Pramish', 8);
+document.getElementById('out1').innerText = s1.display();</code></pre>
+  </section>
+
+  <section>
+    <h2>2. Add Encapsulation Using Getters and Setters</h2>
+    <div class="output" id="out2"></div>
+    <pre><code>// JavaScript Code
+class BankAccount {
+  constructor(owner, balance) {
+    this._owner = owner;
+    this._balance = balance;
+  }
+  get balance() {
+    return this._balance;
+  }
+  set balance(amount) {
+    if (amount >= 0) this._balance = amount;
+  }
+}
+
+const acc = new BankAccount('Ram', 5000);
+acc.balance = 6000;
+document.getElementById('out2').innerText = `${acc._owner} balance: Rs.${acc.balance}`;</code></pre>
+  </section>
+
+  <section>
+    <h2>3. Use Inheritance Between Two Classes</h2>
+    <div class="output" id="out3"></div>
+    <pre><code>// JavaScript Code
+class Animal {
+  speak() { return 'Animal sound'; }
+}
+
+class Dog extends Animal {
+  speak() { return 'Bark bark!'; }
+}
+
+const dog = new Dog();
+document.getElementById('out3').innerText = dog.speak();</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Polymorphism Example</h2>
+    <div class="output" id="out4"></div>
+    <pre><code>// JavaScript Code
+class Bird {
+  speak() { return 'Some sound'; }
+}
+class Sparrow extends Bird {
+  speak() { return 'Chirp chirp'; }
+}
+class Parrot extends Bird {
+  speak() { return 'Hello!'; }
+}
+
+const birds = [new Sparrow(), new Parrot()];
+let result4 = birds.map(b => b.speak()).join(' | ');
+document.getElementById('out4').innerText = result4;</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Constructor Example and Default Values</h2>
+    <div class="output" id="out5"></div>
+    <pre><code>// JavaScript Code
+class Car {
+  constructor(name = 'Unknown', speed = 0) {
+    this.name = name;
+    this.speed = speed;
+  }
+  move() {
+    return `${this.name} is moving at ${this.speed} km/h`;
+  }
+}
+
+const car1 = new Car('Tesla', 120);
+const car2 = new Car();
+document.getElementById('out5').innerText = car1.move() + ' | ' + car2.move();</code></pre>
+  </section>
+
+  <section>
+    <h2>6. Combine All OOP Concepts</h2>
+    <div class="output" id="out6"></div>
+    <pre><code>// JavaScript Code
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  introduce() {
+    return `Hi, I'm ${this.name}, ${this.age} years old.`;
+  }
+}
+
+class Employee extends Person {
+  constructor(name, age, job) {
+    super(name, age);
+    this.job = job;
+  }
+  introduce() {
+    return super.introduce() + ` I work as a ${this.job}.`;
+  }
+}
+
+const emp = new Employee('Pramish', 13, 'Developer');
+document.getElementById('out6').innerText = emp.introduce();</code></pre>
+  </section>
+
+  <script>
+    // 1
+    class Student {
+      constructor(name, grade) { this.name = name; this.grade = grade; }
+      display() { return `${this.name} is in grade ${this.grade}`; }
+    }
+    const s1 = new Student('Pramish', 8);
+    document.getElementById('out1').innerText = s1.display();
+
+    // 2
+    class BankAccount {
+      constructor(owner, balance) { this._owner = owner; this._balance = balance; }
+      get balance() { return this._balance; }
+      set balance(amount) { if (amount >= 0) this._balance = amount; }
+    }
+    const acc = new BankAccount('Ram', 5000);
+    acc.balance = 6000;
+    document.getElementById('out2').innerText = `${acc._owner} balance: Rs.${acc.balance}`;
+
+    // 3
+    class Animal { speak() { return 'Animal sound'; } }
+    class Dog extends Animal { speak() { return 'Bark bark!'; } }
+    const dog = new Dog();
+    document.getElementById('out3').innerText = dog.speak();
+
+    // 4
+    class Bird { speak() { return 'Some sound'; } }
+    class Sparrow extends Bird { speak() { return 'Chirp chirp'; } }
+    class Parrot extends Bird { speak() { return 'Hello!'; } }
+    const birds = [new Sparrow(), new Parrot()];
+    let result4 = birds.map(b => b.speak()).join(' | ');
+    document.getElementById('out4').innerText = result4;
+
+    // 5
+    class Car {
+      constructor(name = 'Unknown', speed = 0) { this.name = name; this.speed = speed; }
+      move() { return `${this.name} is moving at ${this.speed} km/h`; }
+    }
+    const car1 = new Car('Tesla', 120);
+    const car2 = new Car();
+    document.getElementById('out5').innerText = car1.move() + ' | ' + car2.move();
+
+    // 6
+    class Person {
+      constructor(name, age) { this.name = name; this.age = age; }
+      introduce() { return `Hi, I'm ${this.name}, ${this.age} years old.`; }
+    }
+    class Employee extends Person {
+      constructor(name, age, job) { super(name, age); this.job = job; }
+      introduce() { return super.introduce() + ` I work as a ${this.job}.`; }
+    }
+    const emp = new Employee('Pramish', 13, 'Developer');
+    document.getElementById('out6').innerText = emp.introduce();
+  </script>
+</body>
+</html>

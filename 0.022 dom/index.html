@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Practice Full Solutions</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    section { background: #f7f7f7; padding: 15px; border-radius: 8px; margin-bottom: 25px; }
+    .box { width: 100px; height: 100px; background: lightgray; margin-top: 10px; }
+    .highlight { background: yellow; }
+    .dynamic-box { width: 50px; height: 50px; background: lightblue; display: inline-block; margin: 5px; text-align:center; line-height:50px; }
+    pre { background: #eee; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    button { margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+<h1>DOM Practice Full Solutions with Code</h1>
+
+<section>
+  <h2>1. Dynamic Element Creation</h2>
+  <input type="text" id="itemInput" placeholder="Enter item">
+  <button id="addItemBtn">Add Item</button>
+  <ul id="itemList"></ul>
+  <pre>
+// JS Code:
+document.getElementById('addItemBtn').addEventListener('click', function() {
+  let val = document.getElementById('itemInput').value;
+  if(val) {
+    let li = document.createElement('li');
+    li.textContent = val;
+    document.getElementById('itemList').appendChild(li);
+    document.getElementById('itemInput').value = '';
+  }
+});
+  </pre>
+  <script>
+    document.getElementById('addItemBtn').addEventListener('click', function() {
+      let val = document.getElementById('itemInput').value;
+      if(val) {
+        let li = document.createElement('li');
+        li.textContent = val;
+        document.getElementById('itemList').appendChild(li);
+        document.getElementById('itemInput').value = '';
+      }
+    });
+  </script>
+</section>
+
+<section>
+  <h2>2. Class Toggling</h2>
+  <div class="box" id="toggleBox"></div>
+  <button id="toggleBtn">Toggle Highlight</button>
+  <pre>
+// JS Code:
+document.getElementById('toggleBtn').addEventListener('click', function() {
+  document.getElementById('toggleBox').classList.toggle('highlight');
+});
+  </pre>
+  <script>
+    document.getElementById('toggleBtn').addEventListener('click', function() {
+      document.getElementById('toggleBox').classList.toggle('highlight');
+    });
+  </script>
+</section>
+
+<section>
+  <h2>3. Remove Element</h2>
+  <ul id="remList">
+    <li>Item 1 <button class="removeBtn">Remove</button></li>
+    <li>Item 2 <button class="removeBtn">Remove</button></li>
+    <li>Item 3 <button class="removeBtn">Remove</button></li>
+  </ul>
+  <pre>
+// JS Code:
+document.querySelectorAll('.removeBtn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.parentElement.remove();
+  });
+});
+  </pre>
+  <script>
+    document.querySelectorAll('.removeBtn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.parentElement.remove();
+      });
+    });
+  </script>
+</section>
+
+<section>
+  <h2>4. Iterate Over Multiple Elements</h2>
+  <div class="content">
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+  </div>
+  <pre>
+// JS Code:
+document.querySelectorAll('.content p').forEach(p => p.style.color = 'blue');
+  </pre>
+  <script>
+    document.querySelectorAll('.content p').forEach(p => p.style.color = 'blue');
+  </script>
+</section>
+
+<section>
+  <h2>5. Form Validation</h2>
+  <form id="validateForm">
+    <input type="text" id="uname" placeholder="Username">
+    <input type="email" id="uemail" placeholder="Email">
+    <button type="submit">Submit</button>
+  </form>
+  <div id="warning"></div>
+  <pre>
+// JS Code:
+document.getElementById('validateForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  let uname = document.getElementById('uname').value;
+  let uemail = document.getElementById('uemail').value;
+  let warning = document.getElementById('warning');
+  if(!uname || !uemail){
+    warning.textContent = 'Please fill all fields!';
+    warning.style.color = 'red';
+  } else {
+    warning.textContent = 'Form submitted successfully!';
+    warning.style.color = 'green';
+  }
+});
+  </pre>
+  <script>
+    document.getElementById('validateForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      let uname = document.getElementById('uname').value;
+      let uemail = document.getElementById('uemail').value;
+      let warning = document.getElementById('warning');
+      if(!uname || !uemail){
+        warning.textContent = 'Please fill all fields!';
+        warning.style.color = 'red';
+      } else {
+        warning.textContent = 'Form submitted successfully!';
+        warning.style.color = 'green';
+      }
+    });
+  </script>
+</section>
+
+<section>
+  <h2>6. Form Data Display</h2>
+  <form id="dataForm">
+    <input type="text" id="name" placeholder="Name">
+    <input type="number" id="age" placeholder="Age">
+    <input type="email" id="email" placeholder="Email">
+    <button type="submit">Submit</button>
+  </form>
+  <div id="dataDisplay"></div>
+  <pre>// JS Code:
+document.getElementById('dataForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  let n = document.getElementById('name').value;
+  let a = document.getElementById('age').value;
+  let eMail = document.getElementById('email').value;
+  document.getElementById('dataDisplay').textContent = `Name: ${n}, Age: ${a}, Email: ${eMail}`;
+});</pre>
+  <script>
+    document.getElementById('dataForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      let n = document.getElementById('name').value;
+      let a = document.getElementById('age').value;
+      let eMail = document.getElementById('email').value;
+      document.getElementById('dataDisplay').textContent = `Name: ${n}, Age: ${a}, Email: ${eMail}`;
+    });
+  </script>
+</section>
+
+<section>
+  <h2>7. Event Handling - Dynamic Boxes</h2>
+  <input type="number" id="numBoxes" placeholder="Number of boxes">
+  <button id="createBoxes">Create Boxes</button>
+  <div id="boxesContainer"></div>
+  <pre>// JS Code:
+document.getElementById('createBoxes').addEventListener('click', function(){
+  let count = parseInt(document.getElementById('numBoxes').value);
+  let container = document.getElementById('boxesContainer');
+  container.innerHTML = '';
+  for(let i=1;i<=count;i++){
+    let div = document.createElement('div');
+    div.className = 'dynamic-box';
+    div.textContent = i;
+    container.appendChild(div);
+  }
+});</pre>
+  <script>
+    document.getElementById('createBoxes').addEventListener('click', function(){
+      let count = parseInt(document.getElementById('numBoxes').value);
+      let container = document.getElementById('boxesContainer');
+      container.innerHTML = '';
+      for(let i=1;i<=count;i++){
+        let div = document.createElement('div');
+        div.className = 'dynamic-box';
+        div.textContent = i;
+        container.appendChild(div);
+      }
+    });
+  </script>
+</section>
+
+<section>
+  <h2>8. Advanced Selector Practice</h2>
+  <h2>Heading 1</h2>
+  <h2>Heading 2</h2>
+  <div class="special">
+    <p>Paragraph A</p>
+    <p>Paragraph B</p>
+  </div>
+  <pre>// JS Code:
+// getElementsByTagName
+Array.from(document.getElementsByTagName('h2')).forEach(h=>h.textContent += ' - Modified');
+// getElementsByClassName
+Array.from(document.getElementsByClassName('special')).forEach(div => div.style.border = '2px solid green');
+// querySelector
+document.querySelector('.special p').style.color = 'purple';
+// querySelectorAll
+document.querySelectorAll('.special p').forEach(p=>p.style.fontWeight = 'bold');</pre>
+  <script>
+    Array.from(document.getElementsByTagName('h2')).forEach(h=>h.textContent += ' - Modified');
+    Array.from(document.getElementsByClassName('special')).forEach(div => div.style.border = '2px solid green');
+    document.querySelector('.special p').style.color = 'purple';
+    document.querySelectorAll('.special p').forEach(p=>p.style.fontWeight = 'bold');
+  </script>
+</section>
+
+</body>
+</html>
