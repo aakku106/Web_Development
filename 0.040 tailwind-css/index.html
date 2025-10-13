@@ -1,0 +1,1100 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Tailwind CSS - Utility-First CSS Framework | Interactive Lesson
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "custom-blue": "#1DA1F2",
+              "custom-purple": "#8B5CF6",
+            },
+            animation: {
+              float: "float 3s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .demo-highlight {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-blue-500">
+      <div class="container mx-auto px-6 py-8">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">
+          Tailwind CSS
+        </h1>
+        <p class="text-xl text-center text-gray-600 max-w-3xl mx-auto">
+          Learn the utility-first CSS framework that lets you build custom
+          designs rapidly
+        </p>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-wrap justify-center space-x-2 md:space-x-4 py-4">
+          <button
+            onclick="showTab('basics')"
+            class="tab-btn active px-4 py-2 rounded-lg font-semibold transition-all duration-300">
+            Basics
+          </button>
+          <button
+            onclick="showTab('layout')"
+            class="tab-btn px-4 py-2 rounded-lg font-semibold transition-all duration-300">
+            Layout & Spacing
+          </button>
+          <button
+            onclick="showTab('styling')"
+            class="tab-btn px-4 py-2 rounded-lg font-semibold transition-all duration-300">
+            Colors & Typography
+          </button>
+          <button
+            onclick="showTab('components')"
+            class="tab-btn px-4 py-2 rounded-lg font-semibold transition-all duration-300">
+            Components
+          </button>
+          <button
+            onclick="showTab('responsive')"
+            class="tab-btn px-4 py-2 rounded-lg font-semibold transition-all duration-300">
+            Responsive Design
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+      <!-- Basics Tab -->
+      <div id="basics" class="tab-content active">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Tailwind CSS Basics
+          </h2>
+
+          <!-- Utility Class Demo -->
+          <div class="bg-gray-50 rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Utility Classes Demo
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Click the buttons to see different utility classes in action:
+            </p>
+
+            <div class="flex flex-wrap gap-4 mb-6">
+              <button
+                onclick="toggleUtility('padding')"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Toggle Padding
+              </button>
+              <button
+                onclick="toggleUtility('background')"
+                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Change Background
+              </button>
+              <button
+                onclick="toggleUtility('border')"
+                class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Toggle Border
+              </button>
+              <button
+                onclick="toggleUtility('shadow')"
+                class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Toggle Shadow
+              </button>
+            </div>
+
+            <div
+              id="utility-demo"
+              class="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300 text-center transition-all duration-500">
+              <p class="text-gray-700 font-medium">
+                This box changes with utility classes
+              </p>
+              <p class="text-sm text-gray-500 mt-2">
+                Watch the classes change in real-time!
+              </p>
+            </div>
+
+            <div class="mt-4 p-4 bg-gray-800 rounded-lg">
+              <p class="text-green-400 font-mono text-sm">Current classes:</p>
+              <p
+                id="current-classes"
+                class="text-white font-mono text-sm break-all">
+                bg-white p-4 rounded-lg border-2 border-dashed border-gray-300
+                text-center transition-all duration-500
+              </p>
+            </div>
+          </div>
+
+          <!-- Traditional vs Tailwind -->
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
+              <h4 class="text-lg font-semibold text-red-700 mb-3">
+                Traditional CSS
+              </h4>
+              <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                <pre
+                  class="text-green-400 text-sm overflow-x-auto"><code>.custom-button {
+  background-color: #3B82F6;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.custom-button:hover {
+  background-color: #2563EB;
+}</code></pre>
+              </div>
+              <button class="traditional-btn">Traditional Button</button>
+            </div>
+
+            <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
+              <h4 class="text-lg font-semibold text-green-700 mb-3">
+                Tailwind CSS
+              </h4>
+              <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                <pre
+                  class="text-green-400 text-sm overflow-x-auto"><code>&lt;button class="bg-blue-500 hover:bg-blue-700 
+        text-white font-semibold 
+        py-3 px-6 rounded-lg 
+        transition-all duration-300"&gt;
+  Tailwind Button
+&lt;/button&gt;</code></pre>
+              </div>
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+                Tailwind Button
+              </button>
+            </div>
+          </div>
+
+          <!-- Copy Code Section -->
+          <div class="bg-gray-100 rounded-lg p-6">
+            <h4 class="text-lg font-semibold text-gray-700 mb-3">
+              Try This Code:
+            </h4>
+            <div class="relative">
+              <button
+                onclick="copyCode(this)"
+                class="copy-btn absolute top-2 right-2 bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition-colors">
+                📋 Copy
+              </button>
+              <pre
+                class="bg-gray-800 text-green-400 p-4 rounded-lg pr-20 overflow-x-auto"><code>&lt;div class="bg-gradient-to-r from-purple-400 to-pink-400 text-white p-8 rounded-xl shadow-lg"&gt;
+  &lt;h2 class="text-2xl font-bold mb-4"&gt;Beautiful Gradient Card&lt;/h2&gt;
+  &lt;p class="text-purple-100"&gt;Built with Tailwind utility classes!&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout & Spacing Tab -->
+      <div id="layout" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Layout & Spacing
+          </h2>
+
+          <!-- Flexbox Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Flexbox Layouts
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button
+                  onclick="changeFlexDirection('row')"
+                  class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">
+                  flex-row
+                </button>
+                <button
+                  onclick="changeFlexDirection('col')"
+                  class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">
+                  flex-col
+                </button>
+                <button
+                  onclick="changeJustify('start')"
+                  class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
+                  justify-start
+                </button>
+                <button
+                  onclick="changeJustify('center')"
+                  class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
+                  justify-center
+                </button>
+                <button
+                  onclick="changeJustify('between')"
+                  class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">
+                  justify-between
+                </button>
+                <button
+                  onclick="changeAlign('start')"
+                  class="bg-purple-500 text-white px-3 py-1 rounded text-sm hover:bg-purple-600">
+                  items-start
+                </button>
+                <button
+                  onclick="changeAlign('center')"
+                  class="bg-purple-500 text-white px-3 py-1 rounded text-sm hover:bg-purple-600">
+                  items-center
+                </button>
+              </div>
+
+              <div
+                id="flex-demo"
+                class="flex justify-start items-start bg-white p-4 border-2 border-dashed border-gray-300 rounded-lg min-h-32">
+                <div class="bg-red-200 p-3 rounded">Item 1</div>
+                <div class="bg-green-200 p-3 rounded">Item 2</div>
+                <div class="bg-blue-200 p-3 rounded">Item 3</div>
+              </div>
+
+              <div class="mt-3 p-3 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm">
+                  Current flex classes:
+                </p>
+                <p id="flex-classes" class="text-white font-mono text-sm">
+                  flex justify-start items-start
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grid Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. CSS Grid Layouts
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button
+                  onclick="changeGrid(1)"
+                  class="bg-indigo-500 text-white px-3 py-1 rounded text-sm hover:bg-indigo-600">
+                  1 Column
+                </button>
+                <button
+                  onclick="changeGrid(2)"
+                  class="bg-indigo-500 text-white px-3 py-1 rounded text-sm hover:bg-indigo-600">
+                  2 Columns
+                </button>
+                <button
+                  onclick="changeGrid(3)"
+                  class="bg-indigo-500 text-white px-3 py-1 rounded text-sm hover:bg-indigo-600">
+                  3 Columns
+                </button>
+                <button
+                  onclick="changeGrid(4)"
+                  class="bg-indigo-500 text-white px-3 py-1 rounded text-sm hover:bg-indigo-600">
+                  4 Columns
+                </button>
+                <button
+                  onclick="toggleGap()"
+                  class="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600">
+                  Toggle Gap
+                </button>
+              </div>
+
+              <div id="grid-demo" class="grid grid-cols-2 gap-4">
+                <div class="bg-blue-100 p-4 rounded text-center">
+                  Grid Item 1
+                </div>
+                <div class="bg-green-100 p-4 rounded text-center">
+                  Grid Item 2
+                </div>
+                <div class="bg-yellow-100 p-4 rounded text-center">
+                  Grid Item 3
+                </div>
+                <div class="bg-purple-100 p-4 rounded text-center">
+                  Grid Item 4
+                </div>
+                <div class="bg-pink-100 p-4 rounded text-center">
+                  Grid Item 5
+                </div>
+                <div class="bg-indigo-100 p-4 rounded text-center">
+                  Grid Item 6
+                </div>
+              </div>
+
+              <div class="mt-3 p-3 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm">
+                  Current grid classes:
+                </p>
+                <p id="grid-classes" class="text-white font-mono text-sm">
+                  grid grid-cols-2 gap-4
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Spacing Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Spacing (Padding & Margin)
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button
+                  onclick="changeSpacing('p', 2)"
+                  class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
+                  p-2
+                </button>
+                <button
+                  onclick="changeSpacing('p', 4)"
+                  class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
+                  p-4
+                </button>
+                <button
+                  onclick="changeSpacing('p', 8)"
+                  class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">
+                  p-8
+                </button>
+                <button
+                  onclick="changeSpacing('m', 2)"
+                  class="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600">
+                  m-2
+                </button>
+                <button
+                  onclick="changeSpacing('m', 4)"
+                  class="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600">
+                  m-4
+                </button>
+                <button
+                  onclick="changeSpacing('m', 8)"
+                  class="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600">
+                  m-8
+                </button>
+              </div>
+
+              <div
+                class="bg-white p-4 border-2 border-dashed border-gray-300 rounded-lg">
+                <div id="spacing-demo" class="bg-blue-200 p-4 m-4 rounded">
+                  <p class="text-blue-800 font-medium">
+                    This box has padding and margin
+                  </p>
+                  <p class="text-blue-600 text-sm">
+                    Watch how spacing changes!
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-3 p-3 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm">
+                  Current spacing classes:
+                </p>
+                <p id="spacing-classes" class="text-white font-mono text-sm">
+                  p-4 m-4
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colors & Typography Tab -->
+      <div id="styling" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Colors & Typography
+          </h2>
+
+          <!-- Color Palette Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Color System
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+              <p class="text-gray-600 mb-4">
+                Click on colors to apply them to the demo box:
+              </p>
+
+              <div class="grid grid-cols-8 gap-2 mb-4">
+                <!-- Blue colors -->
+                <div
+                  onclick="changeColor('bg-blue-100')"
+                  class="bg-blue-100 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-blue-100"></div>
+                <div
+                  onclick="changeColor('bg-blue-300')"
+                  class="bg-blue-300 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-blue-300"></div>
+                <div
+                  onclick="changeColor('bg-blue-500')"
+                  class="bg-blue-500 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-blue-500"></div>
+                <div
+                  onclick="changeColor('bg-blue-700')"
+                  class="bg-blue-700 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-blue-700"></div>
+                <!-- Green colors -->
+                <div
+                  onclick="changeColor('bg-green-100')"
+                  class="bg-green-100 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-green-100"></div>
+                <div
+                  onclick="changeColor('bg-green-300')"
+                  class="bg-green-300 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-green-300"></div>
+                <div
+                  onclick="changeColor('bg-green-500')"
+                  class="bg-green-500 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-green-500"></div>
+                <div
+                  onclick="changeColor('bg-green-700')"
+                  class="bg-green-700 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-green-700"></div>
+                <!-- Red colors -->
+                <div
+                  onclick="changeColor('bg-red-100')"
+                  class="bg-red-100 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-red-100"></div>
+                <div
+                  onclick="changeColor('bg-red-300')"
+                  class="bg-red-300 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-red-300"></div>
+                <div
+                  onclick="changeColor('bg-red-500')"
+                  class="bg-red-500 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-red-500"></div>
+                <div
+                  onclick="changeColor('bg-red-700')"
+                  class="bg-red-700 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-red-700"></div>
+                <!-- Purple colors -->
+                <div
+                  onclick="changeColor('bg-purple-100')"
+                  class="bg-purple-100 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-purple-100"></div>
+                <div
+                  onclick="changeColor('bg-purple-300')"
+                  class="bg-purple-300 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-purple-300"></div>
+                <div
+                  onclick="changeColor('bg-purple-500')"
+                  class="bg-purple-500 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-purple-500"></div>
+                <div
+                  onclick="changeColor('bg-purple-700')"
+                  class="bg-purple-700 h-8 rounded cursor-pointer hover:scale-105 transition-transform"
+                  title="bg-purple-700"></div>
+              </div>
+
+              <div
+                id="color-demo"
+                class="bg-blue-500 p-6 rounded-lg text-center transition-all duration-500">
+                <p class="text-white font-medium">Color Demo Box</p>
+                <p class="text-blue-100 text-sm">
+                  Click colors above to change me!
+                </p>
+              </div>
+
+              <div class="mt-3 p-3 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm">
+                  Current color class:
+                </p>
+                <p id="color-classes" class="text-white font-mono text-sm">
+                  bg-blue-500
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typography Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Typography System
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="grid gap-4 mb-6">
+                <div
+                  onclick="changeTypography('text-xs')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-xs">text-xs - Extra Small Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(12px)</span>
+                </div>
+                <div
+                  onclick="changeTypography('text-sm')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-sm">text-sm - Small Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(14px)</span>
+                </div>
+                <div
+                  onclick="changeTypography('text-base')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-base">text-base - Base Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(16px)</span>
+                </div>
+                <div
+                  onclick="changeTypography('text-lg')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-lg">text-lg - Large Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(18px)</span>
+                </div>
+                <div
+                  onclick="changeTypography('text-xl')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-xl">text-xl - Extra Large Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(20px)</span>
+                </div>
+                <div
+                  onclick="changeTypography('text-2xl')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-2xl">text-2xl - 2X Large Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(24px)</span>
+                </div>
+                <div
+                  onclick="changeTypography('text-4xl')"
+                  class="cursor-pointer p-3 bg-white rounded border hover:border-blue-500 transition-colors">
+                  <span class="text-4xl">text-4xl - 4X Large Text</span>
+                  <span class="text-gray-500 text-sm ml-2">(36px)</span>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-6 rounded-lg border-2 border-dashed border-gray-300 text-center">
+                <p
+                  id="typography-demo"
+                  class="text-base text-gray-700 transition-all duration-300">
+                  Sample text to demonstrate typography
+                </p>
+              </div>
+
+              <!-- Font Weight Demo -->
+              <div class="mt-6 flex flex-wrap gap-2">
+                <button
+                  onclick="changeFontWeight('font-light')"
+                  class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">
+                  font-light
+                </button>
+                <button
+                  onclick="changeFontWeight('font-normal')"
+                  class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">
+                  font-normal
+                </button>
+                <button
+                  onclick="changeFontWeight('font-medium')"
+                  class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">
+                  font-medium
+                </button>
+                <button
+                  onclick="changeFontWeight('font-semibold')"
+                  class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">
+                  font-semibold
+                </button>
+                <button
+                  onclick="changeFontWeight('font-bold')"
+                  class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">
+                  font-bold
+                </button>
+              </div>
+
+              <div class="mt-3 p-3 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm">
+                  Current typography classes:
+                </p>
+                <p id="typography-classes" class="text-white font-mono text-sm">
+                  text-base font-normal
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Components Tab -->
+      <div id="components" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Building Components
+          </h2>
+
+          <!-- Button Components -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Button Components
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-medium text-gray-700 mb-3">
+                    Primary Buttons
+                  </h4>
+                  <div class="space-y-3">
+                    <button
+                      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors">
+                      Default Primary
+                    </button>
+                    <button
+                      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                      Large Primary
+                    </button>
+                    <button
+                      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-3 rounded text-sm transition-colors">
+                      Small Primary
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-medium text-gray-700 mb-3">
+                    Secondary Buttons
+                  </h4>
+                  <div class="space-y-3">
+                    <button
+                      class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded transition-colors">
+                      Default Secondary
+                    </button>
+                    <button
+                      class="w-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-medium py-2 px-4 rounded transition-colors">
+                      Outlined Button
+                    </button>
+                    <button
+                      class="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded transition-colors">
+                      Danger Button
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm mb-2">
+                  Example button code:
+                </p>
+                <pre
+                  class="text-white font-mono text-sm overflow-x-auto"><code>&lt;button class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition-colors"&gt;
+  Primary Button
+&lt;/button&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Components -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Card Components
+            </h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border">
+                <div
+                  class="h-32 bg-gradient-to-r from-blue-400 to-purple-500 rounded-t-lg"></div>
+                <div class="p-4">
+                  <h4 class="text-lg font-semibold text-gray-800 mb-2">
+                    Simple Card
+                  </h4>
+                  <p class="text-gray-600 text-sm mb-3">
+                    This is a basic card component with an image header.
+                  </p>
+                  <button
+                    class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition-colors">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border">
+                <div class="p-4">
+                  <div class="flex items-center mb-3">
+                    <div
+                      class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">
+                      AD
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium text-gray-800">Adarasha</p>
+                      <p class="text-gray-500 text-sm">Full Stack Developer</p>
+                    </div>
+                  </div>
+                  <p class="text-gray-600 text-sm">
+                    Profile card with avatar and user information.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border p-4">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-blue-600 mb-2">$29</div>
+                  <h4 class="text-lg font-semibold text-gray-800 mb-2">
+                    Pro Plan
+                  </h4>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Perfect for professionals
+                  </p>
+                  <button
+                    class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors">
+                    Choose Plan
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Components -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Form Components
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg max-w-md mx-auto">
+              <form class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="adarasha.gaihre106@gmail.com" />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Password</label
+                  >
+                  <input
+                    type="password"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="••••••••" />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Country</label
+                  >
+                  <select
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>United Kingdom</option>
+                    <option>Australia</option>
+                  </select>
+                </div>
+
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+                  <label class="ml-2 block text-sm text-gray-700">
+                    I agree to the terms and conditions
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                  Sign Up
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsive Design Tab -->
+      <div id="responsive" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Responsive Design
+          </h2>
+
+          <!-- Breakpoint Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Responsive Breakpoints
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+              <p class="text-gray-600 mb-4">
+                Resize your browser window to see responsive changes:
+              </p>
+
+              <div
+                class="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300">
+                <div
+                  class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-medium text-center">
+                  <span class="block sm:hidden text-red-600"
+                    >📱 XS Screen (< 640px)</span
+                  >
+                  <span class="hidden sm:block md:hidden text-yellow-600"
+                    >📱 SM Screen (≥ 640px)</span
+                  >
+                  <span class="hidden md:block lg:hidden text-green-600"
+                    >💻 MD Screen (≥ 768px)</span
+                  >
+                  <span class="hidden lg:block xl:hidden text-blue-600"
+                    >🖥️ LG Screen (≥ 1024px)</span
+                  >
+                  <span class="hidden xl:block text-purple-600"
+                    >🖥️ XL Screen (≥ 1280px)</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+              <div class="bg-red-100 p-4 rounded text-center">
+                <div class="font-medium text-red-800">Mobile First</div>
+                <div class="text-sm text-red-600">Always visible</div>
+              </div>
+              <div class="bg-yellow-100 p-4 rounded text-center">
+                <div class="font-medium text-yellow-800">Small+</div>
+                <div class="text-sm text-yellow-600">≥ 640px</div>
+              </div>
+              <div class="bg-green-100 p-4 rounded text-center">
+                <div class="font-medium text-green-800">Medium+</div>
+                <div class="text-sm text-green-600">≥ 768px</div>
+              </div>
+              <div class="bg-blue-100 p-4 rounded text-center">
+                <div class="font-medium text-blue-800">Large+</div>
+                <div class="text-sm text-blue-600">≥ 1024px</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Responsive Layout Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Responsive Layout Examples
+            </h3>
+
+            <div class="space-y-6">
+              <!-- Navigation Example -->
+              <div>
+                <h4 class="font-medium text-gray-700 mb-3">
+                  Responsive Navigation
+                </h4>
+                <nav class="bg-blue-600 rounded-lg p-4">
+                  <div class="flex justify-between items-center">
+                    <div class="text-white font-bold text-lg">Brand</div>
+                    <div class="hidden md:flex space-x-4">
+                      <a href="#" class="text-white hover:text-blue-200"
+                        >Home</a
+                      >
+                      <a href="#" class="text-white hover:text-blue-200"
+                        >About</a
+                      >
+                      <a href="#" class="text-white hover:text-blue-200"
+                        >Services</a
+                      >
+                      <a href="#" class="text-white hover:text-blue-200"
+                        >Contact</a
+                      >
+                    </div>
+                    <button class="md:hidden text-white">
+                      <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4 6h16M4 12h16M4 18h16"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </nav>
+              </div>
+
+              <!-- Card Grid Example -->
+              <div>
+                <h4 class="font-medium text-gray-700 mb-3">
+                  Responsive Card Grid
+                </h4>
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  <div class="bg-white p-4 rounded-lg shadow border">
+                    <div
+                      class="h-24 bg-gradient-to-r from-pink-400 to-red-400 rounded mb-3"></div>
+                    <h5 class="font-medium mb-1">Card 1</h5>
+                    <p class="text-sm text-gray-600">Responsive card</p>
+                  </div>
+                  <div class="bg-white p-4 rounded-lg shadow border">
+                    <div
+                      class="h-24 bg-gradient-to-r from-green-400 to-blue-400 rounded mb-3"></div>
+                    <h5 class="font-medium mb-1">Card 2</h5>
+                    <p class="text-sm text-gray-600">Responsive card</p>
+                  </div>
+                  <div class="bg-white p-4 rounded-lg shadow border">
+                    <div
+                      class="h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded mb-3"></div>
+                    <h5 class="font-medium mb-1">Card 3</h5>
+                    <p class="text-sm text-gray-600">Responsive card</p>
+                  </div>
+                  <div class="bg-white p-4 rounded-lg shadow border">
+                    <div
+                      class="h-24 bg-gradient-to-r from-yellow-400 to-orange-400 rounded mb-3"></div>
+                    <h5 class="font-medium mb-1">Card 4</h5>
+                    <p class="text-sm text-gray-600">Responsive card</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Typography Example -->
+              <div>
+                <h4 class="font-medium text-gray-700 mb-3">
+                  Responsive Typography
+                </h4>
+                <div class="bg-gray-100 p-6 rounded-lg">
+                  <h1
+                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+                    Responsive Heading
+                  </h1>
+                  <p class="text-sm sm:text-base md:text-lg text-gray-600">
+                    This text changes size based on screen size. On mobile it's
+                    smaller, on desktop it's larger.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile-First Example -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Mobile-First Approach
+            </h3>
+
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <p class="text-gray-600 mb-4">
+                Tailwind uses mobile-first responsive design:
+              </p>
+
+              <div class="bg-white p-4 rounded-lg">
+                <div class="mb-4">
+                  <code
+                    class="bg-gray-800 text-green-400 px-2 py-1 rounded text-sm">
+                    class="text-center md:text-left lg:text-right"
+                  </code>
+                </div>
+
+                <div class="text-center md:text-left lg:text-right">
+                  <p class="font-medium">This text alignment changes:</p>
+                  <p class="text-sm text-gray-600">
+                    Mobile: Center | Tablet: Left | Desktop: Right
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-4 p-4 bg-gray-800 rounded-lg">
+                <p class="text-green-400 font-mono text-sm mb-2">
+                  How it works:
+                </p>
+                <pre
+                  class="text-white font-mono text-sm"><code>text-center     → All screens (mobile first)
+md:text-left    → Medium screens and up (≥768px)
+lg:text-right   → Large screens and up (≥1024px)</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-lg border-t-4 border-blue-500 mt-12">
+      <div class="container mx-auto px-6 py-8">
+        <div class="text-center">
+          <p class="text-gray-600 mb-4">
+            Making Web Development simple, fun and accessible for everyone!
+          </p>
+
+          <div class="bg-blue-50 rounded-lg p-6 mb-6 max-w-md mx-auto">
+            <p class="text-blue-800 font-semibold mb-2">Created by Aakku</p>
+            <a
+              href="https://github.com/aakku106"
+              target="_blank"
+              class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+              🔗 GitHub Profile
+            </a>
+          </div>
+
+          <div class="max-w-4xl mx-auto">
+            <h4 class="text-lg font-semibold text-gray-700 mb-4">References</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+              <a
+                href="https://tailwindcss.com/docs"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind CSS Official Documentation
+              </a>
+              <a
+                href="https://tailwindcss.com/docs/installation"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind CSS Installation Guide
+              </a>
+              <a
+                href="https://tailwindcss.com/docs/utility-first"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind CSS Utility-First Fundamentals
+              </a>
+              <a
+                href="https://tailwindcss.com/docs/responsive-design"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind CSS Responsive Design
+              </a>
+              <a
+                href="https://tailwindcss.com/docs/configuration"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind CSS Customization
+              </a>
+              <a
+                href="https://tailwindcss.com/docs/best-practices"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind CSS Best Practices
+              </a>
+              <a
+                href="https://tailwindui.com/"
+                target="_blank"
+                class="text-blue-600 hover:text-blue-800 transition-colors">
+                Tailwind UI Components
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

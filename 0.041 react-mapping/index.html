@@ -1,0 +1,836 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      React Mapping - Rendering Lists with .map() | Interactive Lesson by
+      Adarasha Gaihre(aakku)
+    </title>
+
+    <!-- React CDN for interactive examples -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* Inline styles for immediate visual feedback */
+      .live-preview {
+        border: 2px solid #3b82f6;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+        background: #f8fafc;
+      }
+
+      .code-editor {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 1rem;
+        border-radius: 8px;
+        font-family: "Consolas", "Monaco", monospace;
+        overflow-x: auto;
+      }
+
+      .demo-highlight {
+        outline: 2px solid #10b981;
+        outline-offset: 2px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-blue-500">
+      <div class="container mx-auto px-6 py-8">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">
+          React Mapping
+        </h1>
+        <p class="text-xl text-center text-gray-600 max-w-3xl mx-auto">
+          Master the art of rendering dynamic lists with .map() in React
+        </p>
+        <div class="text-center mt-4">
+          <span
+            class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+            Interactive Learning Experience
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-wrap justify-center space-x-2 md:space-x-4 py-4">
+          <button
+            onclick="showTab('basics')"
+            class="tab-btn active bg-blue-500 text-white px-4 py-2 rounded-lg font-medium transition-all hover:bg-blue-600">
+            Basics
+          </button>
+          <button
+            onclick="showTab('patterns')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Common Patterns
+          </button>
+          <button
+            onclick="showTab('advanced')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Advanced
+          </button>
+          <button
+            onclick="showTab('performance')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Performance
+          </button>
+          <button
+            onclick="showTab('realworld')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Real World
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+      <!-- Basics Tab -->
+      <div id="basics" class="tab-content active">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            JavaScript .map() Fundamentals
+          </h2>
+
+          <!-- Basic Map Example -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Basic Array Mapping
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6 mb-4">
+              <p class="text-gray-600 mb-4">
+                Let's start with Aakku's friend list and see how .map()
+                transforms data:
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <!-- Original Array -->
+                <div>
+                  <h4 class="font-semibold text-gray-700 mb-2">
+                    Original Array:
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-4">
+                    <pre
+                      class="text-green-400 text-sm"><code id="original-array">const aakkuFriends = ["Aakku", "CCN", "Toffu", "Priya"];</code></pre>
+                  </div>
+                </div>
+
+                <!-- Transformed Array -->
+                <div>
+                  <h4 class="font-semibold text-gray-700 mb-2">
+                    After .map():
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-4">
+                    <pre
+                      class="text-blue-400 text-sm"><code id="mapped-array">// Will be updated by JavaScript</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <button
+                  onclick="demonstrateBasicMap()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Run Basic Map Demo
+                </button>
+              </div>
+
+              <!-- Live Output -->
+              <div
+                id="basic-map-output"
+                class="live-preview mt-4"
+                style="display: none">
+                <h4 class="font-semibold text-gray-700 mb-2">Live Output:</h4>
+                <div id="basic-map-result"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- React JSX Mapping -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. React JSX List Rendering
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Now let's see how AakkuTech team members are rendered in React:
+              </p>
+
+              <!-- React Code Display -->
+              <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                <pre
+                  class="text-green-400 text-sm overflow-x-auto"><code>// AakkuTech team data
+const team = [
+  { id: 1, name: "Aakku", role: "Full Stack Developer", avatar: "👨‍💻" },
+  { id: 2, name: "CCN", role: "UI/UX Designer", avatar: "🎨" },
+  { id: 3, name: "Toffu", role: "Frontend Developer", avatar: "⚡" },
+  { id: 4, name: "Priya", role: "Product Manager", avatar: "📊" },
+];
+
+// React component with mapping
+function AakkuTeamList() {
+  return (
+    &lt;div className="team-grid"&gt;
+      {team.map((member) =&gt; (
+        &lt;div key={member.id} className="team-card"&gt;
+          &lt;div className="avatar"&gt;{member.avatar}&lt;/div&gt;
+          &lt;h3&gt;{member.name}&lt;/h3&gt;
+          &lt;p&gt;{member.role}&lt;/p&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</code></pre>
+              </div>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderTeamList()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Render Team List
+                </button>
+                <button
+                  onclick="addTeamMember()"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                  Add Member
+                </button>
+              </div>
+
+              <!-- React Live Preview -->
+              <div
+                id="team-list-container"
+                class="live-preview"
+                style="display: none">
+                <h4 class="font-semibold text-gray-700 mb-2">
+                  Live React Component:
+                </h4>
+                <div id="team-list-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Prop Demonstration -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. The Importance of Keys
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Watch how React behaves with and without proper keys:
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <!-- Bad Keys Example -->
+                <div class="border border-red-300 rounded-lg p-4 bg-red-50">
+                  <h4 class="font-semibold text-red-700 mb-2">
+                    Bad Keys (Index)
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-red-400 text-xs"><code>{items.map((item, index) => (
+  &lt;div key={index}&gt;{item.name}&lt;/div&gt;
+))}</code></pre>
+                  </div>
+                  <div id="bad-keys-demo" class="mt-2"></div>
+                </div>
+
+                <!-- Good Keys Example -->
+                <div class="border border-green-300 rounded-lg p-4 bg-green-50">
+                  <h4 class="font-semibold text-green-700 mb-2">
+                    Good Keys (Unique ID)
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-green-400 text-xs"><code>{items.map((item) => (
+  &lt;div key={item.id}&gt;{item.name}&lt;/div&gt;
+))}</code></pre>
+                  </div>
+                  <div id="good-keys-demo" class="mt-2"></div>
+                </div>
+              </div>
+
+              <div class="flex gap-2">
+                <button
+                  onclick="demonstrateKeys('bad')"
+                  class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                  Show Bad Keys
+                </button>
+                <button
+                  onclick="demonstrateKeys('good')"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Show Good Keys
+                </button>
+                <button
+                  onclick="addItemToList()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Add Item (See Difference)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Common Patterns Tab -->
+      <div id="patterns" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Common Mapping Patterns
+          </h2>
+
+          <!-- Card Grid Pattern -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. CCN's Portfolio Grid
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Portfolio projects displayed in a responsive grid:
+              </p>
+
+              <button
+                onclick="renderPortfolioGrid()"
+                class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors mb-4">
+                Show CCN's Portfolio
+              </button>
+
+              <div
+                id="portfolio-grid-container"
+                class="live-preview"
+                style="display: none">
+                <div id="portfolio-grid-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Pattern -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. AakkuTech Employee Table
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Employee data in a sortable table format:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderEmployeeTable()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show Employee Table
+                </button>
+                <button
+                  onclick="sortEmployees('name')"
+                  class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                  Sort by Name
+                </button>
+                <button
+                  onclick="sortEmployees('experience')"
+                  class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                  Sort by Experience
+                </button>
+              </div>
+
+              <div
+                id="employee-table-container"
+                class="live-preview"
+                style="display: none">
+                <div id="employee-table-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conditional Rendering Pattern -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Toffu's Notification System
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Notifications with conditional styling and actions:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderNotifications()"
+                  class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
+                  Show Notifications
+                </button>
+                <button
+                  onclick="addNotification('success', 'Rajesh completed the code review!')"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Add Success
+                </button>
+                <button
+                  onclick="addNotification('error', 'Server down! Contact Arjun immediately.')"
+                  class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                  Add Error
+                </button>
+              </div>
+
+              <div
+                id="notifications-container"
+                class="live-preview"
+                style="display: none">
+                <div id="notifications-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Tab -->
+      <div id="advanced" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Advanced Mapping Techniques
+          </h2>
+
+          <!-- Nested Mapping -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Nested Mapping - AakkuTech Department Structure
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Complex nested data structures with multiple levels of mapping:
+              </p>
+
+              <button
+                onclick="renderDepartmentStructure()"
+                class="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors mb-4">
+                Show Department Structure
+              </button>
+
+              <div
+                id="department-structure-container"
+                class="live-preview"
+                style="display: none">
+                <div id="department-structure-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter + Map Pattern -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Filter + Map - Priya's Active Projects
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Combining filter and map for dynamic data processing:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderFilteredProjects('all')"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  All Projects
+                </button>
+                <button
+                  onclick="renderFilteredProjects('active')"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Active Only
+                </button>
+                <button
+                  onclick="renderFilteredProjects('high')"
+                  class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                  High Priority
+                </button>
+              </div>
+
+              <div
+                id="filtered-projects-container"
+                class="live-preview"
+                style="display: none">
+                <div id="filtered-projects-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Updates -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Interactive Task Manager - Bikash's Todo List
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Real-time updates with state management and mapping:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderTaskManager()"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                  Show Task Manager
+                </button>
+                <button
+                  onclick="addNewTask()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Add Task
+                </button>
+                <button
+                  onclick="clearCompletedTasks()"
+                  class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                  Clear Completed
+                </button>
+              </div>
+
+              <div
+                id="task-manager-container"
+                class="live-preview"
+                style="display: none">
+                <div id="task-manager-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Tab -->
+      <div id="performance" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Performance Optimization
+          </h2>
+
+          <!-- Large Lists -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Large List Optimization
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Handling large datasets efficiently with pagination:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="generateLargeList(1000)"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Generate 1,000 Items
+                </button>
+                <button
+                  onclick="generateLargeList(5000)"
+                  class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                  Generate 5,000 Items
+                </button>
+                <button
+                  onclick="showPaginatedList()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Show Paginated
+                </button>
+              </div>
+
+              <div
+                id="performance-metrics"
+                class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4"
+                style="display: none">
+                <h4 class="font-semibold text-yellow-700">
+                  Performance Metrics:
+                </h4>
+                <div id="metrics-content"></div>
+              </div>
+
+              <div
+                id="large-list-container"
+                class="live-preview"
+                style="display: none">
+                <div id="large-list-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Memory Usage -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Memory Optimization Tips
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="border border-red-300 rounded-lg p-4 bg-red-50">
+                  <h4 class="font-semibold text-red-700 mb-2">
+                    Memory Inefficient
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-red-400 text-xs"><code>// Creates new functions on every render
+{items.map(item => (
+  &lt;div onClick={() => handleClick(item.id)}&gt;
+    {item.name}
+  &lt;/div&gt;
+))}</code></pre>
+                  </div>
+                </div>
+
+                <div class="border border-green-300 rounded-lg p-4 bg-green-50">
+                  <h4 class="font-semibold text-green-700 mb-2">
+                    Memory Efficient
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-green-400 text-xs"><code>// Reuses stable references
+const handleClick = useCallback((id) => {
+  // handle click
+}, []);
+
+{items.map(item => (
+  &lt;ItemComponent 
+    key={item.id} 
+    item={item} 
+    onClick={handleClick} /&gt;
+))}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real World Tab -->
+      <div id="realworld" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Real-World Applications
+          </h2>
+
+          <!-- E-commerce Example -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Shreya's E-commerce Product Catalog
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Complete e-commerce product listing with search and filters:
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button
+                  onclick="renderProductCatalog()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show Products
+                </button>
+                <button
+                  onclick="filterProducts('electronics')"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                  Electronics
+                </button>
+                <button
+                  onclick="filterProducts('clothing')"
+                  class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition-colors">
+                  Clothing
+                </button>
+                <button
+                  onclick="sortProducts('price')"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Sort by Price
+                </button>
+              </div>
+
+              <div
+                id="product-catalog-container"
+                class="live-preview"
+                style="display: none">
+                <div id="product-catalog-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media Feed -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Sandesh's Social Media Feed
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Dynamic social media posts with interactions:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderSocialFeed()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show Feed
+                </button>
+                <button
+                  onclick="addNewPost()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  New Post
+                </button>
+                <button
+                  onclick="loadMorePosts()"
+                  class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                  Load More
+                </button>
+              </div>
+
+              <div
+                id="social-feed-container"
+                class="live-preview"
+                style="display: none">
+                <div id="social-feed-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Dashboard -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Binita's Analytics Dashboard
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Real-time analytics dashboard with charts and metrics:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderAnalyticsDashboard()"
+                  class="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors">
+                  Show Dashboard
+                </button>
+                <button
+                  onclick="refreshDashboardData()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Refresh Data
+                </button>
+                <button
+                  onclick="toggleRealTimeUpdates()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Real-time Toggle
+                </button>
+              </div>
+
+              <div
+                id="analytics-dashboard-container"
+                class="live-preview"
+                style="display: none">
+                <div id="analytics-dashboard-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-lg border-t-4 border-blue-500 mt-12">
+      <div class="container mx-auto px-6 py-8">
+        <div class="text-center">
+          <p class="text-gray-600 mb-4">
+            Master React mapping patterns with hands-on practice
+          </p>
+
+          <div class="bg-blue-50 rounded-lg p-6 mb-6 max-w-md mx-auto">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">
+              Key Takeaways
+            </h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Always use unique keys for list items</li>
+              <li>• Keep mapping functions pure and simple</li>
+              <li>• Consider performance for large datasets</li>
+              <li>• Extract complex items into components</li>
+            </ul>
+          </div>
+
+          <div class="max-w-4xl mx-auto">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+              Next Steps in Your React Journey
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-700 mb-2">Learn More</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• React State Management</li>
+                  <li>• Component Lifecycle</li>
+                  <li>• Custom Hooks</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-700 mb-2">Practice</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• Build a todo app</li>
+                  <li>• Create a product catalog</li>
+                  <li>• Design a data dashboard</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-700 mb-2">Advanced</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• Virtual scrolling</li>
+                  <li>• Infinite loading</li>
+                  <li>• Performance optimization</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <p class="text-gray-500 text-sm">
+              Created by <strong>Aakku</strong> |
+              <a
+                href="https://github.com/aakku106"
+                class="text-blue-600 hover:text-blue-800 ml-1">
+                GitHub Profile
+              </a>
+            </p>
+            <p class="text-gray-400 text-xs mt-2">
+              Making Web Development simple, fun and accessible for everyone!
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- React Application Container -->
+    <div id="react-app-container" style="display: none"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

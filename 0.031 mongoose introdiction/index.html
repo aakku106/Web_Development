@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mongoose Practice Solutions</title>
+</head>
+<body>
+  <h1>Mongoose Practice Solutions</h1>
+
+  <hr>
+  <h2>1. Create a Book Schema</h2>
+  <pre><code>const mongoose = require('mongoose');
+
+const bookSchema = new mongoose.Schema({
+title: { type: String, required: true },
+author: { type: String, required: true },
+available: { type: Boolean, default: true }
+});
+
+const Book = mongoose.model('Book', bookSchema); </code></pre>
+
+  <hr>
+  <h2>2. Add a New Book</h2>
+  <pre><code>const newBook = new Book({ title: 'Harry Potter', author: 'J.K. Rowling' });
+await newBook.save();
+console.log('Book saved!');</code></pre>
+
+  <hr>
+  <h2>3. List All Books</h2>
+  <pre><code>const books = await Book.find();
+console.log(books);</code></pre>
+
+  <hr>
+  <h2>4. Find a Book by Title</h2>
+  <pre><code>const book = await Book.findOne({ title: 'Harry Potter' });
+console.log(book);</code></pre>
+
+  <hr>
+  <h2>5. Update Book Availability</h2>
+  <pre><code>await Book.updateOne({ title: 'Harry Potter' }, { available: false });
+console.log('Book updated');</code></pre>
+
+  <hr>
+  <h2>6. Delete a Book</h2>
+  <pre><code>await Book.deleteOne({ title: 'Harry Potter' });
+console.log('Book deleted');</code></pre>
+
+  <hr>
+  <h2>7. Add Multiple Books</h2>
+  <pre><code>await Book.insertMany([
+  { title: 'Book 1', author: 'Author A' },
+  { title: 'Book 2', author: 'Author B' }
+]);
+console.log('Multiple books added');</code></pre>
+
+  <hr>
+  <h2>8. Find Books by Author</h2>
+  <pre><code>const authorBooks = await Book.find({ author: 'Author A' });
+console.log(authorBooks);</code></pre>
+
+</body>
+</html>

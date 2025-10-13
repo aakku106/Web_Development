@@ -1,0 +1,591 @@
+/**
+ * Modular Programming in React - Clean Styles
+ *
+ * @format
+ */
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Custom animations */
+@keyframes component-mount {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes component-highlight {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(10px);
+    opacity: 0.5;
+  }
+}
+
+/* Tab navigation */
+.tab-btn {
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Tab content */
+.tab-content {
+  display: none;
+  animation: component-mount 0.5s ease-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Live preview containers */
+.live-preview {
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  background: #f8fafc;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+  position: relative;
+}
+
+.live-preview::before {
+  content: "LIVE DEMO";
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  background: #3b82f6;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Component visualization */
+.component-tree {
+  font-family: "Consolas", "Monaco", monospace;
+}
+
+.component-box {
+  transition: all 0.3s ease;
+}
+
+.component-box:hover {
+  transform: scale(1.05);
+  animation: component-highlight 1s ease-out;
+}
+
+.tree-node .children {
+  position: relative;
+}
+
+.tree-node .children::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #cbd5e1;
+}
+
+/* Greeting cards */
+.greeting-card {
+  transition: all 0.3s ease;
+  animation: component-mount 0.5s ease-out;
+}
+
+.greeting-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}
+
+/* Button showcase */
+.button-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Team member cards */
+.team-member-card {
+  transition: all 0.3s ease;
+  animation: component-mount 0.6s ease-out;
+}
+
+.team-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  transition: all 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+}
+
+/* Card components */
+.card {
+  transition: all 0.3s ease;
+  animation: component-mount 0.5s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  position: relative;
+}
+
+.card-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-header::after {
+  transform: scaleX(1);
+}
+
+/* Component responsibility demo */
+.responsibility-demo .bg-red-50 {
+  animation: component-mount 0.5s ease-out;
+}
+
+.responsibility-demo .user-display,
+.responsibility-demo .user-actions,
+.responsibility-demo .user-stats {
+  animation: component-mount 0.5s ease-out;
+  animation-delay: 0.1s;
+}
+
+/* Communication demos */
+.parent-component {
+  position: relative;
+}
+
+.parent-component::before {
+  content: "DATA FLOW";
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  background: #3b82f6;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.child-component {
+  position: relative;
+  animation: component-mount 0.5s ease-out;
+}
+
+.child-component::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px dashed transparent;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.child-component:hover::after {
+  border-color: #3b82f6;
+  animation: data-flow 2s ease-in-out infinite;
+}
+
+/* Task manager */
+.task-manager {
+  position: relative;
+}
+
+.task-form {
+  border: 2px dashed #10b981;
+  position: relative;
+}
+
+.task-form::before {
+  content: "CHILD → PARENT";
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #10b981;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.task-item {
+  transition: all 0.3s ease;
+  animation: component-mount 0.3s ease-out;
+}
+
+.task-item:hover {
+  background: #f3f4f6 !important;
+  transform: translateX(4px);
+}
+
+/* Project items */
+.project-item {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.project-item:hover {
+  border-color: #e5e7eb;
+  background: #f9fafb !important;
+}
+
+.project-item.selected {
+  border-color: #3b82f6;
+  background: #dbeafe !important;
+}
+
+/* Data flow indicators */
+.sibling-demo {
+  position: relative;
+}
+
+.sibling-demo::before {
+  content: "←→";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #8b5cf6;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 10;
+  animation: data-flow 2s ease-in-out infinite;
+}
+
+/* Interactive elements */
+.interactive-btn {
+  transition: all 0.3s ease;
+}
+
+.interactive-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-btn:active {
+  transform: scale(0.98);
+}
+
+/* Code blocks */
+.code-editor {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: "Consolas", "Monaco", monospace;
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-editor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+/* Performance indicators */
+.performance-indicator {
+  position: relative;
+}
+
+.performance-indicator::after {
+  content: "⚡";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #fbbf24;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .live-preview {
+    padding: 1rem;
+  }
+
+  .button-showcase {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .component-tree {
+    font-size: 12px;
+  }
+
+  .tree-node .children {
+    margin-left: 8px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+}
+
+/* Accessibility */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Component state indicators */
+.component-mounted {
+  animation: component-mount 0.5s ease-out;
+}
+
+.component-updating {
+  animation: component-highlight 1s ease-out;
+}
+
+.props-flowing {
+  animation: data-flow 2s ease-in-out infinite;
+}
+
+/* Error and success states */
+.error-state {
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+}
+
+.success-state {
+  border-color: #10b981 !important;
+  background: #f0fdf4 !important;
+}
+
+.warning-state {
+  border-color: #f59e0b !important;
+  background: #fffbeb !important;
+}
+
+/* Loading states */
+.loading {
+  position: relative;
+  opacity: 0.7;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Component documentation styles */
+.component-docs {
+  background: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.component-docs h5 {
+  color: #1e40af;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Props table styling */
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.props-table th,
+.props-table td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.props-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+/* Component hierarchy lines */
+.hierarchy-line {
+  stroke: #cbd5e1;
+  stroke-width: 2;
+  stroke-dasharray: 5, 5;
+}
+
+/* Testing indicators */
+.test-passed {
+  color: #10b981;
+}
+
+.test-failed {
+  color: #ef4444;
+}
+
+.test-pending {
+  color: #f59e0b;
+}
+
+/* Advanced pattern indicators */
+.hoc-wrapper {
+  border: 2px dashed #8b5cf6;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.hoc-wrapper::before {
+  content: "HOC";
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #8b5cf6;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.render-prop {
+  border: 2px dotted #10b981;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.render-prop::before {
+  content: "RENDER PROP";
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #10b981;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.custom-hook {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.custom-hook::before {
+  content: "HOOK";
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #f59e0b;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}

@@ -1,0 +1,795 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Modular Programming in React – Component-based Architecture | Interactive
+      Lesson
+    </title>
+
+    <!-- React CDN for interactive examples -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-blue-500">
+      <div class="container mx-auto px-6 py-8">
+        <h1
+          class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">
+          Modular Programming in React
+        </h1>
+        <p class="text-xl text-center text-gray-600 max-w-3xl mx-auto">
+          Master component-based architecture and build scalable React
+          applications
+        </p>
+        <div class="text-center mt-4">
+          <span
+            class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+            Component Architecture Mastery
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-wrap justify-center space-x-2 md:space-x-4 py-4">
+          <button
+            onclick="showTab('basics')"
+            class="tab-btn active bg-blue-500 text-white px-4 py-2 rounded-lg font-medium transition-all hover:bg-blue-600">
+            Component Basics
+          </button>
+          <button
+            onclick="showTab('architecture')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Architecture
+          </button>
+          <button
+            onclick="showTab('communication')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Communication
+          </button>
+          <button
+            onclick="showTab('patterns')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Advanced Patterns
+          </button>
+          <button
+            onclick="showTab('realworld')"
+            class="tab-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-300">
+            Real World
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+      <!-- Component Basics Tab -->
+      <div id="basics" class="tab-content active">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            React Component Fundamentals
+          </h2>
+
+          <!-- Simple Component Example -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Creating Your First Component
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6 mb-4">
+              <p class="text-gray-600 mb-4">
+                Let's start with Aakku's simple greeting component:
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <!-- Component Code -->
+                <div>
+                  <h4 class="font-semibold text-gray-700 mb-2">
+                    Component Code:
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-4">
+                    <pre
+                      class="text-green-400 text-sm"><code>function Greeting({ name }) {
+  return (
+    &lt;div className="greeting"&gt;
+      &lt;h2&gt;Hello, {name}!&lt;/h2&gt;
+      &lt;p&gt;Welcome to AakkuTech&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                  </div>
+                </div>
+
+                <!-- Usage -->
+                <div>
+                  <h4 class="font-semibold text-gray-700 mb-2">Usage:</h4>
+                  <div class="bg-gray-800 rounded-lg p-4">
+                    <pre
+                      class="text-blue-400 text-sm"><code>&lt;Greeting name="Aakku" /&gt;
+&lt;Greeting name="CCN" /&gt;
+&lt;Greeting name="Toffu" /&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <button
+                  onclick="renderGreetingComponent()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Render Greeting Components
+                </button>
+              </div>
+
+              <!-- Live Output -->
+              <div
+                id="greeting-output"
+                class="live-preview mt-4"
+                style="display: none">
+                <h4 class="font-semibold text-gray-700 mb-2">
+                  Live Components:
+                </h4>
+                <div id="greeting-result"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reusable Button Component -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Reusable Button Component
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                See how one Button component can be used in different ways:
+              </p>
+
+              <!-- Button Component Code -->
+              <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                <pre
+                  class="text-green-400 text-sm overflow-x-auto"><code>function Button({ children, onClick, variant = "primary", size = "md" }) {
+  const variants = {
+    primary: "bg-blue-500 hover:bg-blue-600 text-white",
+    secondary: "bg-gray-500 hover:bg-gray-600 text-white", 
+    danger: "bg-red-500 hover:bg-red-600 text-white",
+    success: "bg-green-500 hover:bg-green-600 text-white"
+  };
+  
+  const sizes = {
+    sm: "px-3 py-1 text-sm",
+    md: "px-4 py-2", 
+    lg: "px-6 py-3 text-lg"
+  };
+  
+  return (
+    &lt;button 
+      onClick={onClick}
+      className={`${variants[variant]} ${sizes[size]} rounded-lg transition-colors`}
+    &gt;
+      {children}
+    &lt;/button&gt;
+  );
+}</code></pre>
+              </div>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderButtonVariants()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Show Button Variants
+                </button>
+                <button
+                  onclick="testButtonClicks()"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                  Test Button Clicks
+                </button>
+              </div>
+
+              <!-- Button Examples -->
+              <div
+                id="button-examples-container"
+                class="live-preview"
+                style="display: none">
+                <h4 class="font-semibold text-gray-700 mb-2">
+                  Button Variants:
+                </h4>
+                <div id="button-examples-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Props Interface Demo -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Understanding Props Interface
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Learn how AakkuTech team members share data through props:
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <!-- Team Member Data -->
+                <div class="border border-blue-300 rounded-lg p-4 bg-blue-50">
+                  <h4 class="font-semibold text-blue-700 mb-2">
+                    Team Data (Parent)
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-blue-400 text-xs"><code>const teamMember = {
+  id: 1,
+  name: "Aakku",
+  role: "Full Stack Developer",
+  email: "adarasha.gaihre106@gmail.com",
+  skills: ["React", "Node.js", "MongoDB"]
+};</code></pre>
+                  </div>
+                </div>
+
+                <!-- Component Usage -->
+                <div class="border border-green-300 rounded-lg p-4 bg-green-50">
+                  <h4 class="font-semibold text-green-700 mb-2">
+                    Component Usage
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-green-400 text-xs"><code>&lt;TeamMemberCard 
+  member={teamMember}
+  showSkills={true}
+  onContactClick={handleContact}
+/&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex gap-2">
+                <button
+                  onclick="renderTeamMemberCard()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show Team Member Card
+                </button>
+                <button
+                  onclick="toggleTeamMemberSkills()"
+                  class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                  Toggle Skills Display
+                </button>
+              </div>
+
+              <div
+                id="team-member-container"
+                class="live-preview mt-4"
+                style="display: none">
+                <div id="team-member-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture Tab -->
+      <div id="architecture" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Component Architecture
+          </h2>
+
+          <!-- Component Hierarchy -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. AakkuTech App Component Hierarchy
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Visualize how components are structured in a real application:
+              </p>
+
+              <button
+                onclick="renderComponentHierarchy()"
+                class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors mb-4">
+                Show Component Tree
+              </button>
+
+              <div
+                id="hierarchy-container"
+                class="live-preview"
+                style="display: none">
+                <div id="hierarchy-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Composition Pattern -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Composition over Inheritance
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                See how CCN creates flexible Card components using composition:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderCardComposition()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show Card Composition
+                </button>
+                <button
+                  onclick="renderDifferentCards()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Different Card Types
+                </button>
+              </div>
+
+              <div
+                id="composition-container"
+                class="live-preview"
+                style="display: none">
+                <div id="composition-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single Responsibility -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Single Responsibility Principle
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Compare monolithic vs. modular component approaches:
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <!-- Bad Example -->
+                <div class="border border-red-300 rounded-lg p-4 bg-red-50">
+                  <h4 class="font-semibold text-red-700 mb-2">
+                    Monolithic Component
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-red-400 text-xs"><code>// Does everything: fetching, display, editing
+function UserProfile() {
+  // 200+ lines of mixed logic
+  return /* complex JSX */;
+}</code></pre>
+                  </div>
+                </div>
+
+                <!-- Good Example -->
+                <div class="border border-green-300 rounded-lg p-4 bg-green-50">
+                  <h4 class="font-semibold text-green-700 mb-2">
+                    Modular Components
+                  </h4>
+                  <div class="bg-gray-800 rounded-lg p-3">
+                    <pre
+                      class="text-green-400 text-xs"><code>function UserProfile() {
+  return (
+    &lt;&gt;
+      &lt;UserDisplay /&gt;
+      &lt;UserActions /&gt;
+      &lt;UserStats /&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onclick="renderSingleResponsibilityDemo()"
+                class="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors">
+                Compare Approaches
+              </button>
+
+              <div
+                id="responsibility-container"
+                class="live-preview mt-4"
+                style="display: none">
+                <div id="responsibility-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Communication Tab -->
+      <div id="communication" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Component Communication
+          </h2>
+
+          <!-- Parent to Child -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Parent to Child Communication (Props)
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Watch how project data flows from manager to team members:
+              </p>
+
+              <button
+                onclick="renderParentToChild()"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors mb-4">
+                Show Props Flow
+              </button>
+
+              <div
+                id="parent-child-container"
+                class="live-preview"
+                style="display: none">
+                <div id="parent-child-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Child to Parent -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Child to Parent Communication (Callbacks)
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                See how Toffu's task form sends data back to the parent:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderChildToParent()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Show Task Manager
+                </button>
+                <button
+                  onclick="addSampleTask()"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                  Add Sample Task
+                </button>
+              </div>
+
+              <div
+                id="child-parent-container"
+                class="live-preview"
+                style="display: none">
+                <div id="child-parent-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sibling Communication -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Sibling Communication (Through Parent)
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Rajesh's project list communicates with project details:
+              </p>
+
+              <button
+                onclick="renderSiblingCommunication()"
+                class="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors mb-4">
+                Show Project Dashboard
+              </button>
+
+              <div
+                id="sibling-container"
+                class="live-preview"
+                style="display: none">
+                <div id="sibling-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Patterns Tab -->
+      <div id="patterns" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Advanced Component Patterns
+          </h2>
+
+          <!-- Higher-Order Components -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. Higher-Order Components (HOCs)
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Add authentication to any component with HOCs:
+              </p>
+
+              <button
+                onclick="renderHOCExample()"
+                class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors mb-4">
+                Show HOC Authentication
+              </button>
+
+              <div
+                id="hoc-container"
+                class="live-preview"
+                style="display: none">
+                <div id="hoc-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Hooks -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Custom Hooks Pattern
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Reuse API logic with custom hooks:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderCustomHooksExample()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show useApi Hook
+                </button>
+                <button
+                  onclick="refreshHookData()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Refresh Data
+                </button>
+              </div>
+
+              <div
+                id="custom-hooks-container"
+                class="live-preview"
+                style="display: none">
+                <div id="custom-hooks-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Render Props -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Render Props Pattern
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Flexible data fetching with render props:
+              </p>
+
+              <button
+                onclick="renderRenderPropsExample()"
+                class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors mb-4">
+                Show Render Props
+              </button>
+
+              <div
+                id="render-props-container"
+                class="live-preview"
+                style="display: none">
+                <div id="render-props-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real World Tab -->
+      <div id="realworld" class="tab-content">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            Real-World Application
+          </h2>
+
+          <!-- Complete Project Manager -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              1. AakkuTech Project Management System
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Complete modular application with multiple interacting
+                components:
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button
+                  onclick="renderFullProjectManager()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Load Project Manager
+                </button>
+                <button
+                  onclick="addNewProject()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Add Project
+                </button>
+                <button
+                  onclick="assignTeamMember()"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                  Assign Member
+                </button>
+              </div>
+
+              <div
+                id="project-manager-container"
+                class="live-preview"
+                style="display: none">
+                <div id="project-manager-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Performance Optimized Components -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              2. Performance Optimized Components
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                See React.memo, useMemo, and useCallback in action:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="renderPerformanceDemo()"
+                  class="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors">
+                  Show Performance Demo
+                </button>
+                <button
+                  onclick="triggerReRender()"
+                  class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                  Trigger Re-render
+                </button>
+              </div>
+
+              <div
+                id="performance-container"
+                class="live-preview"
+                style="display: none">
+                <div id="performance-output"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Component Testing -->
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">
+              3. Component Testing Demonstration
+            </h3>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <p class="text-gray-600 mb-4">
+                Interactive testing of component behavior:
+              </p>
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  onclick="runComponentTests()"
+                  class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
+                  Run Component Tests
+                </button>
+                <button
+                  onclick="showTestResults()"
+                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  Show Test Results
+                </button>
+              </div>
+
+              <div
+                id="testing-container"
+                class="live-preview"
+                style="display: none">
+                <div id="testing-output"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-lg border-t-4 border-blue-500 mt-12">
+      <div class="container mx-auto px-6 py-8">
+        <div class="text-center">
+          <p class="text-gray-600 mb-4">
+            Master React component architecture with hands-on practice
+          </p>
+
+          <div class="bg-blue-50 rounded-lg p-6 mb-6 max-w-md mx-auto">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">
+              Key Takeaways
+            </h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Components should have single responsibility</li>
+              <li>• Use composition over inheritance</li>
+              <li>• Design clear props interfaces</li>
+              <li>• Optimize performance when needed</li>
+            </ul>
+          </div>
+
+          <div class="max-w-4xl mx-auto">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+              Next Steps in Your React Journey
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4 text-sm">
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-700 mb-2">Learn More</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• Advanced State Management</li>
+                  <li>• React Router for Navigation</li>
+                  <li>• TypeScript with React</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-700 mb-2">Practice</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• Build component libraries</li>
+                  <li>• Create complex applications</li>
+                  <li>• Contribute to open source</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4">
+                <h4 class="font-semibold text-gray-700 mb-2">Advanced</h4>
+                <ul class="text-gray-600 space-y-1">
+                  <li>• Server-side rendering</li>
+                  <li>• Micro-frontends</li>
+                  <li>• React Native</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <p class="text-gray-500 text-sm">
+              Created by <strong>Aakku</strong> |
+              <a
+                href="https://github.com/aakku106"
+                class="text-blue-600 hover:text-blue-800 ml-1">
+                GitHub Profile
+              </a>
+            </p>
+            <p class="text-gray-400 text-xs mt-2">
+              Making Web development fun, easy, and accessible for everyone!
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- React Application Container -->
+    <div id="react-app-container" style="display: none"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

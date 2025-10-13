@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js Solutions</title>
+  <style>body { font-family: Arial, sans-serif; padding: 20px; }</style>
+</head>
+<body>
+<h1>Node.js Solutions</h1>
+
+<h2>1. Hello Node</h2>
+<pre>// hello.js
+console.log('Hello, Node.js World!');
+</pre>
+<p>Run: <code>node hello.js</code></p>
+
+<h2>2. Simple HTTP Response</h2>
+<pre>// server.js
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Welcome to My Node Server');
+});
+server.listen(3000, () =&gt; console.log('Server running on http://localhost:3000'));</pre>
+
+<h2>3. Custom Port Server</h2>
+<pre>// server5000.js
+const http = require('http');
+const server = http.createServer((req, res) =&gt; {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Server running on port 5000');
+});
+server.listen(5000, () =&gt; console.log('Server running on http://localhost:5000'));</pre>
+
+<h2>4. Respond with JSON</h2>
+<pre>// jsonServer.js
+const http = require('http');
+const server = http.createServer((req, res) =&gt; {
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.end(JSON.stringify({name: 'John', age: 20}));
+});
+server.listen(3000, () =&gt; console.log('Server running on http://localhost:3000'));</pre>
+
+<h2>5. Logging Requests</h2>
+<pre>// logRequests.js
+const http = require('http');
+const server = http.createServer((req, res) =&gt; {
+  console.log('Requested URL:', req.url);
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Check console for logged URL');
+});
+server.listen(3000, () =&gt; console.log('Server running on http://localhost:3000'));</pre>
+
+<h2>6. Multiple Routes</h2>
+<pre>// multiRoutes.js
+const http = require('http');
+const server = http.createServer((req, res) =&gt; {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  if(req.url === '/') res.end('Home Page');
+  else if(req.url === '/about') res.end('About Page');
+  else res.end('404 Not Found');
+});
+server.listen(3000, () =&gt; console.log('Server running on http://localhost:3000'));</pre>
+
+<h2>7. Reading Files</h2>
+<pre>// readFileServer.js
+const http = require('http');
+const fs = require('fs');
+const server = http.createServer((req, res) =&gt; {
+  fs.readFile('data.txt', 'utf8', (err, data) =&gt; {
+    if(err) {
+      res.writeHead(500);
+      res.end('Error reading file');
+    } else {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end(data);
+    }
+  });
+});
+server.listen(3000, () =&gt; console.log('Server running on http://localhost:3000'));</pre>
+
+</body>
+</html>

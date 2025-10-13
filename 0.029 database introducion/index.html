@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Database Basics Solutions</title>
+<style>body { font-family: Arial, sans-serif; padding: 20px; } pre { background: #f4f4f4; padding: 10px; }</style>
+</head>
+<body>
+<h1>Database Basics Solutions</h1>
+
+<h2>1. Simple SQL Query</h2>
+<pre>SELECT * FROM users;</pre>
+
+<h2>2. Insert New User (SQL)</h2>
+<pre>INSERT INTO users (name, age) VALUES ('Bob', 30);</pre>
+
+<h2>3. Update User Age (SQL)</h2>
+<pre>UPDATE users SET age = 26 WHERE name = 'Alice';</pre>
+
+<h2>4. Delete User (SQL)</h2>
+<pre>DELETE FROM users WHERE name = 'Charlie';</pre>
+
+<h2>5. MongoDB Insert</h2>
+<pre>const newUser = new User({ name: 'Bob', age: 30 });
+newUser.save().then(() =&gt; console.log('User saved'));</pre>
+
+<h2>6. MongoDB Find</h2>
+<pre>User.find({ age: { $gt: 25 } }).then(users =&gt; console.log(users));</pre>
+
+<h2>7. MongoDB Update</h2>
+<pre>User.updateOne({ name: 'Bob' }, { $set: { age: 31 } }).then(res =&gt; console.log(res));</pre>
+
+<h2>8. MongoDB Delete</h2>
+<pre>User.deleteOne({ name: 'Alice' }).then(res =&gt; console.log(res));</pre>
+
+<h2>9. Connect and Handle Errors</h2>
+<pre>const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() =&gt; console.log('Connected to MongoDB'))
+  .catch(err =&gt; console.error('Connection error:', err));</pre>
+
+<h2>10. Schema Validation</h2>
+<pre>const userSchema = new mongoose.Schema({ name: { type: String, required: true }, age: { type: Number, required: true } });
+const User = mongoose.model('User', userSchema);
+const validUser = new User({ name: 'Alice', age: 25 });
+validUser.save().then(() =&gt; console.log('Valid user saved'));</pre>
+
+</body>
+</h

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB + Express Solutions</title>
+</head>
+<body>
+  <h1>MongoDB + Express Practice Solutions</h1>
+
+  <hr>
+  <h2>1. Insert a Book</h2>
+  <p>Endpoint: <code>/add-book</code></p>
+  <p>Demo (run server and send POST request via Postman or browser fetch)</p>
+  <pre><code>const express = require('express');
+const { MongoClient } = require('mongodb');
+const app = express();
+const port = 3000;
+app.use(express.json());
+
+const uri = 'mongodb+srv://username:password@cluster0.mongodb.net/myFirstDB?retryWrites=true&w=majority';
+const client = new MongoClient(uri);
+
+app.post('/add-book', async (req, res) => {
+try {
+await client.connect();
+const books = client.db('library').collection('books');
+const result = await books.insertOne(req.body);
+res.send(`Inserted book with id ${result.insertedId}`);
+} finally {
+await client.close();
+}
+});
+
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));</code></pre>
+
+  <hr>
+  <h2>2. List All Books</h2>
+  <p>Endpoint: <code>/books</code></p>
+  <pre><code>app.get('/books', async (req, res) => {
+  try {
+    await client.connect();
+    const books = client.db('library').collection('books');
+    const allBooks = await books.find({}).toArray();
+    res.json(allBooks);
+  } finally {
+    await client.close();
+  }
+});</code></pre>
+
+  <hr>
+  <h2>3. Find a Book by Title</h2>
+  <p>Endpoint: <code>/books/:title</code></p>
+  <pre><code>app.get('/books/:title', async (req, res) => {
+  try {
+    await client.connect();
+    const books = client.db('library').collection('books');
+    const book = await books.findOne({ title: req.params.title });
+    res.json(book);
+  } finally {
+    await client.close();
+  }
+});</code></pre>
+
+  <hr>
+  <h2>4. Update Book Availability</h2>
+  <p>Endpoint: <code>/update-book/:title</code></p>
+  <pre><code>app.put('/update-book/:title', async (req, res) => {
+  try {
+    await client.connect();
+    const books = client.db('library').collection('books');
+    const result = await books.updateOne(
+      { title: req.params.title },
+      { $set: { available: req.body.available } }
+    );
+    res.send(`Updated ${result.modifiedCount} book(s)`);
+  } finally {
+    await client.close();
+  }
+});</code></pre>
+
+  <hr>
+  <h2>5. Delete a Book</h2>
+  <p>Endpoint: <code>/delete-book/:title</code></p>
+  <pre><code>app.delete('/delete-book/:title', async (req, res) => {
+  try {
+    await client.connect();
+    const books = client.db('library').collection('books');
+    const result = await books.deleteOne({ title: req.params.title });
+    res.send(`Deleted ${result.deletedCount} book(s)`);
+  } finally {
+    await client.close();
+  }
+});</code></pre>
+
+  <hr>
+  <h2>6. Insert Multiple Books</h2>
+  <p>Endpoint: <code>/add-multiple-books</code></p>
+  <pre><code>app.post('/add-multiple-books', async (req, res) => {
+  try {
+    await client.connect();
+    const books = client.db('library').collection('books');
+    const result = await books.insertMany(req.body);
+    res.send(`Inserted ${result.insertedCount} books`);
+  } finally {
+    await client.close();
+  }
+});</code></pre>
+
+  <hr>
+  <h2>7. Search Books by Author</h2>
+  <p>Endpoint: <code>/books/author/:authorName</code></p>
+  <pre><code>app.get('/books/author/:authorName', async (req, res) => {
+  try {
+    await client.connect();
+    const books = client.db('library').collection('books');
+    const authorBooks = await books.find({ author: req.params.authorName }).toArray();
+    res.json(authorBooks);
+  } finally {
+    await client.close();
+  }
+});</code></pre>
+
+</body>
+</html>

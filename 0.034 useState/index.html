@@ -1,0 +1,685 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>useState - React State Management Basics</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>useState - State Management Basics</h1>
+        <p>
+          Master React state with interactive examples and real-world patterns
+        </p>
+      </header>
+
+      <!-- Tab Navigation -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('basics')">
+          useState Basics
+        </button>
+        <button class="tab-btn" onclick="showTab('patterns')">
+          Common Patterns
+        </button>
+        <button class="tab-btn" onclick="showTab('examples')">
+          Real Examples
+        </button>
+        <button class="tab-btn" onclick="showTab('rules')">Rules & Tips</button>
+      </div>
+
+      <!-- Tab Contents -->
+      <main>
+        <!-- Basics Tab -->
+        <div id="basics" class="tab-content active">
+          <section class="content-section">
+            <h2>What is useState?</h2>
+            <p>
+              useState is React's way to give components
+              <strong>memory</strong>. Think of it like a sticky note that
+              remembers information!
+            </p>
+
+            <div class="concept-visual">
+              <div class="concept-item">
+                <div class="concept-icon">📝</div>
+                <h3>Read State</h3>
+                <p>Get the current value</p>
+                <code>const value = count;</code>
+              </div>
+              <div class="concept-item">
+                <div class="concept-icon">✏️</div>
+                <h3>Update State</h3>
+                <p>Change the value</p>
+                <code>setCount(5);</code>
+              </div>
+              <div class="concept-item">
+                <div class="concept-icon">🔄</div>
+                <h3>Re-render</h3>
+                <p>Component updates automatically</p>
+                <code>UI updates!</code>
+              </div>
+            </div>
+
+            <div class="syntax-demo">
+              <h3>Basic Syntax</h3>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>import { useState } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  //      ↑        ↑           ↑
+  //   current  setter    initial value
+  
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Increase
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="interactive-demo">
+              <h3>Try it yourself - Counter Demo</h3>
+              <div class="demo-container">
+                <div class="demo-output">
+                  <span class="count-display" id="countDisplay">0</span>
+                </div>
+                <div class="demo-controls">
+                  <button class="demo-btn" onclick="decreaseCount()">
+                    - Decrease
+                  </button>
+                  <button class="demo-btn primary" onclick="increaseCount()">
+                    + Increase
+                  </button>
+                  <button class="demo-btn" onclick="resetCount()">
+                    🔄 Reset
+                  </button>
+                </div>
+                <div class="demo-code">
+                  <p>
+                    <strong>Current state:</strong>
+                    <span id="currentState">0</span>
+                  </p>
+                  <p>
+                    <strong>Action:</strong>
+                    <span id="lastAction">Initial value</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="state-vs-props">
+              <h3>State vs Props</h3>
+              <div class="comparison-grid">
+                <div class="comparison-card state">
+                  <h4>🧠 State (Own Memory)</h4>
+                  <ul>
+                    <li>✅ Component owns it</li>
+                    <li>✅ Can be changed</li>
+                    <li>✅ Triggers re-render when updated</li>
+                    <li>✅ Private to component</li>
+                  </ul>
+                  <div class="code-example small">
+                    <pre><code>const [name, setName] = useState("John");
+// I can change this!</code></pre>
+                  </div>
+                </div>
+                <div class="comparison-card props">
+                  <h4>📦 Props (Gifts from Parent)</h4>
+                  <ul>
+                    <li>🎁 Received from parent</li>
+                    <li>🚫 Cannot be changed</li>
+                    <li>📖 Read-only</li>
+                    <li>👨‍👩‍👧‍👦 Shared from parent</li>
+                  </ul>
+                  <div class="code-example small">
+                    <pre><code>function Child({ name }) {
+  // Can't change props!
+  return &lt;h1&gt;Hello {name}&lt;/h1&gt;;
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Patterns Tab -->
+        <div id="patterns" class="tab-content">
+          <section class="content-section">
+            <h2>Common useState Patterns</h2>
+
+            <div class="pattern-grid">
+              <div class="pattern-card">
+                <h3>Numbers</h3>
+                <p>Perfect for counters, scores, ages, quantities</p>
+                <div class="pattern-demo">
+                  <div class="demo-controls">
+                    <label>Age: <span id="ageValue">25</span></label>
+                    <button onclick="changeAge(-1)">👶 Younger</button>
+                    <button onclick="changeAge(1)">👴 Older</button>
+                  </div>
+                </div>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>const [age, setAge] = useState(25);
+const [score, setScore] = useState(0);
+
+// Usage
+setAge(age + 1);
+setScore(score + 10);</code></pre>
+                </div>
+              </div>
+
+              <div class="pattern-card">
+                <h3>Strings</h3>
+                <p>Great for names, messages, inputs, text content</p>
+                <div class="pattern-demo">
+                  <input
+                    type="text"
+                    id="nameInput"
+                    placeholder="Enter your name"
+                    oninput="updateName(this.value)" />
+                  <p>Hello, <span id="nameDisplay">Anonymous</span>!</p>
+                </div>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>const [name, setName] = useState("");
+const [message, setMessage] = useState("Hello!");
+
+// Usage
+setName(e.target.value);
+setMessage("Goodbye!");</code></pre>
+                </div>
+              </div>
+
+              <div class="pattern-card">
+                <h3>Booleans</h3>
+                <p>Perfect for show/hide, on/off, true/false states</p>
+                <div class="pattern-demo">
+                  <button onclick="toggleVisibility()">
+                    <span id="toggleBtn">Show</span> Secret
+                  </button>
+                  <p id="secretMessage" style="display: none">
+                    This is a secret message!
+                  </p>
+                </div>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>const [isVisible, setIsVisible] = useState(false);
+const [isLiked, setIsLiked] = useState(false);
+
+// Usage
+setIsVisible(!isVisible);
+setIsLiked(!isLiked);</code></pre>
+                </div>
+              </div>
+
+              <div class="pattern-card">
+                <h3>Arrays</h3>
+                <p>Ideal for lists, todos, items, collections</p>
+                <div class="pattern-demo">
+                  <button onclick="addFruit()">Add Fruit</button>
+                  <button onclick="removeFruit()">Remove Last</button>
+                  <ul id="fruitList">
+                    <li>🍎 Apple</li>
+                    <li>🍌 Banana</li>
+                  </ul>
+                </div>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>const [items, setItems] = useState(["Apple", "Banana"]);
+
+// Add item
+setItems([...items, "Orange"]);
+
+// Remove item
+setItems(items.filter((_, i) => i !== index));</code></pre>
+                </div>
+              </div>
+
+              <div class="pattern-card">
+                <h3>Objects</h3>
+                <p>Perfect for user info, settings, form data</p>
+                <div class="pattern-demo">
+                  <button onclick="updateUserName()">Change Name</button>
+                  <button onclick="updateUserAge()">Birthday!</button>
+                  <div class="user-info">
+                    <p>👤 <span id="userName">Aakku</span></p>
+                    <p>🎂 <span id="userAge">20</span> years old</p>
+                    <p>📧 adarasha.gaihre106@gmail.com</p>
+                  </div>
+                </div>
+                <div class="code-example">
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    📋 Copy
+                  </button>
+                  <pre><code>const [user, setUser] = useState({
+  name: "John",
+  age: 25,
+  email: "john@example.com"
+});
+
+// Update object
+setUser({...user, name: "Jane"});</code></pre>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Examples Tab -->
+        <div id="examples" class="tab-content">
+          <section class="content-section">
+            <h2>Real-World Examples</h2>
+
+            <div class="example-card">
+              <h3>💙 Like Button (Social Media Style)</h3>
+              <div class="like-demo">
+                <button class="like-button" onclick="toggleLike()">
+                  <span id="likeIcon">🤍</span>
+                  <span id="likeCount">0</span> Likes
+                </button>
+                <p class="like-status" id="likeStatus">
+                  Click to like this post!
+                </p>
+              </div>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>function LikeButton() {
+  const [likes, setLikes] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  
+  const handleLike = () => {
+    if (isLiked) {
+      setLikes(likes - 1);
+      setIsLiked(false);
+    } else {
+      setLikes(likes + 1);
+      setIsLiked(true);
+    }
+  };
+  
+  return (
+    &lt;button onClick={handleLike}&gt;
+      {isLiked ? "💙" : "🤍"} {likes} Likes
+    &lt;/button&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <h3>Simple Todo List</h3>
+              <div class="todo-demo">
+                <div class="todo-input">
+                  <input
+                    type="text"
+                    id="todoInput"
+                    placeholder="Add a new todo..."
+                    onkeypress="handleTodoKeyPress(event)" />
+                  <button onclick="addTodo()">➕ Add</button>
+                </div>
+                <ul id="todoList" class="todo-list">
+                  <!-- Todos will be added dynamically -->
+                </ul>
+                <p class="todo-count">
+                  Total todos: <span id="todoCount">0</span>
+                </p>
+              </div>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>function TodoList() {
+  const [todos, setTodos] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  
+  const addTodo = () => {
+    if (inputValue.trim()) {
+      setTodos([...todos, { 
+        id: Date.now(), 
+        text: inputValue, 
+        completed: false 
+      }]);
+      setInputValue("");
+    }
+  };
+  
+  const toggleTodo = (id) => {
+    setTodos(todos.map(todo => 
+      todo.id === id 
+        ? { ...todo, completed: !todo.completed }
+        : todo
+    ));
+  };
+  
+  return (
+    &lt;div&gt;
+      &lt;input 
+        value={inputValue}
+        onChange={(e) =&gt; setInputValue(e.target.value)}
+        placeholder="Add a todo..."
+      /&gt;
+      &lt;button onClick={addTodo}&gt;Add&lt;/button&gt;
+      
+      &lt;ul&gt;
+        {todos.map(todo =&gt; (
+          &lt;li key={todo.id}&gt;
+            &lt;span style={{
+              textDecoration: todo.completed ? 'line-through' : 'none'
+            }}&gt;
+              {todo.text}
+            &lt;/span&gt;
+            &lt;button onClick={() =&gt; toggleTodo(todo.id)}&gt;
+              {todo.completed ? "Undo" : "Done"}
+            &lt;/button&gt;
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <h3>📋 Contact Form with Validation</h3>
+              <div class="form-demo">
+                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="formName"
+                      placeholder="Your Name"
+                      required />
+                    <span class="error-message" id="nameError"></span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      id="formEmail"
+                      placeholder="Your Email"
+                      required />
+                    <span class="error-message" id="emailError"></span>
+                  </div>
+                  <div class="form-group">
+                    <textarea
+                      id="formMessage"
+                      placeholder="Your Message"
+                      rows="4"
+                      required></textarea>
+                    <span class="error-message" id="messageError"></span>
+                  </div>
+                  <button type="submit">📤 Send Message</button>
+                </form>
+                <div
+                  id="formSuccess"
+                  class="success-message"
+                  style="display: none">
+                  Message sent successfully!
+                </div>
+              </div>
+              <div class="code-example">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "", email: "", message: ""
+  });
+  const [errors, setErrors] = useState({});
+  
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+  
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    if (!formData.email.includes("@")) {
+      newErrors.email = "Valid email is required";
+    }
+    if (formData.message.length &lt; 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      alert("Form submitted successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    }
+  };
+  
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Your Name"
+      /&gt;
+      {errors.name && &lt;p style={{color: 'red'}}&gt;{errors.name}&lt;/p&gt;}
+      {/* ... more form fields ... */}
+      &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Rules Tab -->
+        <div id="rules" class="tab-content">
+          <section class="content-section">
+            <h2>useState Rules & Best Practices</h2>
+
+            <div class="rules-grid">
+              <div class="rule-card do">
+                <h3>DO</h3>
+                <ul>
+                  <li>
+                    <strong>Always use setter function</strong>
+                    <code>setCount(count + 1)</code>
+                  </li>
+                  <li>
+                    <strong>Use functional updates for complex state</strong>
+                    <code>setCount(prev => prev + 1)</code>
+                  </li>
+                  <li>
+                    <strong>Spread objects and arrays</strong>
+                    <code>setUser({...user, name: "Jane"})</code>
+                  </li>
+                  <li>
+                    <strong>Initialize with appropriate types</strong>
+                    <code>useState(0), useState(""), useState([])</code>
+                  </li>
+                  <li>
+                    <strong>Combine related state</strong>
+                    <code>useState({name: "", email: ""})</code>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="rule-card dont">
+                <h3>DON'T</h3>
+                <ul>
+                  <li>
+                    <strong>Never mutate state directly</strong>
+                    <code>count = count + 1 // Wrong!</code>
+                  </li>
+                  <li>
+                    <strong>Don't modify arrays/objects directly</strong>
+                    <code>items.push(newItem) // Wrong!</code>
+                  </li>
+                  <li>
+                    <strong>Don't call hooks inside conditions</strong>
+                    <code>if (condition) { useState(0) } // Wrong!</code>
+                  </li>
+                  <li>
+                    <strong>Don't rely on immediate state updates</strong>
+                    <code>setState(x); console.log(x) // Old value!</code>
+                  </li>
+                  <li>
+                    <strong>Don't create too many separate states</strong>
+                    <code
+                      >// Too many: useState(), useState(), useState()...</code
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tips-section">
+              <h3>💡 Performance Tips</h3>
+              <div class="tip-cards">
+                <div class="tip-card">
+                  <h4>1. Functional Updates</h4>
+                  <p>
+                    Use functional updates when the new state depends on the
+                    previous state:
+                  </p>
+                  <div class="code-example">
+                    <pre><code>// Instead of this:
+setCount(count + 1);
+
+// Use this:
+setCount(prev => prev + 1);</code></pre>
+                  </div>
+                </div>
+
+                <div class="tip-card">
+                  <h4>2. Lazy Initial State</h4>
+                  <p>Use a function for expensive initial calculations:</p>
+                  <div class="code-example">
+                    <pre><code>// ❌ Runs on every render
+const [state, setState] = useState(expensiveCalculation());
+
+// ✅ Runs only once
+const [state, setState] = useState(() => expensiveCalculation());</code></pre>
+                  </div>
+                </div>
+
+                <div class="tip-card">
+                  <h4>3. Combine Related State</h4>
+                  <p>Group related state variables together:</p>
+                  <div class="code-example">
+                    <pre><code>// ❌ Too many separate states
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+const [data, setData] = useState(null);
+
+// Combined state
+const [apiState, setApiState] = useState({
+  loading: false,
+  error: null,
+  data: null
+});</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="common-mistakes">
+              <h3>Common Mistakes</h3>
+              <div class="mistake-examples">
+                <div class="mistake-card">
+                  <h4>Mistake: State Not Updating Immediately</h4>
+                  <div class="code-comparison">
+                    <div class="wrong">
+                      <h5>Wrong</h5>
+                      <pre><code>const handleClick = () => {
+  setCount(count + 1);
+  console.log(count); // Still old value!
+};</code></pre>
+                    </div>
+                    <div class="right">
+                      <h5>Correct</h5>
+                      <pre><code>const handleClick = () => {
+  const newCount = count + 1;
+  setCount(newCount);
+  console.log(newCount); // Correct value!
+};</code></pre>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mistake-card">
+                  <h4>Mistake: Mutating Objects/Arrays</h4>
+                  <div class="code-comparison">
+                    <div class="wrong">
+                      <h5>Wrong</h5>
+                      <pre><code>// Mutates existing object
+user.name = "Jane";
+setUser(user);</code></pre>
+                    </div>
+                    <div class="right">
+                      <h5>Correct</h5>
+                      <pre><code>// Creates new object
+setUser({...user, name: "Jane"});</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-content">
+          <p>Master useState and build dynamic React components!</p>
+          <div class="creator-section">
+            <p>
+              Created by
+              <a
+                href="https://github.com/aakku106"
+                target="_blank"
+                rel="noopener noreferrer"
+                >aakku106</a
+              >
+            </p>
+            <p>
+              Making Web Development simple,fun and accessible for everyone!
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

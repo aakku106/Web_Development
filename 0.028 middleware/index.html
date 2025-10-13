@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Express.js Middleware Solutions</title>
+<style>body { font-family: Arial, sans-serif; padding: 20px; } pre { background: #f4f4f4; padding: 10px; }</style>
+</head>
+<body>
+<h1>Express.js Middleware Solutions</h1>
+
+<h2>1. Logging Middleware</h2>
+<pre>// app.js
+app.use((req, res, next) =&gt; {
+  console.log(`${req.method} request to ${req.url}`);
+  next();
+});</pre>
+
+<h2>2. JSON Body Parsing</h2>
+<pre>// app.js
+app.use(express.json());
+app.post('/data', (req, res) =&gt; {
+  res.json(req.body);
+});</pre>
+
+<h2>3. Authentication Middleware</h2>
+<pre>// app.js
+function authMiddleware(req, res, next) {
+  if(req.headers['x-api-key'] === '12345') next();
+  else res.status(401).send('Unauthorized');
+}
+app.get('/secure', authMiddleware, (req, res) =&gt; {
+  res.send('Secure content');
+});</pre>
+
+<h2>4. Router-level Middleware</h2>
+<pre>// app.js
+const adminRouter = express.Router();
+adminRouter.use((req, res, next) =&gt; {
+  console.log('Admin access');
+  next();
+});
+adminRouter.get('/dashboard', (req, res) =&gt; res.send('Admin Dashboard'));
+app.use('/admin', adminRouter);</pre>
+
+<h2>5. Error-handling Middleware</h2>
+<pre>// app.js
+app.get('/error', (req, res) =&gt; {
+  throw new Error('Something went wrong');
+});
+app.use((err, req, res, next) =&gt; {
+  console.error(err.stack);
+  res.status(500).send(`Internal Server Error: ${err.message}`);
+});</pre>
+
+<h2>6. Static Files</h2>
+<pre>// app.js
+app.use(express.static('public'));
+// Place index.html inside public folder and access via /</pre>
+
+<h2>7. Chaining Middleware</h2>
+<pre>// app.js
+app.use('/chain', (req, res, next) =&gt; {
+  req.startTime = Date.now();
+  next();
+});
+app.get('/chain', (req, res) =&gt; {
+  const timeTaken = Date.now() - req.startTime;
+  res.send(`Time taken: ${timeTaken}ms`);
+});</pre>
+
+<h2>8. Conditional Middleware</h2>
+<pre>// app.js
+app.use('/special', (req, res, next) =&gt; {
+  if(req.method === 'POST') req.isSpecial = true;
+  next();
+});
+app.post('/special', (req, res) =&gt; {
+  if(req.isSpecial) res.send('Special POST received');
+  else res.send('Not special');
+});</pre>
+
+</body>
+</html>

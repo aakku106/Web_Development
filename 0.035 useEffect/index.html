@@ -1,0 +1,533 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>useEffect - Side Effects | React Hook Lesson</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <div class="container">
+        <h1>useEffect - Side Effects</h1>
+        <p>
+          Learn how to handle side effects in React components with useEffect
+          hook
+        </p>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="tab-navigation">
+          <button class="tab-btn active" onclick="showTab('basics')">
+            Basics
+          </button>
+          <button class="tab-btn" onclick="showTab('patterns')">
+            Common Patterns
+          </button>
+          <button class="tab-btn" onclick="showTab('examples')">
+            Real Examples
+          </button>
+          <button class="tab-btn" onclick="showTab('advanced')">
+            Advanced
+          </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="basics" class="tab-content active">
+          <section class="demo-section">
+            <h2>Basic useEffect Patterns</h2>
+
+            <!-- Demo 1: Effect on Every Render -->
+            <div class="demo-card">
+              <h3>1. Effect on Every Render</h3>
+              <p>This effect runs after every render (mount + updates)</p>
+
+              <div class="demo-controls">
+                <button onclick="triggerEveryRender()">Trigger Render</button>
+                <span class="render-count"
+                  >Renders: <span id="everyRenderCount">0</span></span
+                >
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  console.log('Runs after every render');
+  // No dependency array = runs every time
+});</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 2: Effect Only on Mount -->
+            <div class="demo-card">
+              <h3>2. Effect Only on Mount</h3>
+              <p>This effect runs only once when component mounts</p>
+
+              <div class="demo-controls">
+                <button onclick="simulateMount()">Simulate Mount</button>
+                <span class="mount-status"
+                  >Mount Effects: <span id="mountCount">0</span></span
+                >
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  console.log('Runs only once on mount');
+  // Setup code here
+}, []); // Empty dependency array</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 3: Effect with Dependencies -->
+            <div class="demo-card">
+              <h3>3. Effect with Dependencies</h3>
+              <p>This effect runs only when dependencies change</p>
+
+              <div class="demo-controls">
+                <button onclick="changeData()">Change Data</button>
+                <button onclick="changeOtherData()">Change Other</button>
+                <div class="data-display">
+                  Data: <span id="dataValue">0</span> | Other:
+                  <span id="otherValue">0</span> | Effect Runs:
+                  <span id="dependencyCount">0</span>
+                </div>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  console.log('Data changed:', data);
+  // Runs only when 'data' changes
+}, [data]); // Dependencies array</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="patterns" class="tab-content">
+          <section class="demo-section">
+            <h2>Common useEffect Patterns</h2>
+
+            <!-- Demo 4: API Data Fetching -->
+            <div class="demo-card">
+              <h3>1. API Data Fetching</h3>
+              <p>Fetch data when component mounts</p>
+
+              <div class="demo-controls">
+                <button onclick="fetchUserData()">Fetch Users</button>
+                <button onclick="clearUsers()">Clear Data</button>
+              </div>
+
+              <div class="users-display" id="usersDisplay">
+                <p>Click "Fetch Users" to load data</p>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  setLoading(true);
+  fetch('/api/users')
+    .then(response => response.json())
+    .then(data => {
+      setUsers(data);
+      setLoading(false);
+    });
+}, []); // Fetch once on mount</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 5: Document Title Updates -->
+            <div class="demo-card">
+              <h3>2. Document Title Updates</h3>
+              <p>Update page title when state changes</p>
+
+              <div class="demo-controls">
+                <input
+                  type="text"
+                  id="titleInput"
+                  placeholder="Enter page title..."
+                  value="useEffect Demo" />
+                <button onclick="updatePageTitle()">Update Title</button>
+                <button onclick="resetTitle()">🔄 Reset</button>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  document.title = `App - ${pageTitle}`;
+}, [pageTitle]); // Update when title changes</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 6: Timer/Interval -->
+            <div class="demo-card">
+              <h3>3. Timer with Cleanup</h3>
+              <p>Timer that automatically cleans up</p>
+
+              <div class="demo-controls">
+                <button onclick="startTimer()">Start Timer</button>
+                <button onclick="stopTimer()">Stop Timer</button>
+                <div class="timer-display">
+                  Time: <span id="timerValue">0</span> seconds
+                </div>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  const interval = setInterval(() => {
+    setSeconds(prev => prev + 1);
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []); // Setup once, cleanup on unmount</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="examples" class="tab-content">
+          <section class="demo-section">
+            <h2>Real-World Examples</h2>
+
+            <!-- Demo 7: Online Status -->
+            <div class="demo-card">
+              <h3>1. Online Status Detector</h3>
+              <p>Listen to browser online/offline events</p>
+
+              <div class="demo-controls">
+                <div class="status-indicator">
+                  Status:
+                  <span id="onlineStatus" class="status-online">Online</span>
+                </div>
+                <button onclick="simulateOffline()">Simulate Offline</button>
+                <button onclick="simulateOnline()">Simulate Online</button>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  const handleOnline = () => setOnline(true);
+  const handleOffline = () => setOnline(false);
+
+  window.addEventListener('online', handleOnline);
+  window.addEventListener('offline', handleOffline);
+
+  return () => {
+    window.removeEventListener('online', handleOnline);
+    window.removeEventListener('offline', handleOffline);
+  };
+}, []); // Setup once, cleanup on unmount</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 8: Window Resize Listener -->
+            <div class="demo-card">
+              <h3>2. Window Resize Listener</h3>
+              <p>Track window size changes</p>
+
+              <div class="demo-controls">
+                <div class="window-size">
+                  Window Size: <span id="windowSize">1200 x 800</span>
+                </div>
+                <p><em>Try resizing your browser window</em></p>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  };
+
+  window.addEventListener('resize', handleResize);
+  
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []); // Setup once, cleanup on unmount</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 9: Local Storage Sync -->
+            <div class="demo-card">
+              <h3>3. Local Storage Sync</h3>
+              <p>Sync state with localStorage</p>
+
+              <div class="demo-controls">
+                <input
+                  type="text"
+                  id="storageInput"
+                  placeholder="Enter some text..." />
+                <button onclick="saveToStorage()">Save to Storage</button>
+                <button onclick="loadFromStorage()">Load from Storage</button>
+                <button onclick="clearStorage()">Clear Storage</button>
+                <div class="storage-display">
+                  Stored: <span id="storageDisplay">Nothing stored</span>
+                </div>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  // Load from localStorage on mount
+  const saved = localStorage.getItem('userData');
+  if (saved) {
+    setUserData(JSON.parse(saved));
+  }
+}, []);
+
+useEffect(() => {
+  // Save to localStorage when data changes
+  localStorage.setItem('userData', JSON.stringify(userData));
+}, [userData]);</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="advanced" class="tab-content">
+          <section class="demo-section">
+            <h2>Advanced useEffect Patterns</h2>
+
+            <!-- Demo 10: Debounced Search -->
+            <div class="demo-card">
+              <h3>1. Debounced Search</h3>
+              <p>Delay API calls until user stops typing</p>
+
+              <div class="demo-controls">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search users..."
+                  onkeyup="handleSearch(this.value)" />
+                <div class="search-info">
+                  Search calls: <span id="searchCount">0</span> | Last search:
+                  <span id="lastSearch">None</span>
+                </div>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  const delayedSearch = setTimeout(() => {
+    if (searchTerm) {
+      // Perform search API call
+      performSearch(searchTerm);
+    }
+  }, 500); // 500ms delay
+
+  return () => clearTimeout(delayedSearch);
+}, [searchTerm]); // Re-run when searchTerm changes</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 11: Async Data with Cleanup -->
+            <div class="demo-card">
+              <h3>2. Async Data with Cleanup</h3>
+              <p>Handle race conditions in async operations</p>
+
+              <div class="demo-controls">
+                <button onclick="loadSlowData()">Load Slow Data</button>
+                <button onclick="loadFastData()">Load Fast Data</button>
+                <button onclick="cancelRequests()">Cancel All</button>
+                <div class="async-status">
+                  Status: <span id="asyncStatus">Ready</span>
+                </div>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>useEffect(() => {
+  let cancelled = false;
+  
+  async function fetchData() {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/data/${id}`);
+      const data = await response.json();
+      
+      if (!cancelled) {
+        setData(data);
+        setLoading(false);
+      }
+    } catch (error) {
+      if (!cancelled) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+  }
+
+  fetchData();
+
+  return () => {
+    cancelled = true; // Prevent state updates if unmounted
+  };
+}, [id]); // Re-run when id changes</code></pre>
+              </div>
+            </div>
+
+            <!-- Demo 12: Multiple Effects -->
+            <div class="demo-card">
+              <h3>3. Multiple Effects Pattern</h3>
+              <p>Separate concerns with multiple useEffect hooks</p>
+
+              <div class="demo-controls">
+                <button onclick="triggerAllEffects()">
+                  Trigger All Effects
+                </button>
+                <div class="effects-status">
+                  <div>
+                    Data Effect: <span id="dataEffect">Not triggered</span>
+                  </div>
+                  <div>
+                    Title Effect: <span id="titleEffect">Not triggered</span>
+                  </div>
+                  <div>
+                    Analytics Effect:
+                    <span id="analyticsEffect">Not triggered</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">
+                  📋 Copy
+                </button>
+                <pre><code>// Effect 1: Data fetching
+useEffect(() => {
+  fetchUserData();
+}, [userId]);
+
+// Effect 2: Document title
+useEffect(() => {
+  document.title = `${user.name}'s Profile`;
+}, [user]);
+
+// Effect 3: Analytics tracking
+useEffect(() => {
+  analytics.track('page_view', {
+    page: 'user_profile',
+    userId: user.id
+  });
+}, [user.id]);</code></pre>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="lesson-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>Making Web Development simple, fun and accessible for everyone!</p>
+
+          <div class="author-attribution">
+            <p>Created by <strong>Aakku</strong></p>
+            <p>
+              <a
+                href="https://github.com/aakku106"
+                target="_blank"
+                class="github-link">
+                🔗 GitHub Profile
+              </a>
+            </p>
+          </div>
+
+          <div class="references">
+            <h4>References</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://react.dev/reference/react/useEffect"
+                  target="_blank"
+                  >React Official Documentation - useEffect</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://react.dev/learn/synchronizing-with-effects"
+                  target="_blank"
+                  >Synchronizing with Effects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://react.dev/learn/you-might-not-need-an-effect"
+                  target="_blank"
+                  >You Might Not Need an Effect</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://react.dev/learn/lifecycle-of-reactive-effects"
+                  target="_blank"
+                  >Lifecycle of Reactive Effects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://react.dev/learn/separating-events-from-effects"
+                  target="_blank"
+                  >Separating Events from Effects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://react.dev/learn/removing-effect-dependencies"
+                  target="_blank"
+                  >Removing Effect Dependencies</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://react.dev/learn/reusing-logic-with-custom-hooks"
+                  target="_blank"
+                  >Reusing Logic with Custom Hooks</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mongoose CRUD Solutions</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f7f7f7; }
+    h1 { color: #333; text-align: center; }
+    h2 { color: #555; margin-top: 30px; }
+    pre { background-color: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    hr { border: none; border-top: 2px solid #ddd; margin: 40px 0; }
+    body > div { max-width: 900px; margin: auto; }
+    p { color: #666; }
+  </style>
+</head>
+<body>
+  <div>
+  <h1>Mongoose CRUD Practice Solutions</h1>
+
+  <hr>
+  <h2>1. Create a Book</h2>
+  <pre><code>const newBook = new Book({ title: 'Harry Potter', author: 'J.K. Rowling' });
+await newBook.save();
+console.log('Book added');</code></pre>
+
+  <hr>
+  <h2>2. Insert Multiple Books</h2>
+  <pre><code>await Book.insertMany([
+  { title: 'Book 1', author: 'Author A' },
+  { title: 'Book 2', author: 'Author B' },
+  { title: 'Book 3', author: 'Author C' }
+]);
+console.log('Multiple books added');</code></pre>
+
+  <hr>
+  <h2>3. List All Books</h2>
+  <pre><code>const books = await Book.find();
+console.log(books);</code></pre>
+
+  <hr>
+  <h2>4. Find a Book by Title</h2>
+  <pre><code>const book = await Book.findOne({ title: 'Harry Potter' });
+console.log(book);</code></pre>
+
+  <hr>
+  <h2>5. Find Books by Author</h2>
+  <pre><code>const authorBooks = await Book.find({ author: 'Author A' });
+console.log(authorBooks);</code></pre>
+
+  <hr>
+  <h2>6. Update Book Availability</h2>
+  <pre><code>await Book.updateOne({ title: 'Harry Potter' }, { available: false });
+console.log('Book updated');</code></pre>
+
+  <hr>
+  <h2>7. Update Multiple Books</h2>
+  <pre><code>await Book.updateMany({ author: 'Author B' }, { available: true });
+console.log('Books updated');</code></pre>
+
+  <hr>
+  <h2>8. Delete a Book</h2>
+  <pre><code>await Book.deleteOne({ title: 'Harry Potter' });
+console.log('Book deleted');</code></pre>
+
+  <hr>
+  <h2>9. Delete Multiple Books</h2>
+  <pre><code>await Book.deleteMany({ author: 'Author B' });
+console.log('Books deleted');</code></pre>
+
+  <hr>
+  <h2>10. Find and Update</h2>
+  <pre><code>await Book.findOneAndUpdate(
+  { title: 'Book 1' },
+  { available: false },
+  { new: true }
+);
+console.log('Book found and updated');</code></pre>
+  </div>
+</body>
+</html>

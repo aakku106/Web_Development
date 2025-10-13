@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Express.js Request & Response Solutions</title>
+<style>body { font-family: Arial, sans-serif; padding: 20px; } pre { background: #f4f4f4; padding: 10px; }</style>
+</head>
+<body>
+<h1>Express.js Request & Response Solutions</h1>
+
+<h2>1. Greeting with Query</h2>
+<pre>// app.js
+app.get('/hello', (req, res) =&gt; {
+  const name = req.query.name || 'Guest';
+  res.send(`Hello, ${name}!`);
+});</pre>
+
+<h2>2. Route Parameters</h2>
+<pre>// app.js
+app.get('/product/:id', (req, res) =&gt; {
+  const productId = req.params.id;
+  res.send(`Product ID: ${productId}`);
+});</pre>
+
+<h2>3. POST JSON Message</h2>
+<pre>// app.js
+app.use(express.json());
+app.post('/message', (req, res) =&gt; {
+  const text = req.body.text;
+  res.send(`You sent: ${text}`);
+});</pre>
+
+<h2>4. Custom Status Code</h2>
+<pre>// app.js
+app.get('/unauthorized', (req, res) =&gt; {
+  res.status(401).send('Unauthorized Access');
+});</pre>
+
+<h2>5. JSON Array Response</h2>
+<pre>// app.js
+app.get('/users', (req, res) =&gt; {
+  const users = [
+    {name: 'Alice'},
+    {name: 'Bob'},
+    {name: 'Charlie'}
+  ];
+  res.json(users);
+});</pre>
+
+<h2>6. Redirect Route</h2>
+<pre>// app.js
+app.get('/google', (req, res) =&gt; {
+  res.redirect('https://www.google.com');
+});</pre>
+
+<h2>7. Headers Exercise</h2>
+<pre>// app.js
+app.get('/headers', (req, res) =&gt; {
+  const clientName = req.headers['x-client-name'] || 'Unknown';
+  res.send(`Hello, ${clientName}!`);
+});</pre>
+
+<h2>8. Combined Route</h2>
+<pre>// app.js
+app.use(express.json());
+app.post('/order/:id', (req, res) =&gt; {
+  const orderId = req.params.id;
+  const quantity = req.body.quantity;
+  res.send(`Order ${orderId}: ${quantity} items`);
+});</pre>
+
+</body>
+</html>

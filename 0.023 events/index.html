@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Events Solutions</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    div, button, input { margin: 10px 0; }
+    .box { width:200px; height:200px; background:skyblue; display:flex; align-items:center; justify-content:center; }
+  </style>
+</head>
+<body>
+
+<h1>DOM Events Solutions</h1>
+
+<h2>1. Button Click Alert</h2>
+<button onclick="alert('Hello World!')">Click Me</button>
+<pre>&lt;button onclick="alert('Hello World!')"&gt;Click Me&lt;/button&gt;</pre>
+
+<h2>2. Mouse Down Logger</h2>
+<button id="mousedownBtn">Press Me</button>
+<pre>&lt;button id="mousedownBtn"&gt;Press Me&lt;/button&gt;
+&lt;script&gt;
+const mousedownBtn = document.getElementById('mousedownBtn');
+mousedownBtn.addEventListener('mousedown', () =&gt; {
+  console.log('Mouse is pressed down!');
+});
+&lt;/script&gt;</pre>
+<script>
+const mousedownBtn = document.getElementById('mousedownBtn');
+mousedownBtn.addEventListener('mousedown', () => {
+  console.log('Mouse is pressed down!');
+});
+</script>
+
+<h2>3. Mouse Enter and Leave Color Change</h2>
+<div class="box" id="hoverBox">Hover me</div>
+<pre>&lt;div class="box" id="hoverBox"&gt;Hover me&lt;/div&gt;
+&lt;script&gt;
+const hoverBox = document.getElementById('hoverBox');
+hoverBox.addEventListener('mouseenter', () =&gt; hoverBox.style.background='orange');
+hoverBox.addEventListener('mouseleave', () =&gt; hoverBox.style.background='skyblue');
+&lt;/script&gt;</pre>
+<script>
+const hoverBox = document.getElementById('hoverBox');
+hoverBox.addEventListener('mouseenter', () => hoverBox.style.background='orange');
+hoverBox.addEventListener('mouseleave', () => hoverBox.style.background='skyblue');
+</script>
+
+<h2>4. Double Click Event</h2>
+<p id="dblText">Double-click me!</p>
+<pre>&lt;p id="dblText"&gt;Double-click me!&lt;/p&gt;
+&lt;script&gt;
+const dblText = document.getElementById('dblText');
+dblText.addEventListener('dblclick', () =&gt; dblText.textContent='You double-clicked me!');
+&lt;/script&gt;</pre>
+<script>
+const dblText = document.getElementById('dblText');
+dblText.addEventListener('dblclick', () => dblText.textContent='You double-clicked me!');
+</script>
+
+<h2>5. Mouse Move Tracker</h2>
+<div class="box" id="trackBox">Move mouse</div>
+<pre>&lt;div class="box" id="trackBox"&gt;Move mouse&lt;/div&gt;
+&lt;script&gt;
+const trackBox = document.getElementById('trackBox');
+trackBox.addEventListener('mousemove', e =&gt; console.log(`X:${e.offsetX}, Y:${e.offsetY}`));
+&lt;/script&gt;</pre>
+<script>
+const trackBox = document.getElementById('trackBox');
+trackBox.addEventListener('mousemove', e => console.log(`X:${e.offsetX}, Y:${e.offsetY}`));
+</script>
+
+<h2>6. Multiple Event on One Button</h2>
+<button id="multiBtn">Multi Event</button>
+<pre>&lt;button id="multiBtn"&gt;Multi Event&lt;/button&gt;
+&lt;script&gt;
+const multiBtn = document.getElementById('multiBtn');
+multiBtn.addEventListener('mousedown', () =&gt; console.log('Mouse down!'));
+multiBtn.addEventListener('mouseup', () =&gt; console.log('Mouse up!'));
+multiBtn.addEventListener('click', () =&gt; alert('Button clicked!'));
+&lt;/script&gt;</pre>
+<script>
+const multiBtn = document.getElementById('multiBtn');
+multiBtn.addEventListener('mousedown', () => console.log('Mouse down!'));
+multiBtn.addEventListener('mouseup', () => console.log('Mouse up!'));
+multiBtn.addEventListener('click', () => alert('Button clicked!'));
+</script>
+
+<h2>7. Real-World Simulation</h2>
+<input type="text" id="userInput" placeholder="Type something">
+<button id="submitBtn">Submit</button>
+<pre>&lt;input type="text" id="userInput" placeholder="Type something"&gt;
+&lt;button id="submitBtn"&gt;Submit&lt;/button&gt;
+&lt;script&gt;
+const input = document.getElementById('userInput');
+const submitBtn = document.getElementById('submitBtn');
+submitBtn.addEventListener('mouseenter', () =&gt; submitBtn.style.background='green');
+submitBtn.addEventListener('mouseleave', () =&gt; submitBtn.style.background='');
+submitBtn.addEventListener('click', () =&gt; alert(input.value));
+&lt;/script&gt;</pre>
+<script>
+const input = document.getElementById('userInput');
+const submitBtn = document.getElementById('submitBtn');
+submitBtn.addEventListener('mouseenter', () => submitBtn.style.background='green');
+submitBtn.addEventListener('mouseleave', () => submitBtn.style.background='');
+submitBtn.addEventListener('click', () => alert(input.value));
+</script>
+
+</body>
+</html>
