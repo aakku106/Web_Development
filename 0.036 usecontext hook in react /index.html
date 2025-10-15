@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React useContext Practice Solutions</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #222; padding: 20px; }
+    h1, h2 { color: #007acc; }
+    pre { background: #282c34; color: #fff; padding: 12px; border-radius: 8px; overflow-x: auto; }
+    code { font-family: 'Fira Code', monospace; }
+    section { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 25px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <h1>React useContext Hook – Practice Set (All in One)</h1>
+
+  <section>
+    <h2>1. Create and Use a Theme Context</h2>
+    <p><strong>File:</strong> <code>ThemeContext.js</code></p>
+    <pre><code>import { createContext } from 'react';
+export const ThemeContext = createContext('light');</code></pre>
+
+    <p><strong>File:</strong> <code>App.js</code></p>
+    <pre><code>import React, { useState } from 'react';
+import { ThemeContext } from './ThemeContext';
+import ThemeButton from './ThemeButton';
+
+export default function App() {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, setTheme }}&gt;
+      &lt;div className={theme}&gt;
+        &lt;h2&gt;Current Theme: {theme}&lt;/h2&gt;
+        &lt;ThemeButton /&gt;
+      &lt;/div&gt;
+    &lt;/ThemeContext.Provider&gt;
+  );
+}</code></pre>
+
+    <p><strong>File:</strong> <code>ThemeButton.js</code></p>
+    <pre><code>import React, { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
+
+export default function ThemeButton() {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  return (
+    &lt;button onClick={() =&gt; setTheme(theme === 'light' ? 'dark' : 'light')}&gt;
+      Toggle Theme
+    &lt;/button&gt;
+  );
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>2. User Authentication Context</h2>
+    <p><strong>File:</strong> <code>AuthContext.js</code></p>
+    <pre><code>import { createContext } from 'react';
+export const AuthContext = createContext(null);</code></pre>
+
+    <p><strong>File:</strong> <code>App.js</code></p>
+    <pre><code>import React, { useState } from 'react';
+import { AuthContext } from './AuthContext';
+import Navbar from './Navbar';
+
+export default function App() {
+  const [user, setUser] = useState(null);
+
+  const login = (username) =&gt; setUser({ name: username });
+  const logout = () =&gt; setUser(null);
+
+  return (
+    &lt;AuthContext.Provider value={{ user, login, logout }}&gt;
+      &lt;Navbar /&gt;
+    &lt;/AuthContext.Provider&gt;
+  );
+}</code></pre>
+
+    <p><strong>File:</strong> <code>Navbar.js</code></p>
+    <pre><code>import React, { useContext } from 'react';
+import { AuthContext } from './AuthContext';
+
+export default function Navbar() {
+  const { user, login, logout } = useContext(AuthContext);
+
+  return (
+    &lt;nav&gt;
+      {user ? (
+        &lt;&gt;
+          &lt;span&gt;Welcome {user.name}!&lt;/span&gt;
+          &lt;button onClick={logout}&gt;Logout&lt;/button&gt;
+        &lt;/&gt;
+      ) : (
+        &lt;button onClick={() =&gt; login('Pramish')}&gt;Login&lt;/button&gt;
+      )}
+    &lt;/nav&gt;
+  );
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>3. Multiple Contexts (Theme + Language)</h2>
+    <p><strong>File:</strong> <code>LanguageContext.js</code></p>
+    <pre><code>import { createContext } from 'react';
+export const LanguageContext = createContext('en');</code></pre>
+
+    <p><strong>File:</strong> <code>App.js</code></p>
+    <pre><code>import React, { useState } from 'react';
+import { ThemeContext } from './ThemeContext';
+import { LanguageContext } from './LanguageContext';
+import Display from './Display';
+
+export default function App() {
+  const [theme, setTheme] = useState('light');
+  const [language, setLanguage] = useState('en');
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, setTheme }}&gt;
+      &lt;LanguageContext.Provider value={{ language, setLanguage }}&gt;
+        &lt;Display /&gt;
+      &lt;/LanguageContext.Provider&gt;
+    &lt;/ThemeContext.Provider&gt;
+  );
+}</code></pre>
+
+    <p><strong>File:</strong> <code>Display.js</code></p>
+    <pre><code>import React, { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
+import { LanguageContext } from './LanguageContext';
+
+export default function Display() {
+  const { theme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
+
+  return &lt;h3&gt;Theme: {theme} | Language: {language}&lt;/h3&gt;;
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>4. Context for Cart Management</h2>
+    <p><strong>File:</strong> <code>CartContext.js</code></p>
+    <pre><code>import { createContext } from 'react';
+export const CartContext = createContext([]);</code></pre>
+
+    <p><strong>File:</strong> <code>App.js</code></p>
+    <pre><code>import React, { useState } from 'react';
+import { CartContext } from './CartContext';
+import Cart from './Cart';
+
+export default function App() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) =&gt; setCart([...cart, item]);
+
+  return (
+    &lt;CartContext.Provider value={{ cart, addToCart }}&gt;
+      &lt;Cart /&gt;
+    &lt;/CartContext.Provider&gt;
+  );
+}</code></pre>
+
+    <p><strong>File:</strong> <code>Cart.js</code></p>
+    <pre><code>import React, { useContext } from 'react';
+import { CartContext } from './CartContext';
+
+export default function Cart() {
+  const { cart, addToCart } = useContext(CartContext);
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={() =&gt; addToCart('Apple')}&gt;Add Apple&lt;/button&gt;
+      &lt;p&gt;Items: {cart.join(', ')}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+  </section>
+
+  <section>
+    <h2>5. Global Counter Context</h2>
+    <p><strong>File:</strong> <code>CounterContext.js</code></p>
+    <pre><code>import { createContext } from 'react';
+export const CounterContext = createContext();</code></pre>
+
+    <p><strong>File:</strong> <code>App.js</code></p>
+    <pre><code>import React, { useState } from 'react';
+import { CounterContext } from './CounterContext';
+import CounterDisplay from './CounterDisplay';
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;CounterContext.Provider value={{ count, setCount }}&gt;
+      &lt;CounterDisplay /&gt;
+    &lt;/CounterContext.Provider&gt;
+  );
+}</code></pre>
+
+    <p><strong>File:</strong> <code>CounterDisplay.js</code></p>
+    <pre><code>import React, { useContext } from 'react';
+import { CounterContext } from './CounterContext';
+
+export default function CounterDisplay() {
+  const { count, setCount } = useContext(CounterContext);
+
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Count: {count}&lt;/h3&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+  </section>
+
+</body>
+</html>

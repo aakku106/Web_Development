@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React memo and useMemo Solutions</title>
+<style>
+  body { font-family: 'Poppins', sans-serif; background: #f0f4f8; color: #333; padding: 20px; line-height: 1.6; }
+  h2 { color: #007acc; margin-top: 40px; }
+  .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 40px; }
+  pre { background: #1e1e1e; color: #dcdcdc; padding: 15px; border-radius: 8px; overflow-x: auto; margin-top: 10px; }
+  button, input { margin-top: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
+  button { background: #007acc; color: white; border: none; cursor: pointer; }
+  button:hover { background: #005fa3; }
+</style>
+</head>
+<body>
+<h1>💡 React memo and useMemo Solutions</h1>
+
+<div class="box">
+<h2>1. Prevent unnecessary re-render</h2>
+<pre>{`import React, { useState, memo } from 'react';
+
+const Child = memo(({ name }) =&gt; {
+  console.log('Child rendered');
+  return &lt;p&gt;Hello, {name}!&lt;/p&gt;;
+});
+
+function Parent() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;&gt;
+      &lt;Child name="Pramish" /&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/&gt;
+  );
+}`}</pre>
+</div>
+
+<div class="box">
+<h2>2. Cache expensive calculation</h2>
+<pre>{`import React, { useState, useMemo } from 'react';
+
+function Factorial({ number }) {
+  const factorial = useMemo(() =&gt; {
+    console.log('Calculating factorial');
+    const calc = n =&gt; n &lt;= 1 ? 1 : n * calc(n - 1);
+    return calc(number);
+  }, [number]);
+
+  return &lt;p&gt;Factorial of {number} is {factorial}&lt;/p&gt;;
+}
+
+function App() {
+  const [number, setNumber] = useState(5);
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;&gt;
+      &lt;Factorial number={number} /&gt;
+      &lt;input type="number" value={number} onChange={e =&gt; setNumber(+e.target.value)} /&gt;
+      &lt;p&gt;Counter: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/&gt;
+  );
+}`}</pre>
+</div>
+
+<div class="box">
+<h2>3. Multiple props memo</h2>
+<pre>{`import React, { useState, memo } from 'react';
+
+const Child = memo(({ firstName, lastName }) =&gt; {
+  console.log('Child rendered');
+  return &lt;p&gt;{firstName} {lastName}&lt;/p&gt;;
+});
+
+function Parent() {
+  const [firstName, setFirstName] = useState('Pramish');
+  const [lastName, setLastName] = useState('Bhusal');
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;&gt;
+      &lt;Child firstName={firstName} lastName={lastName} /&gt;
+      &lt;input value={firstName} onChange={e =&gt; setFirstName(e.target.value)} /&gt;
+      &lt;input value={lastName} onChange={e =&gt; setLastName(e.target.value)} /&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/&gt;
+  );
+}`}</pre>
+</div>
+
+<div class="box">
+<h2>4. Filter large array efficiently</h2>
+<pre>{`import React, { useState, useMemo } from 'react';
+
+function FilterList({ numbers }) {
+  const [query, setQuery] = useState('');
+  const filtered = useMemo(() =&gt; numbers.filter(n =&gt; n.toString().includes(query)), [numbers, query]);
+
+  return (
+    &lt;&gt;
+      &lt;input value={query} onChange={e =&gt; setQuery(e.target.value)} placeholder="Filter numbers" /&gt;
+      &lt;ul&gt;
+        {filtered.map(n =&gt; &lt;li key={n}&gt;{n}&lt;/li&gt;)}
+      &lt;/ul&gt;
+    &lt;/&gt;
+  );
+}`}</pre>
+</div>
+
+<div class="box">
+<h2>5. Combined memo &amp; useMemo</h2>
+<pre>{`import React, { useState, useMemo, memo } from 'react';
+
+const Child = memo(({ text }) =&gt; {
+  console.log('Child rendered');
+  return &lt;p&gt;{text}&lt;/p&gt;;
+});
+
+function App() {
+  const [number, setNumber] = useState(5);
+  const [text, setText] = useState('Hello');
+
+  const factorial = useMemo(() =&gt; {
+    const calc = n =&gt; n &lt;=1 ? 1 : n * calc(n-1);
+    return calc(number);
+  }, [number]);
+
+  return (
+    &lt;&gt;
+      &lt;p&gt;Factorial of {number}: {factorial}&lt;/p&gt;
+      &lt;input value={number} onChange={e =&gt; setNumber(+e.target.value)} /&gt;
+      &lt;Child text={text} /&gt;
+      &lt;input value={text} onChange={e =&gt; setText(e.target.value)} /&gt;
+    &lt;/&gt;
+  );
+}`}</pre>
+</div>
+
+</body>
+</html>

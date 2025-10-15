@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React Event Handling Solutions</title>
+<style>
+  body { font-family: 'Poppins', sans-serif; background: #f0f4f8; color: #333; padding: 20px; line-height: 1.6; }
+  h2 { color: #007acc; margin-top: 40px; }
+  .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 40px; }
+  pre { background: #1e1e1e; color: #dcdcdc; padding: 15px; border-radius: 8px; overflow-x: auto; margin-top: 10px; }
+  button, input, textarea { margin-top: 10px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
+  button { background: #007acc; color: white; border: none; cursor: pointer; }
+  button:hover { background: #005fa3; }
+  div.hoverBox { width: 150px; height: 50px; line-height: 50px; text-align: center; border: 1px solid #333; margin-top: 10px; }
+  div.dropTarget { width: 200px; height: 100px; border: 2px dashed #007acc; margin-top: 10px; line-height: 100px; text-align: center; }
+</style>
+</head>
+<body>
+<h1>💡 React Event Handling Solutions</h1>
+
+<div class="box">
+<h2>1. Button Click Counter</h2>
+<pre>import { useState } from 'react';
+
+function ClickCounter() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;&gt;
+      &lt;p&gt; Count: {count}</p&gt;
+      <button onClick={() => setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/&gt;
+  );
+}</pre>
+</div>
+
+<div class="box">
+<h2>2. Input Mirror</h2>
+<pre>import { useState } from 'react';
+
+function InputMirror() {
+  const [text, setText] = useState('');
+  return (
+    &lt;&gt;
+      &lt;input value={text} onChange={e => setText(e.target.value)} placeholder="Type here" /&gt;
+      &lt;p&gt;{text}&lt;/p&gt;
+    &lt;/&gt;
+  );
+}</pre>
+</div>
+
+<div class="box">
+<h2>3. Form Alert</h2>
+<pre>import { useState } from 'react';
+
+function FormAlert() {
+  const [text, setText] = useState('');
+  const handleSubmit = e => {
+    e.preventDefault();
+    alert('Submitted: ' + text);
+  };
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input value={text} onChange={e => setText(e.target.value)} placeholder="Enter text" /&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</pre>
+</div>
+
+<div class="box">
+<h2>4. Key Press Logger</h2>
+<pre>function KeyLogger() {
+  const handleKeyDown = e => console.log('Key pressed:', e.key);
+  return &lt;input onKeyDown={handleKeyDown} placeholder="Press a key" /&gt;;
+}</pre>
+</div>
+
+<div class="box">
+<h2>5. Focus & Blur Messages</h2>
+<pre>import { useState } from 'react';
+
+function FocusBlur() {
+  const [msg, setMsg] = useState('');
+  return (
+    &lt;&gt;
+      &lt;input
+        onFocus={() => setMsg('Input focused')}
+        onBlur={() => setMsg('Input blurred')}
+        placeholder="Focus me"
+      /&gt;
+      &lt;p&gt;{msg}&lt;/p&gt;
+    &lt;/&gt;
+  );
+}</pre>
+</div>
+
+<div class="box">
+<h2>6. Mouse Hover Color Change</h2>
+<pre>import { useState } from 'react';
+
+function HoverBox() {
+  const [bg, setBg] = useState('white');
+  return (
+    &lt;div
+      className="hoverBox"
+      style={{ backgroundColor: bg }}
+      onMouseEnter={() => setBg('lightblue')}
+      onMouseLeave={() => setBg('white')}
+    &gt;Hover me&lt;/div&gt;
+  );
+}</pre>
+</div>
+
+<div class="box">
+<h2>7. Clipboard Detection</h2>
+<pre>function ClipboardAlert() {
+  const handleCopy = () => alert('Copied!');
+  return &lt;textarea onCopy={handleCopy} placeholder="Copy something from me">&lt;/textarea&gt;;
+}</pre>
+</div>
+
+<div class="box">
+<h2>8. Video Play/Pause Logger</h2>
+<pre>function VideoLogger() {
+  return (
+    &lt;video width="300" controls onPlay={() => console.log('Playing')} onPause={() => console.log('Paused')}&gt;
+      &lt;source src="sample-video.mp4" type="video/mp4" /&gt;
+    &lt;/video&gt;
+  );
+}</pre>
+</div>
+
+<div class="box">
+<h2>9. Drag & Drop</h2>
+<pre>{`import { useState } from 'react';
+
+function DragDrop() {
+  const [dropped, setDropped] = useState(false);
+
+  const handleDrop = e => {
+    e.preventDefault();
+    setDropped(true);
+  };
+
+  const handleDragOver = e => e.preventDefault();
+
+  return (
+    &lt;&gt;
+      &lt;div draggable style={{ width: '100px', height: '50px', backgroundColor: 'lightgreen' }}>Drag me&lt;/div&gt;
+      &lt;div className="dropTarget" onDrop={handleDrop} onDragOver={handleDragOver}&gt;
+        {dropped ? 'Dropped!' : 'Drop here'}
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+}`}</pre>
+</div>
+
+</body>
+</html>

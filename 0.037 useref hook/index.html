@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>useRef Hook Practice Solutions</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h2 {
+      color: #007acc;
+      margin-top: 40px;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    pre {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 200px;
+    }
+    .messages {
+      max-height: 150px;
+      overflow-y: auto;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💡 useRef Hook Practice Solutions</h1>
+
+  <!-- 1. Auto Focus Input on Button Click -->
+  <div class="box">
+    <h2>1. Auto Focus Input on Button Click</h2>
+    <input id="focusInput" placeholder="Click button to focus" />
+    <button onclick="focusInput()">Focus Input</button>
+    <script>
+      const inputRef = { current: document.getElementById('focusInput') };
+      function focusInput() {
+        inputRef.current.focus();
+      }
+    </script>
+    <pre>import { useRef } from 'react';
+
+const inputRef = useRef(null);
+return (
+  &lt&gt;
+    &lt;input ref={inputRef} placeholder="Click button to focus" /&gt;
+    &lt;button onClick={() => inputRef.current.focus()}&gt;Focus Input&lt;/button&gt;
+  &lt;/&gt;
+);</pre>
+  </div>
+
+  <!-- 2. Stopwatch Using useRef -->
+  <div class="box">
+    <h2>2. Stopwatch Using useRef</h2>
+    <p id="timer">0</p>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <script>
+      let timerValue = 0;
+      const timerDisplay = document.getElementById('timer');
+      const timerRef = { current: null };
+
+      function startTimer() {
+        if (!timerRef.current) {
+          timerRef.current = setInterval(() => {
+            timerValue++;
+            timerDisplay.textContent = timerValue;
+          }, 1000);
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    </script>
+    <pre>import { useRef, useState } from 'react';
+
+const timerRef = useRef(null);
+const [timer, setTimer] = useState(0);
+
+&lt;button onClick={() => {
+  if (!timerRef.current) {
+    timerRef.current = setInterval(() => setTimer(prev => prev + 1), 1000);
+  }
+}}>Start&lt;/button&gt;
+&lt;button onClick={() => { clearInterval(timerRef.current); timerRef.current = null; }}&gt;Stop&lt;/button&gt;
+&lt;p&gt;{timer}&lt;/p&gt;`}</pre>
+  </div>
+
+  <!-- 3. Track Previous Value -->
+  <div class="box">
+    <h2>3. Track Previous Value</h2>
+    <input id="trackInput" placeholder="Type something..." oninput="trackChange()" />
+    <p>Previous Value: <span id="prev"></span></p>
+    <p>Current Value: <span id="curr"></span></p>
+    <script>
+      const prevRef = { current: '' };
+      function trackChange() {
+        const input = document.getElementById('trackInput').value;
+        document.getElementById('prev').textContent = prevRef.current;
+        document.getElementById('curr').textContent = input;
+        prevRef.current = input;
+      }
+    </script>
+    <pre>import { useRef, useState, useEffect } from 'react';
+
+const prevRef = useRef('');
+const [input, setInput] = useState('');
+
+useEffect(() => { prevRef.current = input; }, [input]);
+
+&lt;input value={input} onChange={e => setInput(e.target.value)} /&gt;
+&lt;p&gt;Previous: {prevRef.current}&lt;/p&gt;
+&lt;p&gt;Current: {input}&lt;/p&gt;</pre>
+  </div>
+
+  <!-- 4. Render Count Tracker (Simulated) -->
+  <div class="box">
+    <h2>4. Render Count Tracker (Simulated)</h2>
+    <p id="renderCount">0</p>
+    <button onclick="simulateRender()">Simulate Render</button>
+    <script>
+      const renderRef = { current: 0 };
+      function simulateRender() {
+        renderRef.current++;
+        document.getElementById('renderCount').textContent = renderRef.current;
+      }
+    </script>
+    <pre>import { useRef } from 'react';
+
+const renderRef = useRef(0);
+renderRef.current++;
+<p&gt;Render Count: {renderRef.current}</p>`}</pre>
+  </div>
+
+  <!-- 5. Scroll to Bottom Feature -->
+  <div class="box">
+    <h2>5. Scroll to Bottom Feature</h2>
+    <div class="messages" id="messageBox">
+      <p>Message 1</p>
+      <p>Message 2</p>
+      <p>Message 3</p>
+      <p>Message 4</p>
+      <p>Message 5</p>
+      <p id="bottom">Bottom Message</p>
+    </div>
+    <button onclick="scrollBottom()">Scroll to Bottom</button>
+    <script>
+      const bottomRef = { current: document.getElementById('bottom') };
+      function scrollBottom() {
+        bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    </script>
+    <pre>import { useRef } from 'react';
+
+const bottomRef = useRef(null);
+&lt;div ref={bottomRef}&gt;Bottom Message&lt;/div&gt;
+&lt;button onClick={() => bottomRef.current.scrollIntoView({ behavior: 'smooth' })}&gt;Scroll to Bottom&lt;/button&gt;</pre>
+  </div>
+
+</body>
+</html>
