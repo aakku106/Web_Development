@@ -192,12 +192,12 @@
         background: #e9ecef;
         color: #495057;
         text-decoration: none;
-        padding: 5px 10px;
-        border-radius: 3px;
+        padding: 6px 12px;
+        border-radius: 6px;
         margin-right: 10px;
-        margin-top: 5px;
+        margin-top: 6px;
         font-size: 0.9em;
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: all 0.3s ease;
       }
 
       .file-link:hover {
@@ -1058,13 +1058,13 @@
             >
             <div class="lesson-files">
               <a href="0.046 server-side rendering/index.html" class="file-link"
-                >🌐 Website</a
+                >Website →</a
               >
               <a href="0.046 server-side rendering/README.md" class="file-link"
-                >📖 README</a
+                >Docs</a
               >
               <a href="0.046 server-side rendering/qna.md" class="file-link"
-                >❓ Q&A</a
+                >Q&A</a
               >
             </div>
           </li>
@@ -1075,13 +1075,13 @@
             >
             <div class="lesson-files">
               <a href="0.047 client-side rendering/index.html" class="file-link"
-                >🌐 Website</a
+                >Website →</a
               >
               <a href="0.047 client-side rendering/README.md" class="file-link"
-                >📖 README</a
+                >Docs</a
               >
               <a href="0.047 client-side rendering/qna.md" class="file-link"
-                >❓ Q&A</a
+                >Q&A</a
               >
             </div>
           </li>
@@ -1092,12 +1092,10 @@
             >
             <div class="lesson-files">
               <a href="0.048 api-routing/index.html" class="file-link"
-                >🌐 Website</a
+                >Website →</a
               >
-              <a href="0.048 api-routing/README.md" class="file-link"
-                >� README</a
-              >
-              <a href="0.048 api-routing/qna.md" class="file-link">❓ Q&A</a>
+              <a href="0.048 api-routing/README.md" class="file-link">Docs</a>
+              <a href="0.048 api-routing/qna.md" class="file-link">Q&A</a>
             </div>
           </li>
 
@@ -1107,12 +1105,12 @@
             >
             <div class="lesson-files">
               <a href="0.049 link-component/index.html" class="file-link"
-                >🌐 Website</a
+                >Website →</a
               >
               <a href="0.049 link-component/README.md" class="file-link"
-                >📖 README</a
+                >Docs</a
               >
-              <a href="0.049 link-component/qna.md" class="file-link">❓ Q&A</a>
+              <a href="0.049 link-component/qna.md" class="file-link">Q&A</a>
             </div>
           </li>
 
@@ -1168,6 +1166,34 @@
           }, index * 20);
         });
       });
+
+      // Normalize labels and remove decorative emojis
+      (function normalizeNavigation() {
+        // Update file-link chips
+        document.querySelectorAll(".file-link").forEach((a) => {
+          const href = (a.getAttribute("href") || "").toLowerCase();
+          if (href.endsWith("index.html")) {
+            a.textContent = "Website →";
+          } else if (href.includes("readme") || href.endsWith(".md")) {
+            a.textContent = "Docs";
+          }
+          if (href.includes("qna") || href.includes("questions")) {
+            a.textContent = "Q&A";
+          }
+        });
+
+        // Remove emojis from headings while leaving checkmarks elsewhere
+        const strip = (s) =>
+          s.replace(/[🚀💡🎯📚🎨⚡🖥️🗄️⚛️🔄🎉📋🗂️❤️]/g, "").trim();
+        const h1 = document.querySelector("h1");
+        if (h1) h1.textContent = strip(h1.textContent);
+        document.querySelectorAll(".section h2").forEach((h2) => {
+          h2.textContent = strip(h2.textContent);
+        });
+        document.querySelectorAll(".lesson-link").forEach((lnk) => {
+          lnk.textContent = strip(lnk.textContent);
+        });
+      })();
     </script>
   </body>
 </html>
