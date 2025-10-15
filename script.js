@@ -397,75 +397,94 @@ class FullStackCourse {
     themeToggle.className = "theme-toggle";
     themeToggle.innerHTML = "🌙";
     themeToggle.setAttribute("aria-label", "Toggle dark mode");
+    themeToggle.title = "Switch to dark mode";
 
-    const header = document.querySelector(".header");
-    if (header) {
-      header.appendChild(themeToggle);
-    }
+    // Add it directly to body instead of header for better positioning
+    document.body.appendChild(themeToggle);
 
     themeToggle.addEventListener("click", () => {
       this.toggleTheme();
     });
 
-    this.addThemeStyles();
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem("darkMode");
+    if (savedTheme === "true") {
+      document.body.classList.add("dark-mode");
+      themeToggle.innerHTML = "☀️";
+      themeToggle.title = "Switch to light mode";
+    }
+
+    // Add theme transition class after page load for smooth initial transition
+    setTimeout(() => {
+      document.body.classList.add("theme-transitions-enabled");
+    }, 100);
   }
 
   toggleTheme() {
-    document.body.classList.toggle("dark-mode");
-    const isDark = document.body.classList.contains("dark-mode");
-
+    const body = document.body;
     const themeToggle = document.querySelector(".theme-toggle");
+
+    // Add a ripple effect
+    this.createRippleEffect(themeToggle);
+
+    body.classList.toggle("dark-mode");
+    const isDark = body.classList.contains("dark-mode");
+
     if (themeToggle) {
-      themeToggle.innerHTML = isDark ? "☀️" : "🌙";
+      // Smooth icon transition
+      themeToggle.style.transform = "scale(0.8) rotate(180deg)";
+
+      setTimeout(() => {
+        themeToggle.innerHTML = isDark ? "☀️" : "🌙";
+        themeToggle.title = isDark
+          ? "Switch to light mode"
+          : "Switch to dark mode";
+        themeToggle.style.transform = "scale(1) rotate(0deg)";
+      }, 150);
     }
 
+    // Save theme preference
     localStorage.setItem("darkMode", isDark);
+
+    // Trigger a subtle page animation
+    this.triggerThemeAnimation();
   }
 
-  addThemeStyles() {
-    const style = document.createElement("style");
-    style.textContent = `
-            .theme-toggle {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: rgba(255, 255, 255, 0.9);
-                border: none;
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                cursor: pointer;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-                transition: all 0.3s ease;
-                z-index: 1000;
-            }
-            
-            .theme-toggle:hover {
-                transform: scale(1.1);
-            }
-            
-            .dark-mode {
-                --text-primary: #e0e0e0;
-                --text-secondary: #b0b0b0;
-                --white: #1a1a1a;
-            }
-            
-            .dark-mode body {
-                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            }
-            
-            .dark-mode .card {
-                background: rgba(30, 30, 30, 0.95);
-                color: #e0e0e0;
-            }
-            
-            .dark-mode .lesson-card {
-                background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-                color: #e0e0e0;
-            }
-        `;
-    document.head.appendChild(style);
+  createRippleEffect(element) {
+    const ripple = document.createElement("div");
+    ripple.style.cssText = `
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(79, 172, 254, 0.6);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      margin-left: -10px;
+      margin-top: -10px;
+    `;
+
+    element.style.position = "relative";
+    element.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  }
+
+  triggerThemeAnimation() {
+    const cards = document.querySelectorAll(".lesson-card, .card");
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.transform = "scale(0.98)";
+        setTimeout(() => {
+          card.style.transform = "scale(1)";
+        }, 100);
+      }, index * 30);
+    });
   }
 
   // Section Navigation

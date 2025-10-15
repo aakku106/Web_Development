@@ -11,6 +11,12 @@
         padding: 20px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .dark-mode {
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+        color: #e8eaed;
       }
 
       .container {
@@ -20,12 +26,24 @@
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .dark-mode .container {
+        background: rgba(22, 33, 62, 0.95);
+        color: #e8eaed;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       }
 
       h1 {
         text-align: center;
         color: #764ba2;
         margin-bottom: 30px;
+        transition: color 0.4s ease;
+      }
+
+      .dark-mode h1 {
+        color: #00f2fe;
       }
 
       .back-link {
@@ -36,6 +54,22 @@
         padding: 10px 20px;
         border-radius: 5px;
         margin-bottom: 20px;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .back-link:hover {
+        background: #5a6fd8;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .dark-mode .back-link {
+        background: linear-gradient(45deg, #4facfe, #00f2fe);
+      }
+
+      .dark-mode .back-link:hover {
+        background: linear-gradient(45deg, #00f2fe, #4facfe);
+        box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
       }
 
       .section {
@@ -46,6 +80,68 @@
         color: #667eea;
         border-bottom: 2px solid #667eea;
         padding-bottom: 5px;
+        transition: all 0.4s ease;
+      }
+
+      .dark-mode .section h2 {
+        color: #4facfe;
+        border-bottom-color: #4facfe;
+      }
+
+      /* Theme Toggle Button */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid #667eea;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1) rotate(15deg);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        border-color: #764ba2;
+      }
+
+      .dark-mode .theme-toggle {
+        background: rgba(22, 33, 62, 0.95);
+        border-color: #4facfe;
+        color: #e8eaed;
+        box-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+      }
+
+      .dark-mode .theme-toggle:hover {
+        box-shadow: 0 0 30px rgba(79, 172, 254, 0.5);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .theme-toggle {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .theme-toggle:hover {
+        animation: none;
       }
 
       .lesson-list {
@@ -59,16 +155,32 @@
         padding: 15px;
         border-radius: 8px;
         border-left: 4px solid #667eea;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .dark-mode .lesson-item {
+        background: #1e2a47;
+        border-left-color: #4facfe;
+        color: #e8eaed;
       }
 
       .lesson-link {
         text-decoration: none;
         color: #333;
         font-weight: bold;
+        transition: color 0.4s ease;
       }
 
       .lesson-link:hover {
         color: #764ba2;
+      }
+
+      .dark-mode .lesson-link {
+        color: #e8eaed;
+      }
+
+      .dark-mode .lesson-link:hover {
+        color: #00f2fe;
       }
 
       .lesson-files {
@@ -85,6 +197,22 @@
         margin-right: 10px;
         margin-top: 5px;
         font-size: 0.9em;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .file-link:hover {
+        background: #dee2e6;
+        transform: translateY(-1px);
+      }
+
+      .dark-mode .file-link {
+        background: #2c3e50;
+        color: #bdc1c6;
+      }
+
+      .dark-mode .file-link:hover {
+        background: #34495e;
+        color: #e8eaed;
       }
 
       .file-link:hover {
@@ -992,5 +1120,54 @@
         </ul>
       </div>
     </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" title="Switch theme">
+      🌙
+    </button>
+
+    <script>
+      // Theme Toggle Functionality
+      const themeToggle = document.getElementById("themeToggle");
+      const body = document.body;
+
+      // Check for saved theme preference or default to light mode
+      const savedTheme = localStorage.getItem("darkMode");
+      if (savedTheme === "true") {
+        body.classList.add("dark-mode");
+        themeToggle.innerHTML = "☀️";
+        themeToggle.title = "Switch to light mode";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+
+        // Smooth icon transition
+        themeToggle.style.transform = "scale(0.8) rotate(180deg)";
+
+        setTimeout(() => {
+          themeToggle.innerHTML = isDark ? "☀️" : "🌙";
+          themeToggle.title = isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode";
+          themeToggle.style.transform = "scale(1) rotate(0deg)";
+        }, 150);
+
+        // Save theme preference
+        localStorage.setItem("darkMode", isDark);
+
+        // Add a subtle animation to lesson items
+        const lessonItems = document.querySelectorAll(".lesson-item");
+        lessonItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.transform = "scale(0.98)";
+            setTimeout(() => {
+              item.style.transform = "scale(1)";
+            }, 100);
+          }, index * 20);
+        });
+      });
+    </script>
   </body>
 </html>
