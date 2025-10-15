@@ -166,6 +166,8 @@ const username = "john";
 
 **Example:**
 
+{% raw %}
+
 ```javascript
 // Method 1: Query string
 <Link href="/search?q=nextjs&sort=recent">Search</Link>
@@ -178,6 +180,8 @@ const username = "john";
   Search Results
 </Link>
 ```
+
+{% endraw %}
 
 ---
 
