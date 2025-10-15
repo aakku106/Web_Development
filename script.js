@@ -466,8 +466,13 @@ class FullStackCourse {
       margin-left: -10px;
       margin-top: -10px;
     `;
+    // Preserve existing positioning (do NOT override fixed position)
+    // Only set relative positioning if the element is using the default 'static'
+    const computedPos = window.getComputedStyle(element).position;
+    if (computedPos === "static") {
+      element.style.position = "relative";
+    }
 
-    element.style.position = "relative";
     element.appendChild(ripple);
 
     setTimeout(() => {
