@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Full Stack Web Development - Complete Beginner's Guide</title>
+    <title>
+      Full Stack Web Development - Complete Beginner's Guide by Adarasha Gaihre
+    </title>
     <link rel="stylesheet" href="styles.css" />
     <style>
       * {
@@ -125,10 +127,30 @@
         border-radius: 5px;
         font-weight: bold;
         transition: transform 0.2s ease;
+        margin: 4px 4px 4px 0;
+        font-size: 0.9rem;
       }
 
       .lesson-link:hover {
         transform: scale(1.05);
+      }
+
+      .lesson-link.secondary {
+        background: linear-gradient(45deg, #e9ecef, #dee2e6);
+        color: #495057;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+      }
+
+      .lesson-link.secondary:hover {
+        background: linear-gradient(45deg, #dee2e6, #ced4da);
+      }
+
+      .lesson-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        align-items: center;
       }
 
       .stats {
@@ -207,13 +229,25 @@
         text-decoration: none;
         padding: 12px 24px;
         border-radius: 8px;
-        margin-top: 15px;
+        margin: 8px 8px 8px 0;
         font-weight: bold;
         transition: background 0.3s ease;
       }
 
       .github-link:hover {
         background: #555;
+      }
+
+      .progress-actions {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .progress-actions .btn {
+        margin: 5px 8px;
+        font-size: 0.9rem;
       }
 
       @media (max-width: 768px) {
@@ -285,9 +319,16 @@
                 Web development basics, websites vs webpages, frontend vs
                 backend concepts
               </p>
-              <a href="0.001 introducion/README.md" class="lesson-link"
-                >Start Learning →</a
-              >
+              <div class="lesson-links">
+                <a href="0.001 introducion/README.md" class="lesson-link">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.001 introducion/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -295,9 +336,21 @@
               <p>
                 HTML boilerplate, document structure, head and body elements
               </p>
-              <a href="0.002 HTML structre/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.002 HTML structre/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.002 HTML structre/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.002 HTML structre/QNA.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -306,9 +359,21 @@
                 Essential HTML tags: headings, paragraphs, links, images, lists,
                 tables, forms
               </p>
-              <a href="0.003 HTML tags/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.003 HTML tags/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.003 HTML tags/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.003 HTML tags/questions.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -317,9 +382,23 @@
                 Understanding the difference and usage of classes and IDs in
                 HTML
               </p>
-              <a href="0.004 HTML class and id/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.004 HTML class and id/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.004 HTML class and id/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.004 HTML class and id/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -328,9 +407,21 @@
                 Introduction to CSS, linking stylesheets, inline, internal, and
                 external styles
               </p>
-              <a href="0.005 CSS basic/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.005 CSS basic/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.005 CSS basic/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.005 CSS basic/question.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -339,11 +430,23 @@
                 Element, class, ID selectors and applying styles to different
                 elements
               </p>
-              <a
-                href="0.006 selector and styling in css/index.html"
-                class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.006 selector and styling in css/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.006 selector and styling in css/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.006 selector and styling in css/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -351,9 +454,21 @@
               <p>
                 Absolute (px) and relative (em, %, rem, vh, vw) units in CSS
               </p>
-              <a href="0.007 units in css/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.007 units in css/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.007 units in css/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.007 units in css/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -362,9 +477,19 @@
                 Understanding margin, border, padding, and content in CSS box
                 model
               </p>
-              <a href="0.008 box modal/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.008 box modal/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.008 box modal/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.008 box modal/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -373,25 +498,53 @@
                 Flexible layouts with flexbox: containers, alignment, and
                 responsive design
               </p>
-              <a href="0.009 flexbox/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.009 flexbox/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a href="0.009 flexbox/README.md" class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.009 flexbox/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.010 - CSS Grid</h4>
               <p>Advanced layouts with CSS Grid system for complex designs</p>
-              <a href="0.010 grid/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.010 grid/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a href="0.010 grid/README.md" class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.010 grid/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.011 - Transformations</h4>
               <p>CSS transforms: scale, rotate, translate, and skew effects</p>
-              <a href="0.011 transformations/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.011 transformations/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.011 transformations/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.011 transformations/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -400,11 +553,23 @@
                 CSS animations, transitions, keyframes, and interactive hover
                 effects
               </p>
-              <a
-                href="0.012 animations and transitions/index.html"
-                class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.012 animations and transitions/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.012 animations and transitions/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.012 animations and transitions/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -413,9 +578,21 @@
                 Responsive design basics with CSS media queries for different
                 screen sizes
               </p>
-              <a href="0.013 media queries/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.013 media queries/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.013 media queries/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.013 media queries/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -430,49 +607,114 @@
                 JavaScript syntax, operators, console.log(), and basic
                 programming concepts
               </p>
-              <a href="0.014 javascript/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.014 javascript/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.014 javascript/READMD.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.014 javascript/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.015 - Variables</h4>
               <p>let, const, var declarations and data types in JavaScript</p>
-              <a href="0.015 variable/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a href="0.015 variable/READMD.md" class="lesson-link">
+                  📖 Read Guide
+                </a>
+                <a href="0.015 variable/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.016 - Arrays & Objects</h4>
               <p>Working with arrays, objects, and JSON data structures</p>
-              <a href="0.016 array object json/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.016 array object json/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.016 array object json/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.016 array object json/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.017 - Conditionals</h4>
               <p>Decision making with if, else, switch statements</p>
-              <a href="0.017 conditionals/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.017 conditionals/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.017 conditionals/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.017 conditionals/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.018 - Loops</h4>
               <p>Iteration with for, while, for...of, and forEach loops</p>
-              <a href="0.018 loop in javascript/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.018 loop in javascript/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.018 loop in javascript/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.018 loop in javascript/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.019 - Functions</h4>
               <p>Regular and arrow functions, parameters, return values</p>
-              <a href="0.019 functions/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.019 functions/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.019 functions/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.019 functions/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -480,9 +722,23 @@
               <p>
                 Import/export modules, organizing code into reusable components
               </p>
-              <a href="0.020 modular programming/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.020 modular programming/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.020 modular programming/READMD.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.020 modular programming/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -491,9 +747,19 @@
                 Object-oriented programming: classes, objects, inheritance,
                 polymorphism
               </p>
-              <a href="0.021 oops basic/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.021 oops basic/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.021 oops basic/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.021 oops basic/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -501,15 +767,33 @@
               <p>
                 Document Object Model: accessing and modifying HTML elements
               </p>
-              <a href="0.022 dom/index.html" class="lesson-link">View Demo →</a>
+              <div class="lesson-links">
+                <a href="0.022 dom/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a href="0.022 dom/README.md" class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.022 dom/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.023 - Event Handling</h4>
               <p>Event listeners, user interactions, and dynamic web pages</p>
-              <a href="0.023 events/index.html" class="lesson-link"
-                >View Demo →</a
-              >
+              <div class="lesson-links">
+                <a href="0.023 events/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a href="0.023 events/README.md" class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.023 events/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -521,37 +805,83 @@
             <div class="lesson-card">
               <h4>0.024 - Node.js Introduction</h4>
               <p>What is Node.js, server-side JavaScript, running scripts</p>
-              <a href="0.024 node intro/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a href="0.024 node intro/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.024 node intro/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.024 node intro/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.025 - Express.js Introduction</h4>
               <p>Setting up an Express server, basic routing</p>
-              <a href="0.025 express intro/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a href="0.025 express intro/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.025 express intro/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.025 express intro/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.026 - Request & Response</h4>
               <p>Understanding req and res objects in Express</p>
-              <a
-                href="0.026 express request and respond/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.026 express request and respond/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.026 express request and respond/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.026 express request and respond/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.027 - HTTP Methods</h4>
               <p>GET, POST, PUT, DELETE methods and RESTful APIs</p>
-              <a
-                href="0.027 http method in express/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.027 http method in express/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.027 http method in express/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.027 http method in express/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -560,9 +890,19 @@
                 Custom middleware, authentication, logging, and request
                 processing
               </p>
-              <a href="0.028 middleware/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a href="0.028 middleware/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.028 middleware/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.028 middleware/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -574,27 +914,67 @@
             <div class="lesson-card">
               <h4>0.029 - Database Introduction</h4>
               <p>What are databases, relational vs non-relational databases</p>
-              <a href="0.029 database introducion/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.029 database introducion/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.029 database introducion/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.029 database introducion/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.030 - MongoDB Introduction</h4>
               <p>NoSQL database concepts: collections, documents, BSON</p>
-              <a href="0.030 mongodb introducion/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.030 mongodb introducion/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.030 mongodb introducion/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.030 mongodb introducion/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.031 - Mongoose Introduction</h4>
               <p>MongoDB object modeling for Node.js: schemas and models</p>
-              <a
-                href="0.031 mongoose introdiction/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.031 mongoose introdiction/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.031 mongoose introdiction/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.031 mongoose introdiction/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
@@ -603,11 +983,23 @@
                 Create, Read, Update, Delete operations with MongoDB and
                 Mongoose
               </p>
-              <a
-                href="0.032 crud operation in mongodb/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.032 crud operation in mongodb/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.032 crud operation in mongodb/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.032 crud operation in mongodb/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -621,103 +1013,245 @@
               <p>
                 What is React, component-based architecture, why it's popular
               </p>
-              <a href="0.033 react introduction/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.033 react introduction/index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.033 react introduction/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.033 react introduction/qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.034 - useState Hook</h4>
               <p>State management in functional components</p>
-              <a href="0.034 useState/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a href="0.034 useState/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.034 useState/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.034 useState/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.035 - useEffect Hook</h4>
               <p>Side effects, lifecycle methods in functional components</p>
-              <a href="0.035 useEffect/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a href="0.035 useEffect/index.html" class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.035 useEffect/README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a href="0.035 useEffect/qna.md" class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.036 - useContext Hook</h4>
               <p>Context API for global state management</p>
-              <a
-                href="0.036 usecontext hook in react /README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.036 usecontext hook in react /index.html"
+                  class="lesson-link">
+                  🌐 View Website
+                </a>
+                <a
+                  href="0.036 usecontext hook in react /README.md"
+                  class="lesson-link secondary">
+                  📖 Read Guide
+                </a>
+                <a
+                  href="0.036 usecontext hook in react /qna.md"
+                  class="lesson-link secondary">
+                  ❓ Practice Q&A
+                </a>
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.037 - useRef Hook</h4>
               <p>Referencing DOM elements and persisting values</p>
-              <a href="0.037 useref hook/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.037 useref hook/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.037 useref hook/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a href="0.037 useref hook/qna.md" class="qna-btn" title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.038 - useMemo & memo</h4>
               <p>Performance optimizations in React applications</p>
-              <a href="0.038 memo and usememo/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.038 memo and usememo/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.038 memo and usememo/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a
+                  href="0.038 memo and usememo/qna.md"
+                  class="qna-btn"
+                  title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.039 - Event Handling</h4>
               <p>Handling user interactions in React components</p>
-              <a
-                href="0.039 event handelling in react/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.039 event handelling in react/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.039 event handelling in react/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a
+                  href="0.039 event handelling in react/qna.md"
+                  class="qna-btn"
+                  title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.040 - Tailwind CSS</h4>
               <p>Utility-first CSS framework for rapid UI development</p>
-              <a href="0.040 tailwind-css/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.040 tailwind-css/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.040 tailwind-css/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a href="0.040 tailwind-css/qna.md" class="qna-btn" title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.041 - React Mapping</h4>
               <p>Rendering lists and dynamic content with .map()</p>
-              <a href="0.041 react-mapping/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.041 react-mapping/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.041 react-mapping/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a href="0.041 react-mapping/qna.md" class="qna-btn" title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.042 - React Routing</h4>
               <p>Single-page applications with React Router</p>
-              <a href="0.042 react routing/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.042 react routing/READMDE.md"
+                  class="docs-btn primary"
+                  title="Documentation"
+                  >Learn More →</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.043 - Modular React</h4>
               <p>Component-based architecture and code organization</p>
-              <a href="0.043 react-modular/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.043 react-modular/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.043 react-modular/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a href="0.043 react-modular/qna.md" class="qna-btn" title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.044 - React + Express</h4>
               <p>Connecting React frontend with Express backend</p>
-              <a
-                href="0.044 connecting react with express/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.044 connecting react with express/README.md"
+                  class="docs-btn primary"
+                  title="Documentation"
+                  >Learn More →</a
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -729,45 +1263,123 @@
             <div class="lesson-card">
               <h4>0.045 - Next.js Introduction</h4>
               <p>React framework with built-in optimization and features</p>
-              <a href="0.045 nextjs introduction/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.045 nextjs introduction/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.045 nextjs introduction/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a
+                  href="0.045 nextjs introduction/qna.md"
+                  class="qna-btn"
+                  title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.046 - Server-Side Rendering</h4>
               <p>SSR concepts and implementation in Next.js</p>
-              <a
-                href="0.046 server-side rendering/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.046 server-side rendering/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.046 server-side rendering/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a
+                  href="0.046 server-side rendering/qna.md"
+                  class="qna-btn"
+                  title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.047 - Client-Side Rendering</h4>
               <p>CSR concepts and when to use it</p>
-              <a
-                href="0.047 client-side rendering/README.md"
-                class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.047 client-side rendering/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.047 client-side rendering/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a
+                  href="0.047 client-side rendering/qna.md"
+                  class="qna-btn"
+                  title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.048 - API Routing</h4>
               <p>Creating backend endpoints in Next.js applications</p>
-              <a href="0.048 api-routing/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.048 api-routing/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.048 api-routing/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a href="0.048 api-routing/qna.md" class="qna-btn" title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
 
             <div class="lesson-card">
               <h4>0.049 - Link Component</h4>
               <p>Navigation and routing in Next.js applications</p>
-              <a href="0.049 link-component/README.md" class="lesson-link"
-                >Learn More →</a
-              >
+              <div class="lesson-links">
+                <a
+                  href="0.049 link-component/index.html"
+                  class="website-btn"
+                  title="Interactive Website"
+                  >Website →</a
+                >
+                <a
+                  href="0.049 link-component/README.md"
+                  class="docs-btn"
+                  title="Documentation"
+                  >Docs</a
+                >
+                <a
+                  href="0.049 link-component/qna.md"
+                  class="qna-btn"
+                  title="Q&A"
+                  >Q&A</a
+                >
+              </div>
             </div>
           </div>
         </div>

@@ -708,16 +708,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const footer = document.querySelector(".footer");
   if (footer) {
     const progressButtons = document.createElement("div");
+    progressButtons.className = "progress-actions";
     progressButtons.innerHTML = `
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
-                <button onclick="fullStackCourse.exportProgress()" class="btn btn-secondary" style="margin-right: 10px;">
-                    📥 Export Progress
-                </button>
-                <input type="file" id="importProgress" accept=".json" style="display: none;">
-                <button onclick="document.getElementById('importProgress').click()" class="btn btn-secondary">
-                    📤 Import Progress
-                </button>
-            </div>
+            <button onclick="fullStackCourse.exportProgress()" class="btn btn-secondary">
+                📥 Export Progress
+            </button>
+            <input type="file" id="importProgress" accept=".json" style="display: none;">
+            <button onclick="document.getElementById('importProgress').click()" class="btn btn-secondary">
+                📤 Import Progress
+            </button>
         `;
     footer.appendChild(progressButtons);
 
