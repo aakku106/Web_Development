@@ -454,27 +454,30 @@ class FullStackCourse {
   // Normalize lesson action buttons and remove decorative emojis
   normalizeLessonButtonsAndText() {
     // Unify labels and classes for lesson links
-    document.querySelectorAll('.lesson-links').forEach((group) => {
-      const links = Array.from(group.querySelectorAll('a'));
+    document.querySelectorAll(".lesson-links").forEach((group) => {
+      const links = Array.from(group.querySelectorAll("a"));
+      const hasWebsite = links.some((a) =>
+        (a.getAttribute("href") || "").toLowerCase().includes("index.html")
+      );
 
       links.forEach((a) => {
-        const href = (a.getAttribute('href') || '').toLowerCase();
+        const href = (a.getAttribute("href") || "").toLowerCase();
 
         // Decide type based on href
-        if (href.includes('index.html')) {
-          a.className = 'website-btn';
-          a.textContent = 'Website →';
-          a.title = 'Interactive Website';
+        if (href.includes("index.html")) {
+          a.className = "website-btn";
+          a.textContent = "Website →";
+          a.title = "Interactive Website";
         } else if (/readme\.|\.md$/.test(href)) {
-          a.className = 'docs-btn';
-          a.textContent = 'Docs';
-          a.title = 'Documentation';
+          a.className = hasWebsite ? "docs-btn" : "docs-btn primary";
+          a.textContent = "Docs";
+          a.title = "Documentation";
         }
 
         if (/qna\.|questions\./.test(href)) {
-          a.className = 'qna-btn';
-          a.textContent = 'Q&A';
-          a.title = 'Q&A';
+          a.className = "qna-btn";
+          a.textContent = "Q&A";
+          a.title = "Q&A";
         }
       });
     });
@@ -482,18 +485,20 @@ class FullStackCourse {
     // Remove emojis from headings and labels except completion checkmark
     const removeEmoji = (text) =>
       text
-        .replace(/[🚀💡🎯📚🎨⚡🖥️🗄️⚛️🔄🎉📋🗂️❤️]/g, '')
-        .replace(/^\s+|\s+$/g, '');
+        .replace(/[🚀💡🎯📚🎨⚡🖥️🗄️⚛️🔄🎉📋🗂️❤️]/g, "")
+        .replace(/^\s+|\s+$/g, "");
 
-    document.querySelectorAll('.header h1, .roadmap h2, .section h3').forEach((el) => {
-      el.textContent = removeEmoji(el.textContent);
-    });
+    document
+      .querySelectorAll(".header h1, .roadmap h2, .section h3")
+      .forEach((el) => {
+        el.textContent = removeEmoji(el.textContent);
+      });
 
     // Update footer link labels to remove emojis
-    document.querySelectorAll('.github-link').forEach((el) => {
+    document.querySelectorAll(".github-link").forEach((el) => {
       el.textContent = el.textContent
-        .replace('📋', '')
-        .replace('🗂️', '')
+        .replace("📋", "")
+        .replace("🗂️", "")
         .trim();
     });
   }
