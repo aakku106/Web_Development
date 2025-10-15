@@ -17,6 +17,7 @@ class FullStackCourse {
     this.setupSearch();
     this.setupThemeToggle();
     this.setupSectionNavigation();
+    this.normalizeLessonButtonsAndText();
     this.loadUserPreferences();
   }
 
@@ -450,6 +451,53 @@ class FullStackCourse {
     this.triggerThemeAnimation();
   }
 
+  // Normalize lesson action buttons and remove decorative emojis
+  normalizeLessonButtonsAndText() {
+    // Unify labels and classes for lesson links
+    document.querySelectorAll('.lesson-links').forEach((group) => {
+      const links = Array.from(group.querySelectorAll('a'));
+
+      links.forEach((a) => {
+        const href = (a.getAttribute('href') || '').toLowerCase();
+
+        // Decide type based on href
+        if (href.includes('index.html')) {
+          a.className = 'website-btn';
+          a.textContent = 'Website →';
+          a.title = 'Interactive Website';
+        } else if (/readme\.|\.md$/.test(href)) {
+          a.className = 'docs-btn';
+          a.textContent = 'Docs';
+          a.title = 'Documentation';
+        }
+
+        if (/qna\.|questions\./.test(href)) {
+          a.className = 'qna-btn';
+          a.textContent = 'Q&A';
+          a.title = 'Q&A';
+        }
+      });
+    });
+
+    // Remove emojis from headings and labels except completion checkmark
+    const removeEmoji = (text) =>
+      text
+        .replace(/[🚀💡🎯📚🎨⚡🖥️🗄️⚛️🔄🎉📋🗂️❤️]/g, '')
+        .replace(/^\s+|\s+$/g, '');
+
+    document.querySelectorAll('.header h1, .roadmap h2, .section h3').forEach((el) => {
+      el.textContent = removeEmoji(el.textContent);
+    });
+
+    // Update footer link labels to remove emojis
+    document.querySelectorAll('.github-link').forEach((el) => {
+      el.textContent = el.textContent
+        .replace('📋', '')
+        .replace('🗂️', '')
+        .trim();
+    });
+  }
+
   createRippleEffect(element) {
     const ripple = document.createElement("div");
     ripple.style.cssText = `
@@ -734,13 +782,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressButtons = document.createElement("div");
     progressButtons.className = "progress-actions";
     progressButtons.innerHTML = `
-            <button onclick="fullStackCourse.exportProgress()" class="btn btn-secondary">
-                📥 Export Progress
-            </button>
+      <button onclick="fullStackCourse.exportProgress()" class="btn btn-secondary">
+        Export Progress
+      </button>
             <input type="file" id="importProgress" accept=".json" style="display: none;">
-            <button onclick="document.getElementById('importProgress').click()" class="btn btn-secondary">
-                📤 Import Progress
-            </button>
+      <button onclick="document.getElementById('importProgress').click()" class="btn btn-secondary">
+        Import Progress
+      </button>
         `;
     footer.appendChild(progressButtons);
 
