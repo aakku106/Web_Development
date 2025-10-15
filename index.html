@@ -233,9 +233,9 @@
       }
 
       .website-btn:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.18);
+        border-color: rgba(255, 255, 255, 0.2);
       }
 
       .docs-btn {
@@ -255,7 +255,7 @@
       .docs-btn:hover {
         background: linear-gradient(45deg, #dee2e6, #ced4da);
         transform: translateY(-1px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
       .docs-btn.primary {
@@ -267,8 +267,8 @@
       }
 
       .docs-btn.primary:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.18);
       }
 
       .qna-btn {
@@ -289,7 +289,7 @@
         background: linear-gradient(45deg, #fdcb6e, #e17055);
         color: white;
         transform: translateY(-1px);
-        box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4);
+        box-shadow: 0 2px 8px rgba(253, 203, 110, 0.28);
       }
 
       /* Dark mode button styles */
@@ -299,7 +299,7 @@
       }
 
       .dark-mode .lesson-link:hover {
-        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.5);
+        box-shadow: 0 4px 12px rgba(79, 172, 254, 0.25);
       }
 
       .dark-mode .lesson-link.secondary {
@@ -318,8 +318,8 @@
       }
 
       .dark-mode .website-btn:hover {
-        box-shadow: 0 8px 30px rgba(79, 172, 254, 0.6);
-        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 12px rgba(79, 172, 254, 0.28);
+        border-color: rgba(255, 255, 255, 0.35);
       }
 
       .dark-mode .docs-btn {
@@ -330,7 +330,7 @@
       .dark-mode .docs-btn:hover {
         background: linear-gradient(45deg, #34495e, #3c5470);
         color: #e8eaed;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
       }
 
       .dark-mode .docs-btn.primary {
@@ -340,7 +340,7 @@
       }
 
       .dark-mode .docs-btn.primary:hover {
-        box-shadow: 0 8px 30px rgba(79, 172, 254, 0.6);
+        box-shadow: 0 4px 12px rgba(79, 172, 254, 0.28);
       }
 
       .dark-mode .qna-btn {
@@ -350,7 +350,7 @@
 
       .dark-mode .qna-btn:hover {
         background: linear-gradient(45deg, #e67e22, #d35400);
-        box-shadow: 0 4px 20px rgba(243, 156, 18, 0.4);
+        box-shadow: 0 2px 10px rgba(243, 156, 18, 0.3);
       }
 
       /* Add floating animation for theme toggle */
@@ -557,6 +557,33 @@
         .container {
           padding: 10px;
         }
+
+        .stat-card {
+          padding: 18px;
+        }
+
+        .theme-toggle {
+          top: 12px;
+          right: 12px;
+          width: 52px;
+          height: 52px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          padding: 28px 16px;
+        }
+        .lesson-card {
+          padding: 16px;
+        }
+        .website-btn,
+        .docs-btn,
+        .qna-btn {
+          padding: 8px 12px;
+          border-radius: 6px;
+          font-size: 0.85rem;
+        }
       }
     </style>
   </head>
@@ -564,7 +591,7 @@
     <div class="container">
       <!-- Header -->
       <div class="header">
-        <h1>🚀 Full Stack Web Development</h1>
+        <h1>Full Stack Web Development</h1>
         <p>Complete Beginner's Guide - From Zero to Hero</p>
         <div class="stats">
           <div class="stat-card">
@@ -581,13 +608,13 @@
           </div>
         </div>
         <div class="quote">
-          💡 "Fall in love with the process, not with the result."
+          "Fall in love with the process, not with the result."
         </div>
       </div>
 
       <!-- Progress Tracker -->
       <div class="progress-tracker">
-        <h3>🎯 Your Learning Progress</h3>
+        <h3>Your Learning Progress</h3>
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill">0% Complete</div>
         </div>
@@ -598,11 +625,11 @@
 
       <!-- Course Content -->
       <div class="roadmap">
-        <h2>📚 Complete Learning Roadmap</h2>
+        <h2>Complete Learning Roadmap</h2>
 
         <!-- Frontend Section -->
         <div class="section">
-          <h3>🎨 Frontend Development (HTML + CSS + JavaScript)</h3>
+          <h3>Frontend Development (HTML + CSS + JavaScript)</h3>
           <div class="lessons-grid">
             <div class="lesson-card">
               <h4>0.001 - Introduction</h4>
@@ -611,14 +638,8 @@
                 backend concepts
               </p>
               <div class="lesson-links">
-                <a href="0.001 introducion/README.md" class="lesson-link">
-                  📖 Read Guide
-                </a>
-                <a
-                  href="0.001 introducion/qna.md"
-                  class="lesson-link secondary">
-                  ❓ Practice Q&A
-                </a>
+                <a href="0.001 introducion/README.md" class="docs-btn">Docs</a>
+                <a href="0.001 introducion/qna.md" class="qna-btn">Q&A</a>
               </div>
             </div>
 
@@ -628,19 +649,13 @@
                 HTML boilerplate, document structure, head and body elements
               </p>
               <div class="lesson-links">
-                <a href="0.002 HTML structre/index.html" class="lesson-link">
-                  🌐 View Website
-                </a>
-                <a
-                  href="0.002 HTML structre/README.md"
-                  class="lesson-link secondary">
-                  📖 Read Guide
-                </a>
-                <a
-                  href="0.002 HTML structre/QNA.md"
-                  class="lesson-link secondary">
-                  ❓ Practice Q&A
-                </a>
+                <a href="0.002 HTML structre/index.html" class="website-btn"
+                  >Website →</a
+                >
+                <a href="0.002 HTML structre/README.md" class="docs-btn"
+                  >Docs</a
+                >
+                <a href="0.002 HTML structre/QNA.md" class="qna-btn">Q&A</a>
               </div>
             </div>
 
