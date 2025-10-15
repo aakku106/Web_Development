@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Navigation - Full Stack Web Development</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        color: #764ba2;
+        margin-bottom: 30px;
+      }
+
+      .back-link {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #667eea;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 5px;
+      }
+
+      .lesson-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .lesson-item {
+        background: #f8f9fa;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      .lesson-link {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .lesson-link:hover {
+        color: #764ba2;
+      }
+
+      .lesson-files {
+        margin-top: 10px;
+      }
+
+      .file-link {
+        display: inline-block;
+        background: #e9ecef;
+        color: #495057;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        margin-right: 10px;
+        margin-top: 5px;
+        font-size: 0.9em;
+      }
+
+      .file-link:hover {
+        background: #dee2e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="index.html" class="back-link">← Back to Main Page</a>
+
+      <h1>📚 Complete Course Navigation</h1>
+
+      <div class="section">
+        <h2>🎨 Frontend Development (HTML + CSS)</h2>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <a href="0.001 introducion/README.md" class="lesson-link"
+              >0.001 - Introduction to Web Development</a
+            >
+            <div class="lesson-files">
+              <a href="0.001 introducion/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.001 introducion/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.002 HTML structre/index.html" class="lesson-link"
+              >0.002 - HTML Structure</a
+            >
+            <div class="lesson-files">
+              <a href="0.002 HTML structre/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.002 HTML structre/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.002 HTML structre/QNA.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.003 HTML tags/index.html" class="lesson-link"
+              >0.003 - HTML Tags</a
+            >
+            <div class="lesson-files">
+              <a href="0.003 HTML tags/index.html" class="file-link">🌐 Demo</a>
+              <a href="0.003 HTML tags/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.003 HTML tags/questions.md" class="file-link"
+                >❓ Questions</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.004 HTML class and id/index.html" class="lesson-link"
+              >0.004 - HTML Classes & IDs</a
+            >
+            <div class="lesson-files">
+              <a href="0.004 HTML class and id/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.004 HTML class and id/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.004 HTML class and id/qna.md" class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.005 CSS basic/index.html" class="lesson-link"
+              >0.005 - CSS Basics</a
+            >
+            <div class="lesson-files">
+              <a href="0.005 CSS basic/index.html" class="file-link">🌐 Demo</a>
+              <a href="0.005 CSS basic/styles.css" class="file-link">🎨 CSS</a>
+              <a href="0.005 CSS basic/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.005 CSS basic/question.md" class="file-link"
+                >❓ Questions</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a
+              href="0.006 selector and styling in css/index.html"
+              class="lesson-link"
+              >0.006 - CSS Selectors & Styling</a
+            >
+            <div class="lesson-files">
+              <a
+                href="0.006 selector and styling in css/index.html"
+                class="file-link"
+                >🌐 Demo</a
+              >
+              <a
+                href="0.006 selector and styling in css/style.css"
+                class="file-link"
+                >🎨 CSS</a
+              >
+              <a
+                href="0.006 selector and styling in css/README.md"
+                class="file-link"
+                >📖 README</a
+              >
+              <a
+                href="0.006 selector and styling in css/qna.md"
+                class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.007 units in css/index.html" class="lesson-link"
+              >0.007 - CSS Units</a
+            >
+            <div class="lesson-files">
+              <a href="0.007 units in css/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.007 units in css/style.css" class="file-link"
+                >🎨 CSS</a
+              >
+              <a href="0.007 units in css/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.007 units in css/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.008 box modal/index.html" class="lesson-link"
+              >0.008 - CSS Box Model</a
+            >
+            <div class="lesson-files">
+              <a href="0.008 box modal/index.html" class="file-link">🌐 Demo</a>
+              <a href="0.008 box modal/style.css" class="file-link">🎨 CSS</a>
+              <a href="0.008 box modal/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.008 box modal/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.009 flexbox/index.html" class="lesson-link"
+              >0.009 - CSS Flexbox</a
+            >
+            <div class="lesson-files">
+              <a href="0.009 flexbox/index.html" class="file-link">🌐 Demo</a>
+              <a href="0.009 flexbox/style.css" class="file-link">🎨 CSS</a>
+              <a href="0.009 flexbox/README.md" class="file-link">📖 README</a>
+              <a href="0.009 flexbox/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.010 grid/index.html" class="lesson-link"
+              >0.010 - CSS Grid</a
+            >
+            <div class="lesson-files">
+              <a href="0.010 grid/index.html" class="file-link">🌐 Demo</a>
+              <a href="0.010 grid/style.css" class="file-link">🎨 CSS</a>
+              <a href="0.010 grid/README.md" class="file-link">📖 README</a>
+              <a href="0.010 grid/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.011 transformations/index.html" class="lesson-link"
+              >0.011 - CSS Transformations</a
+            >
+            <div class="lesson-files">
+              <a href="0.011 transformations/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.011 transformations/style.css" class="file-link"
+                >🎨 CSS</a
+              >
+              <a href="0.011 transformations/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.011 transformations/qna.md" class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a
+              href="0.012 animations and transitions/index.html"
+              class="lesson-link"
+              >0.012 - CSS Animations & Transitions</a
+            >
+            <div class="lesson-files">
+              <a
+                href="0.012 animations and transitions/index.html"
+                class="file-link"
+                >🌐 Demo</a
+              >
+              <a
+                href="0.012 animations and transitions/style.css"
+                class="file-link"
+                >🎨 CSS</a
+              >
+              <a
+                href="0.012 animations and transitions/README.md"
+                class="file-link"
+                >📖 README</a
+              >
+              <a
+                href="0.012 animations and transitions/qna.md"
+                class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.013 media queries/index.html" class="lesson-link"
+              >0.013 - CSS Media Queries</a
+            >
+            <div class="lesson-files">
+              <a href="0.013 media queries/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.013 media queries/style.css" class="file-link"
+                >🎨 CSS</a
+              >
+              <a href="0.013 media queries/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.013 media queries/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>⚡ JavaScript Programming</h2>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <a href="0.014 javascript/index.html" class="lesson-link"
+              >0.014 - JavaScript Basics</a
+            >
+            <div class="lesson-files">
+              <a href="0.014 javascript/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.014 javascript/script.js" class="file-link"
+                >💻 JavaScript</a
+              >
+              <a href="0.014 javascript/READMD.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.014 javascript/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.015 variable/README.md" class="lesson-link"
+              >0.015 - Variables & Data Types</a
+            >
+            <div class="lesson-files">
+              <a href="0.015 variable/READMD.md" class="file-link">📖 README</a>
+              <a href="0.015 variable/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.016 array object json/index.html" class="lesson-link"
+              >0.016 - Arrays, Objects & JSON</a
+            >
+            <div class="lesson-files">
+              <a href="0.016 array object json/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.016 array object json/users.json" class="file-link"
+                >📊 JSON Data</a
+              >
+              <a href="0.016 array object json/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.016 array object json/qna.md" class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.017 conditionals/index.html" class="lesson-link"
+              >0.017 - Conditional Statements</a
+            >
+            <div class="lesson-files">
+              <a href="0.017 conditionals/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.017 conditionals/script.js" class="file-link"
+                >💻 JavaScript</a
+              >
+              <a href="0.017 conditionals/style.css" class="file-link"
+                >🎨 CSS</a
+              >
+              <a href="0.017 conditionals/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.017 conditionals/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.018 loop in javascript/index.html" class="lesson-link"
+              >0.018 - JavaScript Loops</a
+            >
+            <div class="lesson-files">
+              <a href="0.018 loop in javascript/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.018 loop in javascript/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.018 loop in javascript/qna.md" class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.019 functions/index.html" class="lesson-link"
+              >0.019 - JavaScript Functions</a
+            >
+            <div class="lesson-files">
+              <a href="0.019 functions/index.html" class="file-link">🌐 Demo</a>
+              <a href="0.019 functions/script.js" class="file-link"
+                >💻 JavaScript</a
+              >
+              <a href="0.019 functions/style.css" class="file-link">🎨 CSS</a>
+              <a href="0.019 functions/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.019 functions/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.020 modular programming/index.html" class="lesson-link"
+              >0.020 - Modular Programming</a
+            >
+            <div class="lesson-files">
+              <a href="0.020 modular programming/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.020 modular programming/READMD.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.020 modular programming/qna.md" class="file-link"
+                >❓ Q&A</a
+              >
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <a href="0.021 oops basic/index.html" class="lesson-link"
+              >0.021 - Object-Oriented Programming</a
+            >
+            <div class="lesson-files">
+              <a href="0.021 oops basic/index.html" class="file-link"
+                >🌐 Demo</a
+              >
+              <a href="0.021 oops basic/README.md" class="file-link"
+                >📖 README</a
+              >
+              <a href="0.021 oops basic/qna.md" class="file-link">❓ Q&A</a>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.022 - DOM Manipulation</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.023 - Event Handling</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>🖥️ Backend Development (Node.js + Express)</h2>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <span class="lesson-link">0.024 - Node.js Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.025 - Express.js Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.026 - Express Request & Response</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.027 - HTTP Methods in Express</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.028 - Middleware</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>🗄️ Database (MongoDB + Mongoose)</h2>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <span class="lesson-link">0.029 - Database Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.030 - MongoDB Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.031 - Mongoose Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.032 - CRUD Operations</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>⚛️ React Development</h2>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <span class="lesson-link">0.033 - React Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <li class="lesson-item">
+            <span class="lesson-link">0.034 - useState Hook</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <!-- Continue with remaining React lessons... -->
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>🔄 Next.js Development</h2>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <span class="lesson-link">0.045 - Next.js Introduction</span>
+            <div class="lesson-files">
+              <span class="file-link" style="opacity: 0.5">🚧 Coming Soon</span>
+            </div>
+          </li>
+
+          <!-- Continue with remaining Next.js lessons... -->
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

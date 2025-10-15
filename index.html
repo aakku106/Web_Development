@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Stack Web Development - Complete Beginner's Guide</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        margin-bottom: 30px;
+        padding: 40px 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .quote {
+        font-style: italic;
+        color: #764ba2;
+        font-size: 1.1rem;
+        margin-top: 15px;
+      }
+
+      .roadmap {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .roadmap h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #764ba2;
+        font-size: 2.5rem;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .section h3 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      .lessons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 10px;
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-left: 5px solid #667eea;
+      }
+
+      .lesson-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .lesson-card h4 {
+        color: #764ba2;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .lesson-card p {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+      }
+
+      .lesson-link {
+        display: inline-block;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: transform 0.2s ease;
+      }
+
+      .lesson-link:hover {
+        transform: scale(1.05);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .stat-label {
+        color: #666;
+        font-weight: 500;
+      }
+
+      .progress-tracker {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .progress-tracker h3 {
+        text-align: center;
+        color: #764ba2;
+        margin-bottom: 20px;
+      }
+
+      .progress-bar {
+        background: #e0e0e0;
+        border-radius: 25px;
+        height: 30px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        height: 100%;
+        width: 0%;
+        border-radius: 25px;
+        transition: width 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+
+      .footer {
+        background: rgba(255, 255, 255, 0.95);
+        text-align: center;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .github-link {
+        display: inline-block;
+        background: #333;
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      }
+
+      .github-link:hover {
+        background: #555;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .header p {
+          font-size: 1rem;
+        }
+
+        .lessons-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>🚀 Full Stack Web Development</h1>
+        <p>Complete Beginner's Guide - From Zero to Hero</p>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number">49</div>
+            <div class="stat-label">Comprehensive Lessons</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Major Technologies</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Hands-on Practice</div>
+          </div>
+        </div>
+        <div class="quote">
+          💡 "Fall in love with the process, not with the result."
+        </div>
+      </div>
+
+      <!-- Progress Tracker -->
+      <div class="progress-tracker">
+        <h3>🎯 Your Learning Progress</h3>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill">0% Complete</div>
+        </div>
+        <p style="text-align: center; margin-top: 10px; color: #666">
+          Track your progress as you complete each lesson!
+        </p>
+      </div>
+
+      <!-- Course Content -->
+      <div class="roadmap">
+        <h2>📚 Complete Learning Roadmap</h2>
+
+        <!-- Frontend Section -->
+        <div class="section">
+          <h3>🎨 Frontend Development (HTML + CSS + JavaScript)</h3>
+          <div class="lessons-grid">
+            <div class="lesson-card">
+              <h4>0.001 - Introduction</h4>
+              <p>
+                Web development basics, websites vs webpages, frontend vs
+                backend concepts
+              </p>
+              <a href="0.001 introducion/README.md" class="lesson-link"
+                >Start Learning →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.002 - HTML Structure</h4>
+              <p>
+                HTML boilerplate, document structure, head and body elements
+              </p>
+              <a href="0.002 HTML structre/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.003 - HTML Tags</h4>
+              <p>
+                Essential HTML tags: headings, paragraphs, links, images, lists,
+                tables, forms
+              </p>
+              <a href="0.003 HTML tags/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.004 - Classes & IDs</h4>
+              <p>
+                Understanding the difference and usage of classes and IDs in
+                HTML
+              </p>
+              <a href="0.004 HTML class and id/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.005 - CSS Basics</h4>
+              <p>
+                Introduction to CSS, linking stylesheets, inline, internal, and
+                external styles
+              </p>
+              <a href="0.005 CSS basic/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.006 - CSS Selectors</h4>
+              <p>
+                Element, class, ID selectors and applying styles to different
+                elements
+              </p>
+              <a
+                href="0.006 selector and styling in css/index.html"
+                class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.007 - CSS Units</h4>
+              <p>
+                Absolute (px) and relative (em, %, rem, vh, vw) units in CSS
+              </p>
+              <a href="0.007 units in css/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.008 - Box Model</h4>
+              <p>
+                Understanding margin, border, padding, and content in CSS box
+                model
+              </p>
+              <a href="0.008 box modal/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.009 - Flexbox</h4>
+              <p>
+                Flexible layouts with flexbox: containers, alignment, and
+                responsive design
+              </p>
+              <a href="0.009 flexbox/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.010 - CSS Grid</h4>
+              <p>Advanced layouts with CSS Grid system for complex designs</p>
+              <a href="0.010 grid/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.011 - Transformations</h4>
+              <p>CSS transforms: scale, rotate, translate, and skew effects</p>
+              <a href="0.011 transformations/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.012 - Animations</h4>
+              <p>
+                CSS animations, transitions, keyframes, and interactive hover
+                effects
+              </p>
+              <a
+                href="0.012 animations and transitions/index.html"
+                class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.013 - Media Queries</h4>
+              <p>
+                Responsive design basics with CSS media queries for different
+                screen sizes
+              </p>
+              <a href="0.013 media queries/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- JavaScript Section -->
+        <div class="section">
+          <h3>⚡ JavaScript (Core Programming Concepts)</h3>
+          <div class="lessons-grid">
+            <div class="lesson-card">
+              <h4>0.014 - JavaScript Basics</h4>
+              <p>
+                JavaScript syntax, operators, console.log(), and basic
+                programming concepts
+              </p>
+              <a href="0.014 javascript/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.015 - Variables</h4>
+              <p>let, const, var declarations and data types in JavaScript</p>
+              <a href="0.015 variable/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.016 - Arrays & Objects</h4>
+              <p>Working with arrays, objects, and JSON data structures</p>
+              <a href="0.016 array object json/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.017 - Conditionals</h4>
+              <p>Decision making with if, else, switch statements</p>
+              <a href="0.017 conditionals/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.018 - Loops</h4>
+              <p>Iteration with for, while, for...of, and forEach loops</p>
+              <a href="0.018 loop in javascript/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.019 - Functions</h4>
+              <p>Regular and arrow functions, parameters, return values</p>
+              <a href="0.019 functions/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.020 - Modular Programming</h4>
+              <p>
+                Import/export modules, organizing code into reusable components
+              </p>
+              <a href="0.020 modular programming/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.021 - OOP Basics</h4>
+              <p>
+                Object-oriented programming: classes, objects, inheritance,
+                polymorphism
+              </p>
+              <a href="0.021 oops basic/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.022 - DOM Manipulation</h4>
+              <p>
+                Document Object Model: accessing and modifying HTML elements
+              </p>
+              <a href="0.022 dom/index.html" class="lesson-link">View Demo →</a>
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.023 - Event Handling</h4>
+              <p>Event listeners, user interactions, and dynamic web pages</p>
+              <a href="0.023 events/index.html" class="lesson-link"
+                >View Demo →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Section -->
+        <div class="section">
+          <h3>🖥️ Backend Development (Node.js + Express)</h3>
+          <div class="lessons-grid">
+            <div class="lesson-card">
+              <h4>0.024 - Node.js Introduction</h4>
+              <p>What is Node.js, server-side JavaScript, running scripts</p>
+              <a href="0.024 node intro/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.025 - Express.js Introduction</h4>
+              <p>Setting up an Express server, basic routing</p>
+              <a href="0.025 express intro/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.026 - Request & Response</h4>
+              <p>Understanding req and res objects in Express</p>
+              <a
+                href="0.026 express request and respond/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.027 - HTTP Methods</h4>
+              <p>GET, POST, PUT, DELETE methods and RESTful APIs</p>
+              <a
+                href="0.027 http method in express/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.028 - Middleware</h4>
+              <p>
+                Custom middleware, authentication, logging, and request
+                processing
+              </p>
+              <a href="0.028 middleware/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Database Section -->
+        <div class="section">
+          <h3>🗄️ Database (MongoDB + Mongoose)</h3>
+          <div class="lessons-grid">
+            <div class="lesson-card">
+              <h4>0.029 - Database Introduction</h4>
+              <p>What are databases, relational vs non-relational databases</p>
+              <a href="0.029 database introducion/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.030 - MongoDB Introduction</h4>
+              <p>NoSQL database concepts: collections, documents, BSON</p>
+              <a href="0.030 mongodb introducion/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.031 - Mongoose Introduction</h4>
+              <p>MongoDB object modeling for Node.js: schemas and models</p>
+              <a
+                href="0.031 mongoose introdiction/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.032 - CRUD Operations</h4>
+              <p>
+                Create, Read, Update, Delete operations with MongoDB and
+                Mongoose
+              </p>
+              <a
+                href="0.032 crud operation in mongodb/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- React Section -->
+        <div class="section">
+          <h3>⚛️ Frontend Framework (React)</h3>
+          <div class="lessons-grid">
+            <div class="lesson-card">
+              <h4>0.033 - React Introduction</h4>
+              <p>
+                What is React, component-based architecture, why it's popular
+              </p>
+              <a href="0.033 react introduction/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.034 - useState Hook</h4>
+              <p>State management in functional components</p>
+              <a href="0.034 useState/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.035 - useEffect Hook</h4>
+              <p>Side effects, lifecycle methods in functional components</p>
+              <a href="0.035 useEffect/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.036 - useContext Hook</h4>
+              <p>Context API for global state management</p>
+              <a
+                href="0.036 usecontext hook in react /README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.037 - useRef Hook</h4>
+              <p>Referencing DOM elements and persisting values</p>
+              <a href="0.037 useref hook/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.038 - useMemo & memo</h4>
+              <p>Performance optimizations in React applications</p>
+              <a href="0.038 memo and usememo/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.039 - Event Handling</h4>
+              <p>Handling user interactions in React components</p>
+              <a
+                href="0.039 event handelling in react/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.040 - Tailwind CSS</h4>
+              <p>Utility-first CSS framework for rapid UI development</p>
+              <a href="0.040 tailwind-css/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.041 - React Mapping</h4>
+              <p>Rendering lists and dynamic content with .map()</p>
+              <a href="0.041 react-mapping/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.042 - React Routing</h4>
+              <p>Single-page applications with React Router</p>
+              <a href="0.042 react routing/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.043 - Modular React</h4>
+              <p>Component-based architecture and code organization</p>
+              <a href="0.043 react-modular/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.044 - React + Express</h4>
+              <p>Connecting React frontend with Express backend</p>
+              <a
+                href="0.044 connecting react with express/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Next.js Section -->
+        <div class="section">
+          <h3>🔄 Full-Stack Framework (Next.js)</h3>
+          <div class="lessons-grid">
+            <div class="lesson-card">
+              <h4>0.045 - Next.js Introduction</h4>
+              <p>React framework with built-in optimization and features</p>
+              <a href="0.045 nextjs introduction/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.046 - Server-Side Rendering</h4>
+              <p>SSR concepts and implementation in Next.js</p>
+              <a
+                href="0.046 server-side rendering/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.047 - Client-Side Rendering</h4>
+              <p>CSR concepts and when to use it</p>
+              <a
+                href="0.047 client-side rendering/README.md"
+                class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.048 - API Routing</h4>
+              <p>Creating backend endpoints in Next.js applications</p>
+              <a href="0.048 api-routing/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+
+            <div class="lesson-card">
+              <h4>0.049 - Link Component</h4>
+              <p>Navigation and routing in Next.js applications</p>
+              <a href="0.049 link-component/README.md" class="lesson-link"
+                >Learn More →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <h3>🎉 Ready to Start Your Journey?</h3>
+        <p>
+          This comprehensive course covers everything you need to become a
+          full-stack web developer.
+        </p>
+        <p>
+          <strong>Remember:</strong> Keep coding, keep practicing, keep
+          improving!
+        </p>
+
+        <a
+          href="https://github.com/aakku106/Web_Development"
+          class="github-link"
+          target="_blank">
+          📋 View on GitHub
+        </a>
+
+        <a
+          href="navigation.html"
+          class="github-link"
+          style="background: #667eea; margin-left: 10px">
+          🗂️ Detailed Navigation
+        </a>
+
+        <div
+          style="
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+          ">
+          <p style="color: #666; font-size: 0.9rem">
+            Created with ❤️ for aspiring web developers worldwide
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Progress tracking functionality
+      function updateProgress() {
+        const totalLessons = 49;
+        const completedLessons = localStorage.getItem("completedLessons")
+          ? JSON.parse(localStorage.getItem("completedLessons")).length
+          : 0;
+
+        const progressPercentage = Math.round(
+          (completedLessons / totalLessons) * 100
+        );
+        const progressFill = document.getElementById("progressFill");
+
+        progressFill.style.width = progressPercentage + "%";
+        progressFill.textContent = progressPercentage + "% Complete";
+      }
+
+      // Mark lesson as completed when link is clicked
+      document.querySelectorAll(".lesson-link").forEach((link) => {
+        link.addEventListener("click", function () {
+          const lessonTitle =
+            this.parentElement.querySelector("h4").textContent;
+          let completedLessons = localStorage.getItem("completedLessons")
+            ? JSON.parse(localStorage.getItem("completedLessons"))
+            : [];
+
+          if (!completedLessons.includes(lessonTitle)) {
+            completedLessons.push(lessonTitle);
+            localStorage.setItem(
+              "completedLessons",
+              JSON.stringify(completedLessons)
+            );
+            updateProgress();
+          }
+        });
+      });
+
+      // Initialize progress on page load
+      updateProgress();
+
+      // Add smooth scrolling for better UX
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Add animation on scroll for lesson cards
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = "fadeInUp 0.6s ease forwards";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".lesson-card").forEach((card) => {
+        observer.observe(card);
+      });
+
+      // Add CSS animation keyframes
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .lesson-card {
+                opacity: 0;
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
