@@ -1,17 +1,17 @@
-# 🚀 Full Stack Web Development - Complete Learning Platform
+# Full Stack Web Development - Complete Learning Platform
 
 A comprehensive, beginner-friendly web development course that takes you from zero to full-stack developer. This interactive learning platform connects all lessons in a beautiful, navigable website.
 
-## 🌟 Features
+## Features
 
-### 📚 Comprehensive Curriculum
+### Comprehensive Curriculum
 
 - **49 Detailed Lessons** covering everything from HTML basics to advanced Next.js
 - **7 Major Technology Tracks**: HTML/CSS, JavaScript, Node.js/Express, MongoDB, React, and Next.js
 - **Hands-on Practice** with QnA sections and practical exercises
 - **Progressive Learning Path** designed for complete beginners
 
-### 🎯 Interactive Learning Experience
+### Interactive Learning Experience
 
 - **Progress Tracking**: Visual progress bar and completion tracking
 - **Smart Search**: Find lessons quickly with live search functionality
@@ -19,7 +19,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - **Responsive Design**: Learn on any device
 - **Dark/Light Mode**: Choose your preferred theme
 
-### 🛠 Advanced Features
+### Advanced Features
 
 - **Progress Export/Import**: Save and share your learning progress
 - **Keyboard Shortcuts**: Navigate efficiently (Ctrl/Cmd + F for search, Ctrl/Cmd + S to save)
@@ -27,9 +27,9 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - **Section Navigation**: Jump between different technology sections
 - **Local Storage**: Your progress is automatically saved
 
-## 🗂 Course Structure
+## Course Structure
 
-### 1. 🎨 Frontend Development (HTML + CSS + JavaScript)
+### 1. Frontend Development (HTML + CSS + JavaScript)
 
 **Lessons 001-013**: Web development fundamentals
 
@@ -46,7 +46,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - DOM manipulation and event handling
 - Object-oriented programming basics
 
-### 3. 🖥️ Backend Development (Node.js + Express)
+### 3. Backend Development (Node.js + Express)
 
 **Lessons 024-028**: Server-side development
 
@@ -55,7 +55,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - HTTP methods and middleware
 - API development fundamentals
 
-### 4. 🗄️ Database Management (MongoDB + Mongoose)
+### 4. Database Management (MongoDB + Mongoose)
 
 **Lessons 029-032**: Data persistence
 
@@ -64,7 +64,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - Mongoose ODM for Node.js
 - CRUD operations and data modeling
 
-### 5. ⚛️ Frontend Framework (React)
+### 5. Frontend Framework (React)
 
 **Lessons 033-044**: Modern UI development
 
@@ -74,7 +74,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - Routing and modular development
 - Integration with backend APIs
 
-### 6. 🔄 Full-Stack Framework (Next.js)
+### 6. Full-Stack Framework (Next.js)
 
 **Lessons 045-049**: Modern web applications
 
@@ -83,7 +83,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - Performance optimization
 - Production deployment strategies
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Clone the Repository**
 
@@ -110,7 +110,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
    - Click on any lesson to begin
    - Track your progress as you complete lessons
 
-## 🎯 Learning Path Recommendations
+## Learning Path Recommendations
 
 ### For Complete Beginners
 
@@ -139,7 +139,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - ✅ Safari 12+
 - ✅ Edge 79+
 
-## 🛠 Technology Stack
+## Technology Stack
 
 ### Frontend
 
@@ -159,7 +159,7 @@ A comprehensive, beginner-friendly web development course that takes you from ze
 - **Practice Exercises**: Hands-on coding challenges
 - **QnA Sections**: Self-assessment and review
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions to improve the learning experience!
 
@@ -179,7 +179,7 @@ We welcome contributions to improve the learning experience!
 - Write clear, beginner-friendly explanations
 - Include practical examples and exercises
 
-## 📊 Progress Tracking
+## Progress Tracking
 
 ### Features
 
@@ -272,8 +272,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Happy Learning! 🚀**
+**Happy Learning! **
 
 > "Fall in love with the process, not with the result."
 
 Start your full-stack development journey today and transform from a beginner to a confident web developer!
+
+---
+
+Created by [aakku106](https://github.com/aakku106) - Making web development fun and accessible for everyone!
